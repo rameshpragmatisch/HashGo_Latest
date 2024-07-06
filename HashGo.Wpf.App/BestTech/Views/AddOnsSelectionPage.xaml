@@ -1,0 +1,252 @@
+﻿<baseControls:BasePage x:Class="HashGo.Wpf.App.BestTech.Views.AddOnsSelectionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HashGo.Wpf.App.BestTech.Views"
+      xmlns:baseControls="clr-namespace:HashGo.Wpf.App.BestTech.Controls"
+                       xmlns:converters="clr-namespace:HashGo.Wpf.App.Converters"
+      mc:Ignorable="d" 
+xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddOnsSelectionPage">
+    <Page.Resources>
+        <converters:StringToVisibilityConverter x:Key="stringToVisibilityConverter" />
+        <converters:HashTechImageConverter x:Key="imageValueConverter" />
+        <Style x:Key="ToggleButtonRadioButtonStyle" TargetType="RadioButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border Background="{TemplateBinding Background}" Margin="-3,0,0,0"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1" Width="110"
+                                HorizontalAlignment="Left">
+                            <ContentPresenter  HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" Value="LightBlue"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="188" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition/>
+            <RowDefinition Height="90" />
+        </Grid.RowDefinitions>
+
+        <!--<StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="0,20,0,0"
+HorizontalAlignment="Center">
+            <Image Source="/Resources/Images/Home.png"
+
+HorizontalAlignment="Left"/>
+        </StackPanel>-->
+
+        <StackPanel  Grid.Row="0"
+             Orientation="Horizontal">
+            <!--<TextBlock Text="Selected Product: " FontWeight="Bold"/>-->
+            <Image Source="{Binding SelectedUnitImage,Converter={StaticResource imageValueConverter}}" Width="191" Height="178"/>
+
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock Text="Product Name" FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}" FontSize="18"
+                           FontWeight="Bold"/>
+                <TextBlock Text="{Binding SelectedUnitName}" FontFamily="{StaticResource BaijamureeFontRegularStyle}" FontSize="18"/>
+            </StackPanel>
+        </StackPanel>
+        
+        <Border Grid.Row="2" Height="3"  Margin="0,11,0,0"
+                  BorderThickness="1" Background="#00B5CB" />
+
+        <Grid Grid.Row="3" Margin="0,-2,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="210"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="110"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" Height="108" Width="209"
+                          Background="#00B5CB">
+                    <TextBlock Text="ADD-ONS" FontSize="15" Foreground="White"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                </Border>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <TextBlock Margin="25,15,0,10">
+                    <Run FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}" FontSize="15">Select add-ons</Run>
+                    <Run FontFamily="{StaticResource BaijamureeFontRegularStyle}" FontSize="15">Pick min 0 max (?)</Run>
+                </TextBlock>
+                
+                <ListBox ItemsSource="{Binding LstUnitInstallationTypes,Mode=TwoWay}" Grid.Row="1"
+                         SelectionMode="Single" x:Name="lstBoxAddOns" BorderThickness="0"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <!--<i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonUp">
+                            <i:InvokeCommandAction Command="{Binding AddOnsSelectionChangedCommand}" 
+              CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListBox}, Path=SelectedItem}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>-->
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid VerticalAlignment="Top" Cursor="Hand"
+                                  Margin="5">
+                                <!--<i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
+                                        --><!--<i:CallMethodAction MethodName="Grid_MouseLeftButtonUp" TargetObject="{Binding RelativeSource={RelativeSource AncestorType=Page}}" />--><!--
+                                        <i:InvokeCommandAction Command="{Binding DataContext.AddOnsSelectionChangedCommand,RelativeSource={RelativeSource AncestorType=Page}}" 
+                                                               CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListBox}, Path=SelectedItem}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>-->
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <Border Grid.Row="0" BorderBrush="LightGray" BorderThickness="0.5"
+                                        Width="273" Height="264"
+                                        CornerRadius="20">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Border Background="Transparent">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
+                                                    <i:InvokeCommandAction Command="{Binding DataContext.AddOnsSelectionChangedCommand,RelativeSource={RelativeSource AncestorType=Page}}" 
+CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListBox}, Path=SelectedItem}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                            <Image Source="{Binding ImageSource,Mode=TwoWay}" 
+        Width="{Binding ActualWidth, ElementName=lstBoxAddOns, Converter={converters:PercentageConverter}, ConverterParameter='.2'}"
+        Height="{Binding ActualHeight, ElementName=lstBoxAddOns, Converter={converters:PercentageConverter}, ConverterParameter='.4'}">
+                                               
+                                            </Image>
+                                        </Border>
+                                       
+                                        <local:ProductCountControl Grid.Row="1" MaxWidth="100"
+                                                                   Visibility="{Binding InstallationType,Converter={StaticResource stringToVisibilityConverter}}"
+                                                                   Count="{Binding InstallationTypeCount,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                    AddProductCommand="{Binding DataContext.SelectedAddonCommand,RelativeSource={RelativeSource AncestorType=Page}}"
+                                                                    SubtractProductCommand="{Binding DataContext.RemoveAddOnCommand,RelativeSource={RelativeSource AncestorType=Page}}"
+                                                                   AddProductParameter="{Binding}"/>
+                                    </Grid>
+                                </Border>
+                               
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                    
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Background" Value="White" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListBoxItem">
+                                        
+                                            <StackPanel>
+                                            <Border x:Name="ItemBorder" CornerRadius="10" BorderThickness="2" >
+                                                <ContentPresenter x:Name="ContentPresenter" HorizontalAlignment="Stretch" />
+                                            </Border>
+                                            <TextBlock  HorizontalAlignment="Center"
+                                                           Text="{Binding InstallationType}"/>
+                                            </StackPanel>
+                                            
+                                       
+
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="ItemBorder" Property="BorderBrush" Value="#00B5CB" />
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="False">
+                                                <Setter TargetName="ItemBorder"  Property="BorderBrush" Value="White" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <!--<ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Height" Value="150"/>
+                            <Setter Property="Width" Value="105"/>
+                            <Setter Property="HorizontalAlignment" Value="Left"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>-->
+                </ListBox>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="4" Margin="0,5,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Border Background="White"  Margin="15,0"
+                        BorderBrush="#00B5CB"
+                    BorderThickness="1.5"
+                    Cursor="Hand"
+                     HorizontalAlignment="Stretch" 
+                     Height="73"
+                    CornerRadius="5">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
+                        <i:InvokeCommandAction Command="{Binding PreviousScreenCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <TextBlock Text="Previous" HorizontalAlignment="Center"
+                           FontFamily="{StaticResource  BaijamureeFontSemiBoldStyle}"
+                           FontSize="24"
+                           VerticalAlignment="Center" Foreground="Black" />
+            </Border>
+
+            <Border Background="#00B5CB" Grid.Column="1"
+              BorderBrush="#00B5CB" Height="73" Margin="15,0"
+          BorderThickness="1.5"
+          Cursor="Hand"
+           HorizontalAlignment="Stretch" 
+          
+          CornerRadius="5">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
+                        <i:InvokeCommandAction Command="{Binding AddProductCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <TextBlock Text="Add to Cart" HorizontalAlignment="Center"
+                           FontFamily="{StaticResource  BaijamureeFontSemiBoldStyle}"
+                            FontSize="24"
+                 VerticalAlignment="Center" Foreground="Black" />
+            </Border>
+        </Grid>
+    </Grid>
+</baseControls:BasePage>

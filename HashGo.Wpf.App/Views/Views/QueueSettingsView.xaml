@@ -1,0 +1,378 @@
+﻿<UserControl
+    x:Class="HashGo.Wpf.App.Views.Views.QueueSettingsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:base="clr-namespace:HashGo.Domain.ViewModels.Base;assembly=HashGo.Domain"
+    xmlns:converters="clr-namespace:HashGo.Wpf.App.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:HashGo.Wpf.App.Views.Views"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:selectors="clr-namespace:HashGo.Wpf.App.Selectors"
+    xmlns:strings="clr-namespace:HashGo.String.Resources.Strings;assembly=HashGo.String"
+    d:DataContext="{d:DesignInstance Type=base:BaseViewModel}"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    UseLayoutRounding="True"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.TextBox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="toggleSwitchStyle" TargetType="{x:Type CheckBox}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type CheckBox}">
+                            <ControlTemplate.Resources>
+                                <SolidColorBrush x:Key="fillBrush" Color="{DynamicResource DineConnectTagBackgroundColor}" />
+                                <SolidColorBrush x:Key="borderBrush" Color="{DynamicResource DineConnectFrameBackgroundColor}" />
+                            </ControlTemplate.Resources>
+                            <Border
+                                Height="{TemplateBinding Height}"
+                                MinHeight="20"
+                                Padding="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="0"
+                                SnapsToDevicePixels="true">
+                                <Grid
+                                    x:Name="rootElement"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Background="Transparent"
+                                    SnapsToDevicePixels="True">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="38" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid x:Name="markGrid">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Border
+                                            x:Name="moveEllipse"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Stretch"
+                                            Background="Transparent">
+                                            <Border.Style>
+                                                <Style TargetType="{x:Type Border}">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
+                                                            <DataTrigger.EnterActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation
+                                                                            Storyboard.TargetProperty="Width"
+                                                                            From="0"
+                                                                            To="16"
+                                                                            Duration="0:0:0.4" />
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </DataTrigger.EnterActions>
+                                                            <DataTrigger.ExitActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation
+                                                                            Storyboard.TargetProperty="Width"
+                                                                            To="0"
+                                                                            Duration="0:0:0.4" />
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </DataTrigger.ExitActions>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                        </Border>
+                                        <Rectangle
+                                            Name="line"
+                                            Grid.ColumnSpan="2"
+                                            Margin="2,3"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Stretch"
+                                            IsHitTestVisible="False"
+                                            RadiusX="6"
+                                            RadiusY="6"
+                                            StrokeThickness=".8">
+                                            <Rectangle.Style>
+                                                <Style TargetType="{x:Type Rectangle}">
+                                                    <Setter Property="Fill" Value="LightGray" />
+                                                </Style>
+                                            </Rectangle.Style>
+                                        </Rectangle>
+                                        <Ellipse
+                                            Name="spot"
+                                            Grid.Column="1"
+                                            Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+                                            HorizontalAlignment="Left"
+                                            StrokeThickness=".8">
+                                            <Ellipse.Style>
+                                                <Style TargetType="Ellipse">
+                                                    <Setter Property="Fill" Value="DarkGray" />
+                                                    <Setter Property="Stroke" Value="SlateGray" />
+                                                </Style>
+                                            </Ellipse.Style>
+                                        </Ellipse>
+
+                                    </Grid>
+                                    <ContentPresenter
+                                        x:Name="contentPresenter"
+                                        Grid.Column="1"
+                                        Margin="{TemplateBinding Padding}"
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Content="{TemplateBinding Content}"
+                                        ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                        Focusable="False"
+                                        RecognizesAccessKey="True"
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="line" Property="Stroke" Value="DarkGray" />
+                                    <Setter TargetName="spot" Property="Stroke" Value="{DynamicResource DineConnectFrameBorderBrush}" />
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" Value=".5" />
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="line" Property="Stroke" Value="Black" />
+                                    <Setter TargetName="spot" Property="Stroke" Value="Black" />
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="line" Property="Fill" Value="{DynamicResource DineConnectAccentBrush}" />
+                                    <Setter TargetName="spot" Property="Fill" Value="{DynamicResource DineConnectFrameBackgroundBrush}" />
+                                    <Setter TargetName="spot" Property="Stroke" Value="DarkSlateGray" />
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="{x:Null}">
+                                    <Setter TargetName="line" Property="Fill" Value="lightGray" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <SolidColorBrush x:Key="watermarkTextColor" Color="DarkGray" />
+
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid
+        x:Name="rootElement"
+        Margin="30"
+        VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            VerticalAlignment="Bottom"
+            FontSize="20"
+            FontWeight="DemiBold"
+            Style="{StaticResource RubikTextBlockStyle}"
+            Text="Enable Queue?" />
+
+        <CheckBox
+            x:Name="ctrlQueueEnableToggleSwitch"
+            Grid.Row="0"
+            Grid.Column="1"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            HorizontalContentAlignment="Center"
+            IsChecked="{Binding EnableQueue, Mode=TwoWay}"
+            Style="{StaticResource toggleSwitchStyle}" />
+
+        <Grid Grid.Row="1" Margin="0,10,5,10">
+            <Grid>
+                <TextBox
+                    x:Name="txtPrefix"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Bottom"
+                    BorderThickness="0"
+                    FontSize="20"
+                    Text="{Binding QueuePrefix}" />
+                <TextBlock
+                    Margin="5,0,0,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Bottom"
+                    FontSize="20"
+                    Foreground="{StaticResource watermarkTextColor}"
+                    IsHitTestVisible="False"
+                    Text="Prefix">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=txtPrefix}" Value="">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+
+
+            <Border
+                Height="2"
+                VerticalAlignment="Bottom"
+                Background="{DynamicResource DineConnectAccentBrush}" />
+        </Grid>
+
+        <Grid
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="5,10,0,10">
+            <Grid>
+                <TextBox
+                    x:Name="txtSuffix"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Bottom"
+                    BorderThickness="0"
+                    FontSize="20"
+                    Text="{Binding QueueSuffix}" />
+                <TextBlock
+                    Margin="5,0,0,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Bottom"
+                    FontSize="20"
+                    Foreground="{StaticResource watermarkTextColor}"
+                    IsHitTestVisible="False"
+                    Text="Suffix">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=txtSuffix}" Value="">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+            <Border
+                Height="2"
+                VerticalAlignment="Bottom"
+                Background="{DynamicResource DineConnectAccentBrush}" />
+        </Grid>
+
+        <Grid Grid.Row="2" Margin="0,10,5,10">
+
+            <Grid>
+                <TextBox
+                    x:Name="txtStartNumber"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Bottom"
+                    BorderThickness="0"
+                    FontSize="20"
+                    Text="{Binding StartNumber}" />
+                <TextBlock
+                    Margin="5,0,0,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Bottom"
+                    FontSize="20"
+                    Foreground="{StaticResource watermarkTextColor}"
+                    IsHitTestVisible="False"
+                    Text="Start Number">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=txtStartNumber}" Value="">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+            <Border
+                Height="2"
+                VerticalAlignment="Bottom"
+                Background="{DynamicResource DineConnectAccentBrush}" />
+        </Grid>
+
+        <Grid
+            Grid.Row="2"
+            Grid.Column="1"
+            Margin="5,10,0,10">
+
+            <Grid>
+                <TextBox
+                    x:Name="txtEndNumber"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Bottom"
+                    BorderThickness="0"
+                    FontSize="20"
+                    Text="{Binding EndNumber}" />
+                <TextBlock
+                    Margin="5,0,0,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Bottom"
+                    FontSize="20"
+                    Foreground="{StaticResource watermarkTextColor}"
+                    IsHitTestVisible="False"
+                    Text="End Number">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=txtEndNumber}" Value="">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+            <Border
+                Height="2"
+                VerticalAlignment="Bottom"
+                Background="{DynamicResource DineConnectAccentBrush}" />
+        </Grid>
+
+        <TextBlock
+            Grid.Row="3"
+            Grid.Column="0"
+            Margin="0,20,0,0"
+            VerticalAlignment="Center"
+            FontSize="20"
+            FontWeight="DemiBold"
+            Style="{StaticResource RubikTextBlockStyle}"
+            Text="Reset Queue?" />
+
+        <Grid Grid.Row="3" Grid.Column="1">
+            <CheckBox
+                x:Name="ctrlResetQueueToggleSwitch"
+                Grid.Row="0"
+                Grid.Column="1"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                HorizontalContentAlignment="Center"
+                IsChecked="{Binding ResetQueue, Mode=TwoWay}"
+                Style="{StaticResource toggleSwitchStyle}" />
+        </Grid>
+
+    </Grid>
+</UserControl>

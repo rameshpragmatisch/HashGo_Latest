@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Colors.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <SolidColorBrush x:Key="DineConnectAccentBrush" Color="{DynamicResource DineConnectAccentColor}" />
+    <SolidColorBrush x:Key="AlternateButtonColor" Color="{DynamicResource DineInForegroundColor}" />
+
+    <LinearGradientBrush x:Key="HashGoBackgroundBrush" EndPoint="0,1">
+        <GradientStop Offset="0.1" Color="{DynamicResource DineConnectBackgroundStart}" />
+        <GradientStop Offset="0.8" Color="{DynamicResource DineConnectBackgroundMiddle}" />
+        <GradientStop Offset="1.0" Color="{DynamicResource DineConnectBackgroundEnd}" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="DineConnectFrameBorderBrush" Color="{DynamicResource DineConnectFrameBorderColor}" />
+    <SolidColorBrush x:Key="DineConnectFrameBackgroundBrush" Color="{DynamicResource DineConnectFrameBackgroundColor}" />
+    <SolidColorBrush x:Key="DineConnectCardBackgroundBrush" Color="{DynamicResource DineConnectCardBackgroundColor}" />
+    <SolidColorBrush x:Key="DineConnectTagBackgroundBrush" Color="{DynamicResource DineConnectTagBackgroundColor}" />
+    <SolidColorBrush x:Key="DineConnectTextForegroundBrush" Color="{DynamicResource DineConnectTextForegroundColor}" />
+    <SolidColorBrush x:Key="DineInForegroundBrush" Color="{DynamicResource DineInForegroundColor}" />
+
+    <SolidColorBrush x:Key="TakeAwayForegroundBrush" Color="{DynamicResource TakeawayForegroundColor}" />
+    <SolidColorBrush x:Key="TextForegroundBrush" Color="{DynamicResource TextForegroundColor}" />
+    <SolidColorBrush x:Key="TapToStartEstimationBackgroundBrush" Color="{DynamicResource TapToStartEstimationBackgroundColor}" />
+    <SolidColorBrush x:Key="SuccessBrush" Color="{DynamicResource SuccessColor}" />
+    <SolidColorBrush x:Key="CartIconBrush" Color="{DynamicResource CartIconColor}" />
+
+</ResourceDictionary>

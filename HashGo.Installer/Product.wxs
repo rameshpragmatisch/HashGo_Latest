@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+	<?define ProductName = "HashGo"?>
+	<?define ProductCode = "df2b7160-9a8c-4311-b607-39c5e3721fc5"?>
+	<?define UpgradeCode = "75a9d759-d6f0-4b52-a3ff-a487d9642917"?>
+	<?define ExeCode = "fil9F46360E247C6D9ADBAC206BFF6A5EE2"?>
+	<?define ProductVersion = "1.0"?>
+	<?define Manufacturer = "DinePlan (http://dineplan.net), Singapore"?>
+
+
+	<Product Id="$(var.ProductCode)"
+			 Name="$(var.ProductName)"
+			 Language="1033"
+			 Version="$(var.ProductVersion)"
+			 Manufacturer="$(var.Manufacturer)"
+			 UpgradeCode="$(var.UpgradeCode)">
+
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+		<WixVariable Id="WixUIBannerBmp" Value="HashGo_Banner.png" />
+
+		<Feature Id="ProductFeature" Title="DinePlan" Level="1">
+			<ComponentGroupRef Id="HashGoComponents" />
+			<ComponentRef Id="ApplicationShortcut" />
+			<ComponentRef Id="DesktopShortcut" />
+
+		</Feature>
+		<Icon Id="AppLogo" SourceFile="app.ico" />
+
+		<Property Id="ARPPRODUCTICON" Value="AppLogo" />
+		<Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+
+		<UIRef Id="WixUI_InstallDir" />
+
+		<Property Id="WIXUI_EXITDIALOGOPTIONALTEXT" Value="Thanks for Installing HashGo. For More Information http://www.dineplan.net" />
+		<CustomAction Id='PreventDowngrading'
+					  Error='Newer version already installed' />
+
+
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="HashGo">
+				</Directory>
+			</Directory>
+			<Directory Id="ProgramMenuFolder">
+				<Directory Id="ApplicationProgramsFolder" Name="HashGo" />
+			</Directory>
+			<Directory Id="DesktopFolder" />
+		</Directory>
+		<DirectoryRef Id="ApplicationProgramsFolder">
+			<Component Id="ApplicationShortcut" Guid="{77b895ad-b6b9-447a-8e6c-689729bff4e5}">
+				<Shortcut Id="ApplicationStartMenuShortcut"
+						  Name="HashGo"
+						  Target="[#$(var.ExeCode)]"
+						  Description="HashGo - Self Ordering System"
+						  Icon="AppLogo"
+						  WorkingDirectory="APPLICATIONROOTDIRECTORY" />
+				<RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
+				<RegistryValue Root="HKCU" Key="Software\Microsoft\HashGo" Name="installed" Type="integer" Value="1"
+							   KeyPath="yes" />
+			</Component>
+		</DirectoryRef>
+		<DirectoryRef Id="DesktopFolder">
+			<Component Id="DesktopShortcut" Guid="{2b7cdf84-0a63-4b27-8745-50f4d3ac8ea1}">
+				<Shortcut Id="DesktopAppShortcut"
+						  Name="DinePlan"
+						  Description="HashGo - Self Ordering System"
+						  Target="[#$(var.ExeCode)]"
+						  Icon="AppLogo"
+						  WorkingDirectory="APPLICATIONROOTDIRECTORY" />
+				<RemoveFolder Id="DesktopFolder" On="uninstall" />
+				<RegistryValue Root="HKCU" Key="Software\Microsoft\HashGo" Name="installed" Type="integer" Value="1"
+							   KeyPath="yes" />
+			</Component>
+
+
+		</DirectoryRef>
+	</Fragment>
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<Component Guid="{F80F4FF2-F0D5-48BD-AE9F-FA6873F4CBD0}">
+				<File Id="HashGo.Wpf.App" Source="$(env.HashGoDir)" KeyPath="yes" />
+			</Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>

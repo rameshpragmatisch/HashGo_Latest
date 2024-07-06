@@ -1,0 +1,39 @@
+﻿namespace HashGo.Core.Enum
+{
+    public enum Pages
+    {
+        None,
+        //Home,
+        Settings,
+        TenantConnectConfiguration,
+        ConnectCredentials,
+        DiningOption,
+        RestaurantSelection,
+        RestaurantStart,
+        RestaurantHome,
+        MealItSelection,
+        ProductDetail,
+        MealItHome,
+        MealItWorkFlow,
+        AlacarteWorkFlow,
+        ItemAddedToCart,
+        CartView,
+        PaymentMethod,
+        OrderConfirmation,
+        PrinterSetting,
+
+        RestaurantStartup,
+        DineDateSelect,
+        CustomerDetails,
+        ProductSelection,
+        Addons,
+        Payment,
+        Enquiries,
+        HashGoSettings,
+        QRPayment,
+        ProcessingPayment,
+        PurchaseSucceded,
+        PurchaseFailed,
+        ItemAdded
+    }
+}

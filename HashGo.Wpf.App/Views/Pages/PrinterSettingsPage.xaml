@@ -1,0 +1,722 @@
+﻿<Page
+    x:Class="HashGo.Wpf.App.Views.Pages.PrinterSettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:HashGo.Wpf.App.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:HashGo.Wpf.App.Views.Pages"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodels="clr-namespace:HashGo.Domain.ViewModels;assembly=HashGo.Domain"
+    Title="PrinterSettingsPage"
+    d:DataContext="{d:DesignInstance Type=viewmodels:PrinterSettingViewModel}"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Images/DineConnectIcons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <SolidColorBrush x:Key="ProperyBackgroundBrush" Color="#FF8C97C3" />
+
+            <Style x:Key="toggleSwitchStyle" TargetType="{x:Type CheckBox}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type CheckBox}">
+                            <ControlTemplate.Resources>
+                                <SolidColorBrush x:Key="fillBrush" Color="{DynamicResource DineConnectTagBackgroundColor}" />
+                                <SolidColorBrush x:Key="borderBrush" Color="{DynamicResource DineConnectFrameBackgroundColor}" />
+                            </ControlTemplate.Resources>
+                            <Border
+                                Height="{TemplateBinding Height}"
+                                MinHeight="20"
+                                Padding="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="0"
+                                SnapsToDevicePixels="true">
+                                <Grid
+                                    x:Name="rootElement"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Background="Transparent"
+                                    SnapsToDevicePixels="True">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="38" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid x:Name="markGrid">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Border
+                                            x:Name="moveEllipse"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Stretch"
+                                            Background="Transparent">
+                                            <Border.Style>
+                                                <Style TargetType="{x:Type Border}">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
+                                                            <DataTrigger.EnterActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation
+                                                                            Storyboard.TargetProperty="Width"
+                                                                            From="0"
+                                                                            To="16"
+                                                                            Duration="0:0:0.4" />
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </DataTrigger.EnterActions>
+                                                            <DataTrigger.ExitActions>
+                                                                <BeginStoryboard>
+                                                                    <Storyboard>
+                                                                        <DoubleAnimation
+                                                                            Storyboard.TargetProperty="Width"
+                                                                            To="0"
+                                                                            Duration="0:0:0.4" />
+                                                                    </Storyboard>
+                                                                </BeginStoryboard>
+                                                            </DataTrigger.ExitActions>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                        </Border>
+                                        <Rectangle
+                                            Name="line"
+                                            Grid.ColumnSpan="2"
+                                            Margin="2,3"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Stretch"
+                                            IsHitTestVisible="False"
+                                            RadiusX="6"
+                                            RadiusY="6"
+                                            StrokeThickness=".8">
+                                            <Rectangle.Style>
+                                                <Style TargetType="{x:Type Rectangle}">
+                                                    <Setter Property="Fill" Value="LightGray" />
+                                                </Style>
+                                            </Rectangle.Style>
+                                        </Rectangle>
+                                        <Ellipse
+                                            Name="spot"
+                                            Grid.Column="1"
+                                            Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+                                            HorizontalAlignment="Left"
+                                            StrokeThickness=".8">
+                                            <Ellipse.Style>
+                                                <Style TargetType="Ellipse">
+                                                    <Setter Property="Fill" Value="DarkGray" />
+                                                    <Setter Property="Stroke" Value="SlateGray" />
+                                                </Style>
+                                            </Ellipse.Style>
+                                        </Ellipse>
+
+                                    </Grid>
+                                    <ContentPresenter
+                                        x:Name="contentPresenter"
+                                        Grid.Column="1"
+                                        Margin="{TemplateBinding Padding}"
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Content="{TemplateBinding Content}"
+                                        ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                        Focusable="False"
+                                        RecognizesAccessKey="True"
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="line" Property="Stroke" Value="DarkGray" />
+                                    <Setter TargetName="spot" Property="Stroke" Value="{DynamicResource DineConnectFrameBorderBrush}" />
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" Value=".5" />
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="line" Property="Stroke" Value="Black" />
+                                    <Setter TargetName="spot" Property="Stroke" Value="Black" />
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="line" Property="Fill" Value="{DynamicResource DineConnectAccentBrush}" />
+                                    <Setter TargetName="spot" Property="Fill" Value="{DynamicResource DineConnectFrameBackgroundBrush}" />
+                                    <Setter TargetName="spot" Property="Stroke" Value="DarkSlateGray" />
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="{x:Null}">
+                                    <Setter TargetName="line" Property="Fill" Value="lightGray" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <SolidColorBrush x:Key="watermarkTextColor" Color="DarkGray" />
+
+            <Style
+                x:Key="outerBorderStyle"
+                BasedOn="{StaticResource RoundCornerBorder}"
+                TargetType="{x:Type Border}">
+                <Setter Property="Background" Value="{DynamicResource ProperyBackgroundBrush}" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Margin" Value="0,5" />
+                <Setter Property="CornerRadius" Value="10" />
+            </Style>
+
+            <Style
+                x:Key="innerBorderStyle"
+                BasedOn="{StaticResource RoundCornerBorder}"
+                TargetType="{x:Type Border}">
+                <Setter Property="Background" Value="{DynamicResource DineConnectFrameBorderBrush}" />
+                <Setter Property="Margin" Value="10,5" />
+                <Setter Property="CornerRadius" Value="5" />
+            </Style>
+
+
+            <Style
+                x:Key="propertyNameTextBlockStyle"
+                BasedOn="{StaticResource RubikFontMediumStyle}"
+                TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{DynamicResource DineConnectTextForegroundBrush}" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Margin" Value="20,0,10,0" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+
+            <Style
+                x:Key="headerNameTextBlockStyle"
+                BasedOn="{StaticResource RubikFontMediumStyle}"
+                TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{DynamicResource DineConnectTextForegroundBrush}" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Margin" Value="20,0,10,0" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="propertyTextBoxStyle" TargetType="{x:Type TextBox}">
+                <Setter Property="Foreground" Value="{DynamicResource TextForegroundBrush}" />
+                <Setter Property="FontSize" Value="26" />
+                <Setter Property="Margin" Value="10,0" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="VerticalAlignment" Value="Stretch" />
+
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="FontFamily" Value="{DynamicResource Rubik-Regular}" />
+
+
+            </Style>
+
+            <ControlTemplate x:Key="ToggleButtonTemplate" TargetType="{x:Type RadioButton}">
+                <StackPanel
+                    VerticalAlignment="Center"
+                    Background="Transparent"
+                    Orientation="Horizontal">
+                    <Grid>
+                        <Ellipse
+                            x:Name="TargetEllipse"
+                            Width="18"
+                            Height="18"
+                            StrokeThickness="2">
+                            <Ellipse.Fill>
+                                <SolidColorBrush x:Name="FillBrush" Color="White" />
+                            </Ellipse.Fill>
+                            <Ellipse.Stroke>
+                                <SolidColorBrush x:Name="StrokeBrush" Color="#9831BA" />
+                            </Ellipse.Stroke>
+                        </Ellipse>
+                        <Ellipse
+                            x:Name="CheckedEllipse"
+                            Width="8"
+                            Height="8"
+                            Fill="#9831BA"
+                            Visibility="Collapsed" />
+                    </Grid>
+                    <Border
+                        Margin="3,0,0,0"
+                        Padding="2,0,5,0"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="4">
+                        <TextBlock
+                            Margin="2,0,0,0"
+                            Background="{TemplateBinding Background}"
+                            FontFamily="Segoe UI Dark"
+                            Foreground="Black"
+                            Style="{StaticResource headerNameTextBlockStyle}"
+                            Text="{TemplateBinding Content}" />
+                    </Border>
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="MouseOver">
+                                <Storyboard>
+                                    <ColorAnimation
+                                        Storyboard.TargetName="FillBrush"
+                                        Storyboard.TargetProperty="Color"
+                                        To="#FFF3EE"
+                                        Duration="0:0:0.01" />
+                                </Storyboard>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </StackPanel>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsChecked" Value="True">
+                        <Setter TargetName="CheckedEllipse" Property="Visibility" Value="Visible" />
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </ResourceDictionary>
+
+
+    </Page.Resources>
+
+    <Border
+        x:Name="rootElement"
+        Background="{DynamicResource DineConnectFrameBackgroundBrush}"
+        BorderBrush="{DynamicResource DineConnectFrameBorderBrush}"
+        BorderThickness="1"
+        Style="{StaticResource RoundCornerBorder}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="9*" />
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Background="{StaticResource ProperyBackgroundBrush}">
+                <TextBlock
+                    Margin="0,10,0,10"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    FontSize="24"
+                    Style="{StaticResource LatoFontRegularStyle}"
+                    Text="Create Printer" />
+            </Border>
+
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+
+                <StackPanel
+                    Grid.Row="0"
+                    Margin="100,10,100,10"
+                    Orientation="Vertical">
+
+                    <TextBlock
+                        Margin="5"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Foreground="#FF636060"
+                        Style="{StaticResource headerNameTextBlockStyle}"
+                        Text="Print Type" />
+                    <Border
+                        BorderBrush="DarkGray"
+                        BorderThickness="2"
+                        CornerRadius="6">
+                        <StackPanel
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            Background="Transparent"
+                            Orientation="Horizontal">
+                            <RadioButton
+                                Margin="10,5,10,5"
+                                Content="Ethernet"
+                                GroupName="PriterTypeGroup"
+                                IsChecked="true"
+                                Template="{StaticResource ToggleButtonTemplate}" />
+                            <RadioButton
+                                Margin="10,5,10,5"
+                                Content="USB"
+                                GroupName="PriterTypeGroup"
+                                Template="{StaticResource ToggleButtonTemplate}" />
+                            <RadioButton
+                                Margin="10,5,10,5"
+                                Content="Bluetooth"
+                                GroupName="PriterTypeGroup"
+                                Template="{StaticResource ToggleButtonTemplate}" />
+                        </StackPanel>
+                    </Border>
+
+
+                </StackPanel>
+
+
+                <Border
+                    Grid.Row="1"
+                    Margin="100,10,100,10"
+                    Style="{StaticResource outerBorderStyle}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".3*" />
+                            <ColumnDefinition Width=".6*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Grid.Column="0"
+                            Style="{StaticResource propertyNameTextBlockStyle}"
+                            Text="Update Logo" />
+
+                        <Border Grid.Column="1" Style="{StaticResource innerBorderStyle}">
+
+                            <TextBox Style="{StaticResource propertyTextBoxStyle}" Text="{Binding SelectedConnectItem.Url, UpdateSourceTrigger=PropertyChanged}" />
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Border
+                    Grid.Row="2"
+                    Margin="100,10,100,10"
+                    Style="{StaticResource outerBorderStyle}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".3*" />
+                            <ColumnDefinition Width=".6*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Grid.Column="0"
+                            Style="{StaticResource propertyNameTextBlockStyle}"
+                            Text="Printer Station Name" />
+
+                        <Border Grid.Column="1" Style="{StaticResource innerBorderStyle}">
+
+                            <TextBox Style="{StaticResource propertyTextBoxStyle}" Text="{Binding SelectedConnectItem.Url, UpdateSourceTrigger=PropertyChanged}" />
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Border
+                    Grid.Row="3"
+                    Margin="100,10,100,10"
+                    Style="{StaticResource outerBorderStyle}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".3*" />
+                            <ColumnDefinition Width=".6*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Grid.Column="0"
+                            Style="{StaticResource propertyNameTextBlockStyle}"
+                            Text="No Of Copies" />
+
+                        <Border Grid.Column="1" Style="{StaticResource innerBorderStyle}">
+
+                            <TextBox Style="{StaticResource propertyTextBoxStyle}" Text="{Binding SelectedConnectItem.Url, UpdateSourceTrigger=PropertyChanged}" />
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Border
+                    Grid.Row="4"
+                    Margin="100,10,100,10"
+                    Style="{StaticResource outerBorderStyle}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".3*" />
+                            <ColumnDefinition Width=".6*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Grid.Column="0"
+                            Style="{StaticResource propertyNameTextBlockStyle}"
+                            Text="Header Text" />
+
+                        <Border Grid.Column="1" Style="{StaticResource innerBorderStyle}">
+
+                            <TextBox
+                                MinHeight="100"
+                                AcceptsReturn="True"
+                                Style="{StaticResource propertyTextBoxStyle}"
+                                Text="{Binding SelectedConnectItem.Url, UpdateSourceTrigger=PropertyChanged}"
+                                TextWrapping="Wrap" />
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Border
+                    Grid.Row="5"
+                    Margin="100,10,100,10"
+                    Style="{StaticResource outerBorderStyle}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".3*" />
+                            <ColumnDefinition Width=".6*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Grid.Column="0"
+                            Style="{StaticResource propertyNameTextBlockStyle}"
+                            Text="Footer Text" />
+
+                        <Border Grid.Column="1" Style="{StaticResource innerBorderStyle}">
+
+                            <TextBox
+                                MinHeight="100"
+                                AcceptsReturn="True"
+                                Style="{StaticResource propertyTextBoxStyle}"
+                                Text="{Binding SelectedConnectItem.Url, UpdateSourceTrigger=PropertyChanged}"
+                                TextWrapping="Wrap" />
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <StackPanel
+                    Grid.Row="6"
+                    Margin="100,10,100,10"
+                    Orientation="Vertical">
+
+                    <TextBlock
+                        Margin="5"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Foreground="#FF636060"
+                        Style="{StaticResource headerNameTextBlockStyle}"
+                        Text="Paper Size" />
+                    <Border
+                        BorderBrush="DarkGray"
+                        BorderThickness="2"
+                        CornerRadius="6">
+                        <StackPanel
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            Background="Transparent"
+                            Orientation="Horizontal">
+                            <RadioButton
+                                Margin="10,5,10,5"
+                                Content="58mm"
+                                GroupName="PaperSizeGroup"
+                                IsChecked="true"
+                                Template="{StaticResource ToggleButtonTemplate}" />
+                            <RadioButton
+                                Margin="10,5,10,5"
+                                Content="80mm"
+                                GroupName="PaperSizeGroup"
+                                Template="{StaticResource ToggleButtonTemplate}" />
+                        </StackPanel>
+                    </Border>
+
+
+                </StackPanel>
+
+                <Border
+                    Grid.Row="7"
+                    Margin="100,10,100,10"
+                    Style="{StaticResource outerBorderStyle}">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*" />
+                            <ColumnDefinition Width="5*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel
+                            Grid.Column="0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            Background="Transparent"
+                            Orientation="Horizontal">
+
+                            <TextBlock
+                                Margin="5,5,20,5"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Foreground="#FF636060"
+                                Style="{StaticResource propertyNameTextBlockStyle}"
+                                Text="Receipts" />
+                            <CheckBox
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                HorizontalContentAlignment="Center"
+                                IsChecked="True"
+                                Style="{StaticResource toggleSwitchStyle}" />
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Column="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            Background="Transparent"
+                            Orientation="Horizontal">
+
+                            <TextBlock
+                                Margin="5,5,20,5"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Foreground="#FF636060"
+                                Style="{StaticResource propertyNameTextBlockStyle}"
+                                Text="Orders" />
+                            <CheckBox
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                HorizontalContentAlignment="Center"
+                                IsChecked="True"
+                                Style="{StaticResource toggleSwitchStyle}" />
+                        </StackPanel>
+                    </Grid>
+
+                </Border>
+
+
+                <Border
+                    Grid.Row="8"
+                    Margin="100,10,100,10"
+                    Style="{StaticResource outerBorderStyle}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".3*" />
+                            <ColumnDefinition Width=".6*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Grid.Column="0"
+                            Style="{StaticResource propertyNameTextBlockStyle}"
+                            Text="Edit Terminal Code" />
+
+                        <Border Grid.Column="1" Style="{StaticResource innerBorderStyle}">
+
+                            <TextBox Style="{StaticResource propertyTextBoxStyle}" Text="{Binding SelectedConnectItem.Url, UpdateSourceTrigger=PropertyChanged}" />
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <StackPanel
+                    Grid.Row="9"
+                    Margin="100,10,100,10"
+                    Orientation="Vertical">
+
+                    <TextBlock
+                        Margin="5"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Foreground="#FF636060"
+                        Style="{StaticResource headerNameTextBlockStyle}"
+                        Text="Enable this printer" />
+                    <Border
+                        BorderBrush="DarkGray"
+                        BorderThickness="2"
+                        CornerRadius="6">
+                        <CheckBox
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            HorizontalContentAlignment="Center"
+                            IsChecked="{Binding EnableQueue, Mode=TwoWay}"
+                            Style="{StaticResource toggleSwitchStyle}" />
+                    </Border>
+
+
+                </StackPanel>
+
+                <Grid
+                    x:Name="grdButtons"
+                    Grid.Row="10"
+                    Margin="0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <mah:Tile
+                        x:Name="btnBack"
+                        Grid.Column="0"
+                        Width="{Binding ActualWidth, ElementName=rootElement, ConverterParameter='.46', Converter={converters:PercentageConverter}}"
+                        Height="80"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="{DynamicResource DineConnectCardBackgroundBrush}"
+                        Command="{Binding DataContext.CancelEditCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ConnectCredentialsPage}}}"
+                        Foreground="{DynamicResource DineConnectTextForegroundBrush}"
+                        Style="{StaticResource RoundCornerButtonStyle}">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="28"
+                            Style="{StaticResource PoppinsFontRegularStyle}"
+                            Text="Cancel" />
+                        <Button.Effect>
+                            <DropShadowEffect />
+                        </Button.Effect>
+                    </mah:Tile>
+
+                    <mah:Tile
+                        x:Name="btnSave"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Width="{Binding ActualWidth, ElementName=rootElement, ConverterParameter='.46', Converter={converters:PercentageConverter}}"
+                        Height="80"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="{DynamicResource DineConnectAccentBrush}"
+                        Command="{Binding DataContext.SaveConnectCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ConnectCredentialsPage}}}"
+                        CommandParameter="{Binding SelectedConnectItem}"
+                        Foreground="{DynamicResource DineConnectTextForegroundBrush}"
+                        Style="{StaticResource RoundCornerButtonStyle}">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="28"
+                            Style="{StaticResource PoppinsFontRegularStyle}"
+                            Text="Save" />
+                        <Button.Effect>
+                            <DropShadowEffect />
+                        </Button.Effect>
+                    </mah:Tile>
+                </Grid>
+
+
+
+            </Grid>
+
+
+            <Button
+                x:Name="btnProceedToConfigurations"
+                Width="30"
+                Height="30"
+                Margin="5,5,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Command="{Binding NavigateToConfigurationPageCommand}"
+                Opacity="0">
+                <Image Source="{StaticResource backIcon}" Stretch="Uniform" />
+                <Button.Style>
+                    <Style BasedOn="{StaticResource NoHoverButtonStyle}" TargetType="{x:Type Button}">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard Storyboard="{StaticResource fadeInAnimation}" />
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard Storyboard="{StaticResource fadeOutAnimation}" />
+                                </Trigger.ExitActions>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+
+    </Border>
+
+
+
+</Page>

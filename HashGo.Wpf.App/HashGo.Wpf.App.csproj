@@ -1,0 +1,287 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <RootNamespace>HashGo.Wpf.App</RootNamespace>
+    <UseWPF>true</UseWPF>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Compile Remove="Contracts\Services\IThemeSelectorService.cs" />
+    <Compile Remove="Services\ThemeSelectorService.cs" />
+    <Compile Remove="ViewModels\SettingsViewModel.cs" />
+    <Compile Remove="Views\SettingsPage.xaml.cs" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Remove="Resources\Fonts\BaiJamjuree-Medium.ttf" />
+    <None Remove="Resources\Fonts\BaiJamjuree-Regular.ttf" />
+    <None Remove="Resources\Fonts\BaiJamjuree-SemiBold.ttf" />
+    <None Remove="Resources\Fonts\Lato-Bold.ttf" />
+    <None Remove="Resources\Fonts\Lato-Regular.ttf" />
+    <None Remove="Resources\Fonts\Poppins-Bold.ttf" />
+    <None Remove="Resources\Fonts\Poppins-Medium.ttf" />
+    <None Remove="Resources\Fonts\Poppins-Regular.ttf" />
+    <None Remove="Resources\Fonts\Poppins-SemiBold.ttf" />
+    <None Remove="Resources\Fonts\Roboto-Bold.ttf" />
+    <None Remove="Resources\Fonts\Roboto-Medium.ttf" />
+    <None Remove="Resources\Fonts\Roboto-Regular.ttf" />
+    <None Remove="Resources\Fonts\Rubik-Bold.ttf" />
+    <None Remove="Resources\Fonts\Rubik-Medium.ttf" />
+    <None Remove="Resources\Fonts\Rubik-Regular.ttf" />
+    <None Remove="Resources\Fonts\Rubik-VariableFont_wght.ttf" />
+    <None Remove="Resources\Images\Cog.png" />
+    <None Remove="Resources\Images\Daikin.png" />
+    <None Remove="Resources\Images\fire.png" />
+    <None Remove="Resources\Images\flashpay_logo.png" />
+    <None Remove="Resources\Images\Haier.png" />
+    <None Remove="Resources\Images\halal.png" />
+    <None Remove="Resources\Images\heart.png" />
+    <None Remove="Resources\Images\Hitachi.png" />
+    <None Remove="Resources\Images\Home.png" />
+    <None Remove="Resources\Images\Hyperlink.png" />
+    <None Remove="Resources\Images\LG.png" />
+    <None Remove="Resources\Images\like.png" />
+    <None Remove="Resources\Images\Mitsubishi.png" />
+    <None Remove="Resources\Images\mobile.png" />
+    <None Remove="Resources\Images\Nets.png" />
+    <None Remove="Resources\Images\NoAddOn.png" />
+    <None Remove="Resources\Images\ShoppingCart.png" />
+    <None Remove="Resources\Images\ViewCart.png" />
+    <None Remove="Resources\Images\Visa.png" />
+    <None Remove="Resources\Images\visa_logo.png" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Page Remove="Styles\Themes\HC.Dark.Blue.xaml" />
+    <Page Remove="Styles\Themes\HC.Light.Blue.xaml" />
+    <Page Remove="Views\SettingsPage.xaml" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+    <PackageReference Include="MahApps.Metro" Version="2.4.10" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
+    <PackageReference Include="QRCoder" Version="1.5.1" />
+    <PackageReference Include="QRCoder.Xaml" Version="1.5.1" />
+    <PackageReference Include="System.IO.Ports" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\Ab.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\alacarte.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\brocoli.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\bundles.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\canned.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\cola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\flip_image_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\garlic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\hugabo_background.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\hugabo_logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\jalapeno.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\lemon_tea.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\mealit_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\menu_image1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\menu_image2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\menu_image3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\menu_image4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\menu_image5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\mybowl_logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\paynow_logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\product_image1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\product_image2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\product_image3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\product_image4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\product_image5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\redChillis.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\rice_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\subway_logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\Toshiba.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\wokhey_background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\wokhey_banner.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\wokhey_detail.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Images\wokhey_logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Events\" />
+    <Folder Include="Properties\" />
+    <Folder Include="Styles\Themes\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HashGo.Core\HashGo.Core.csproj" />
+    <ProjectReference Include="..\HashGo.Domain\HashGo.Domain.csproj" />
+    <ProjectReference Include="..\HashGo.Infrastructure\HashGo.Infrastructure.csproj" />
+    <ProjectReference Include="..\HashGo.String\HashGo.String.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Fonts\BaiJamjuree-Medium.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\BaiJamjuree-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\BaiJamjuree-SemiBold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\Lato-Bold.ttf" />
+    <Resource Include="Resources\Fonts\Lato-Regular.ttf" />
+    <Resource Include="Resources\Fonts\Poppins-Bold.ttf" />
+    <Resource Include="Resources\Fonts\Poppins-Medium.ttf" />
+    <Resource Include="Resources\Fonts\Poppins-Regular.ttf" />
+    <Resource Include="Resources\Fonts\Poppins-SemiBold.ttf" />
+    <Resource Include="Resources\Fonts\Roboto-Bold.ttf" />
+    <Resource Include="Resources\Fonts\Roboto-Medium.ttf" />
+    <Resource Include="Resources\Fonts\Roboto-Regular.ttf" />
+    <Resource Include="Resources\Fonts\Rubik-Bold.ttf" />
+    <Resource Include="Resources\Fonts\Rubik-Medium.ttf" />
+    <Resource Include="Resources\Fonts\Rubik-Regular.ttf" />
+    <Resource Include="Resources\Images\Cog.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Daikin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\fire.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\flashpay_logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Haier.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\halal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\heart.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Hitachi.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Home.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Hyperlink.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\LG.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\like.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Mitsubishi.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\mobile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Nets.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\NoAddOn.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\ShoppingCart.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\ViewCart.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Visa.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\visa_logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\Pages\ConfigurationPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Pages\MealItSelectionPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Pages\DineInOptionSelectionPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>

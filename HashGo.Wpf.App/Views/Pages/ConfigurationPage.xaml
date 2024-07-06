@@ -1,0 +1,363 @@
+﻿<Page
+    x:Class="HashGo.Wpf.App.Views.Pages.ConfigurationPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:HashGo.Wpf.App.Views.Controls"
+    xmlns:converters="clr-namespace:HashGo.Wpf.App.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:local="clr-namespace:HashGo.Wpf.App.Views.Pages"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:strings="clr-namespace:HashGo.String.Resources.Strings;assembly=HashGo.String"
+    xmlns:vm="clr-namespace:HashGo.Domain.ViewModels;assembly=HashGo.Domain"
+    Title="ConfigurationPage"
+    d:DataContext="{x:Type vm:ConfigurationViewModel}"
+    d:DesignHeight="1920"
+    d:DesignWidth="1080"
+    Background="{StaticResource HashGoBackgroundBrush}"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Images/DineConnectIcons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <converters:CollectionToInvertedVisibilityConverter x:Key="collectionToInvertedVisibilityConverter" />
+            <converters:CollectionToVisibilityConverter x:Key="collectionToVisibilityConverter" />
+
+            <converters:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+
+        </ResourceDictionary>
+    </Page.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadDataCommand}" />
+            <i:InvokeCommandAction Command="{Binding InitializeDataCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid x:Name="rootElement">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Border
+            Margin="20,30"
+            Background="{DynamicResource DineConnectFrameBackgroundBrush}"
+            BorderBrush="{DynamicResource DineConnectFrameBorderBrush}"
+            BorderThickness="1"
+            Style="{StaticResource RoundCornerBorder}">
+
+            <Grid Margin="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <mah:Tile
+                    x:Name="btnAddDineConnect"
+                    Grid.Row="0"
+                    Width="{Binding ActualWidth, ElementName=rootElement, ConverterParameter='.8', Converter={converters:PercentageConverter}}"
+                    Height="120"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Background="{DynamicResource DineConnectAccentBrush}"
+                    Command="{Binding AddNewConnectCommand}"
+                    Foreground="{DynamicResource DineConnectTextForegroundBrush}"
+                    Style="{StaticResource RoundCornerButtonStyle}">
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            FontSize="46"
+                            Style="{StaticResource PoppinsFontRegularStyle}"
+                            Text="{x:Static strings:AppResources.DineConnect_Add_Action_Label}" />
+                        <Image
+                            Grid.Column="1"
+                            Width="50"
+                            Height="50"
+                            Margin="15,0"
+                            VerticalAlignment="Center"
+                            Source="{StaticResource dineConnectImage}"
+                            Stretch="Uniform" />
+                    </Grid>
+                    <Button.Effect>
+                        <DropShadowEffect />
+                    </Button.Effect>
+
+                </mah:Tile>
+
+                <ItemsControl
+                    x:Name="ctrlDineConnectView"
+                    Grid.Row="1"
+                    Width="{Binding ActualWidth, ElementName=rootElement, ConverterParameter='.8', Converter={converters:PercentageConverter}}"
+                    Margin="0,20"
+                    ItemsSource="{Binding Items}"
+                    Style="{StaticResource ItemsControlStyleWithScroll}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border
+                                Width="{Binding ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}, ConverterParameter='.97', Converter={converters:PercentageConverter}}"
+                                Margin="0,10"
+                                Background="{StaticResource DineConnectCardBackgroundBrush}"
+                                CornerRadius="10">
+                                <!--<Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ConfigurationViewModel}}, Path=GoToDetailsCommand}" CommandParameter="{Binding .}" />
+                                    </Frame.GestureRecognizers>-->
+                                <Grid Margin="30,20">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="8*" />
+                                        <ColumnDefinition Width="2*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Grid.Row="0">
+                                            <TextBlock
+                                                FontSize="28"
+                                                FontWeight="SemiBold"
+                                                Foreground="{StaticResource DineConnectAccentBrush}"
+                                                Style="{StaticResource ListPoppinsSubTitleStyle}"
+                                                Text="{x:Static strings:AppResources.DineConnect_Url_Label}" />
+
+                                            <TextBlock
+                                                FontSize="31"
+                                                FontWeight="Regular"
+                                                Style="{StaticResource ListLatoSubTitleStyle}"
+                                                Text="{Binding Url}" />
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Row="1" Margin="0,20,0,0">
+                                            <TextBlock
+                                                FontSize="28"
+                                                FontWeight="SemiBold"
+                                                Foreground="{StaticResource DineConnectAccentBrush}"
+                                                Style="{StaticResource ListPoppinsSubTitleStyle}"
+                                                Text="{x:Static strings:AppResources.DineConnect_TennantName_Label}" />
+
+                                            <TextBlock
+                                                FontSize="31"
+                                                FontWeight="Regular"
+                                                Style="{StaticResource ListLatoSubTitleStyle}"
+                                                Text="{Binding TenantName}" />
+                                        </StackPanel>
+
+                                        <ItemsControl
+                                            Grid.Row="2"
+                                            Margin="0,20,0,0"
+                                            ItemsSource="{Binding Tags}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Horizontal" />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border
+                                                        Margin="0,0,15,0"
+                                                        Background="{StaticResource DineConnectTagBackgroundBrush}"
+                                                        Style="{StaticResource ExtraRoundCornerBorder}">
+                                                        <TextBlock
+                                                            Margin="15,10"
+                                                            FontSize="25"
+                                                            Style="{StaticResource RobotoSmallTextBlockStyle}"
+                                                            Text="{Binding .}" />
+                                                    </Border>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+
+                                    </Grid>
+
+                                    <WrapPanel
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center">
+
+                                        <mah:Tile
+                                            x:Name="btnDeleteDineConnect"
+                                            Width="64"
+                                            Height="64"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Background="{StaticResource DineConnectAccentBrush}"
+                                            BorderBrush="{StaticResource DineConnectFrameBackgroundBrush}"
+                                            BorderThickness="5"
+                                            Command="{Binding DataContext.DeleteConnectItemCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ConfigurationPage}}}"
+                                            CommandParameter="{Binding .}"
+                                            Foreground="{StaticResource DineConnectTextForegroundBrush}"
+                                            Style="{StaticResource RoundButtonStyle}">
+                                            <Button.Content>
+
+                                                <Image
+                                                    Width="18"
+                                                    Height="16"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Source="{StaticResource trashBinIcon}" />
+                                            </Button.Content>
+                                        </mah:Tile>
+
+                                        <mah:Tile
+                                            x:Name="btnDineConnectUpdate"
+                                            Width="64"
+                                            Height="64"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Background="{StaticResource DineConnectAccentBrush}"
+                                            BorderBrush="{StaticResource DineConnectFrameBackgroundBrush}"
+                                            BorderThickness="5"
+                                            Command="{Binding DataContext.EditConnectItemCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ConfigurationPage}}}"
+                                            CommandParameter="{Binding .}"
+                                            Foreground="{StaticResource DineConnectTextForegroundBrush}"
+                                            Style="{StaticResource RoundButtonStyle}">
+                                            <Button.Content>
+
+                                                <Image
+                                                    Width="18"
+                                                    Height="16"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Source="{StaticResource arrowImage}" />
+                                            </Button.Content>
+                                        </mah:Tile>
+
+                                    </WrapPanel>
+
+                                </Grid>
+
+                            </Border>
+
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <Grid
+                    x:Name="grdBottomButtons"
+                    Grid.Row="2"
+                    Width="{Binding ActualWidth, ElementName=ctrlDineConnectView, ConverterParameter='1', Converter={converters:PercentageConverter}}"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Visibility="{Binding Items, Converter={StaticResource collectionToVisibilityConverter}, FallbackValue='Visible'}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <mah:Tile
+                        x:Name="btnSyncDineConnect"
+                        Grid.Column="0"
+                        Width="{Binding ActualWidth, ElementName=grdBottomButtons, ConverterParameter='.62', Converter={converters:PercentageConverter}}"
+                        Height="120"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="{DynamicResource AlternateButtonColor}"
+                        Command="{Binding SyncConnectCommand}"
+                        Foreground="{DynamicResource DineConnectTextForegroundBrush}"
+                        Style="{StaticResource RoundCornerButtonStyle}">
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            FontSize="46"
+                            Style="{StaticResource PoppinsFontRegularStyle}"
+                            Text="{x:Static strings:AppResources.Sync}" />
+                        <Button.Effect>
+                            <DropShadowEffect />
+                        </Button.Effect>
+
+                    </mah:Tile>
+
+                    <mah:Tile
+                        x:Name="btnSetting"
+                        Grid.Column="1"
+                        Width="{Binding ActualWidth, ElementName=grdBottomButtons, ConverterParameter='.15', Converter={converters:PercentageConverter}}"
+                        Height="120"
+                        Margin="15,0,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="{StaticResource DineConnectAccentBrush}"
+                        Command="{Binding NavigateToSettingsCommand}"
+                        Foreground="{DynamicResource DineConnectTextForegroundBrush}"
+                        Style="{StaticResource RoundCornerButtonStyle}">
+                        <Image
+                            Width="{Binding ActualWidth, ElementName=btnSetting, ConverterParameter='.9', Converter={converters:PercentageConverter}}"
+                            Margin="10"
+                            VerticalAlignment="Center"
+                            Source="{StaticResource settingsIcon}" />
+                        <Button.Effect>
+                            <DropShadowEffect />
+                        </Button.Effect>
+
+                    </mah:Tile>
+
+                    <mah:Tile
+                        x:Name="btnPrinterSetting"
+                        Grid.Column="2"
+                        Width="{Binding ActualWidth, ElementName=grdBottomButtons, ConverterParameter='.15', Converter={converters:PercentageConverter}}"
+                        Height="120"
+                        Margin="15,0,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="{StaticResource DineConnectAccentBrush}"
+                        Command="{Binding NavigateToPrinterSettingsCommand}"
+                        Foreground="{DynamicResource DineConnectTextForegroundBrush}"
+                        Style="{StaticResource RoundCornerButtonStyle}">
+                        <Image
+                            Width="{Binding ActualWidth, ElementName=btnPrinterSetting, ConverterParameter='.6', Converter={converters:PercentageConverter}}"
+                            Margin="10"
+                            VerticalAlignment="Center"
+                            Source="{StaticResource printerIcon}" />
+                        <Button.Effect>
+                            <DropShadowEffect />
+                        </Button.Effect>
+
+                    </mah:Tile>
+
+                </Grid>
+
+                <controls:NoDineConnectControl
+                    Grid.Row="1"
+                    Grid.RowSpan="2"
+                    Visibility="{Binding Items, Converter={StaticResource collectionToInvertedVisibilityConverter}, FallbackValue='Hidden'}" />
+
+            </Grid>
+        </Border>
+
+        <controls:BusyIndicatorControl />
+        <Button
+            x:Name="btnProceedToConfigurations"
+            Width="30"
+            Height="30"
+            Margin="5,5,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Command="{Binding NavigateToBrandPageCommand}"
+            Opacity="0">
+            <Image Source="{StaticResource backIcon}" Stretch="Uniform" />
+            <Button.Style>
+                <Style BasedOn="{StaticResource NoHoverButtonStyle}" TargetType="{x:Type Button}">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource fadeInAnimation}" />
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource fadeOutAnimation}" />
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+    </Grid>
+</Page>

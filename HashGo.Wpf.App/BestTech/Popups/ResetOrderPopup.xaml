@@ -1,0 +1,53 @@
+﻿<Window x:Class="HashGo.Wpf.App.BestTech.Popups.ResetOrderPopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HashGo.Wpf.App.BestTech.Popups"  
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None" Topmost="True"
+        ResizeMode="NoResize" AllowsTransparency="True" PreviewKeyDown="Window_PreviewKeyDown"
+        xmlns:converters="clr-namespace:HashGo.Wpf.App.Converters" 
+        Title="ResetOrderPopup" >
+    <Border BorderBrush="LightGray" BorderThickness="2" CornerRadius="20" Background="White">
+        <Grid Background="White" Margin="20,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.15*"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="0.15*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.4*"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.2*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="1" Grid.Column="1" x:Name="tBlock"
+   HorizontalAlignment="Center" TextAlignment="Center"
+   VerticalAlignment="Center"
+   FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}"
+   FontSize="25">
+            Are you still ordering?
+            <LineBreak />
+            Your order will reset due to inactivity.
+            </TextBlock>
+            <TextBlock Grid.Row="2" Grid.Column="1" 
+              HorizontalAlignment="Center" VerticalAlignment="Center"
+               FontFamily="{StaticResource BaijamureeFontRegularStyle}"
+               FontWeight="Bold" FontSize="35"
+              Text="{Binding Count,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+
+            <ToggleButton Margin="0,10,0,0" Style="{StaticResource defaultToggleButtonStyle4}"
+                  Grid.Row="3" Grid.Column="1"
+                      Width="{Binding ActualWidth, ElementName=tBlock, Converter={converters:PercentageConverter}, ConverterParameter='.6'}"
+                  Background="#00B5CB" Height="100" FontFamily="{StaticResource BaijamureeFontRegularStyle}"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center" Click="ToggleButton_Click">
+                <Viewbox>
+                    <Label Content="I'm still ordering" Foreground="White" HorizontalAlignment="Center"/>
+                </Viewbox>
+            </ToggleButton>
+        </Grid>
+    </Border>
+</Window>

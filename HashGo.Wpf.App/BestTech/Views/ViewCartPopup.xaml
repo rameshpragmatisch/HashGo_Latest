@@ -1,0 +1,187 @@
+﻿<Window x:Class="HashGo.Wpf.App.BestTech.Views.ViewCartPopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HashGo.Wpf.App.BestTech.Views"
+        mc:Ignorable="d" Background="White"  Margin="5,0"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        WindowStartupLocation="Manual" WindowStyle="None" Deactivated="popupWindow_Deactivated"
+        ResizeMode="NoResize" BorderBrush="Gray" BorderThickness="1"
+        Loaded="Window_Loaded" local:DialogResultHelper.DialogResult="{Binding DiaglogResult,Mode=TwoWay}"
+        xmlns:converters="clr-namespace:HashGo.Wpf.App.Converters" x:Name="popupWindow" AllowsTransparency="True"
+        Title="ViewCartPopup">
+    <Window.Resources>
+        <converters:BooleanToColorConverter x:Key="booleanToColorConverter" />
+        <converters:HashTechImageConverter x:Key="imageValueConverter" />
+        <Style TargetType="ToggleButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border x:Name="border"  Height="61" Width="432" CornerRadius="5" Margin="0,2,0,0"
+                         Background="{Binding IsEnabled,Mode=TwoWay,Converter={StaticResource booleanToColorConverter}}" Cursor="Hand">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="Black"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="True">
+                                <Setter Property="Background" Value="#00B5CB"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+    </Window.Resources>
+    <Border Background="White" CornerRadius="20" BorderBrush="LightGray" BorderThickness="0.5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Cart" FontWeight="Medium" FontSize="18"/>
+
+                <!--<Border HorizontalAlignment="Right" Grid.Column="1" Cursor="Hand" Background="Transparent"
+                        BorderThickness="1" BorderBrush="Transparent" MouseLeftButtonUp="TextBlock_PreviewMouseLeftButtonUp">
+                    <StackPanel Cursor="Hand" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Path Fill="#8B8B8B"  
+Data="M19.2 57L15 52.8L31.8 36L15 19.2L19.2 15L36 31.8L52.8 15L57 19.2L40.2 36L57 52.8L52.8 57L36 40.2L19.2 57Z" 
+ Stretch="Uniform"  
+  />
+                    </StackPanel>
+                    
+                </Border>-->
+                <Border HorizontalAlignment="Right" Grid.Column="1" Cursor="Hand" Background="Transparent"
+                        BorderThickness="1" BorderBrush="Transparent" PreviewMouseLeftButtonUp="TextBlock_PreviewMouseLeftButtonUp">
+                    <Path Fill="#8B8B8B"  
+Data="M19.2 57L15 52.8L31.8 36L15 19.2L19.2 15L36 31.8L52.8 15L57 19.2L40.2 36L57 52.8L52.8 57L36 40.2L19.2 57Z" 
+ Stretch="Uniform"  
+  />
+                </Border>
+
+            </Grid>
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden"
+                      HorizontalScrollBarVisibility="Visible">
+                <ItemsControl ItemsSource="{Binding SelectedUnitsToDisplay,Mode=TwoWay}"
+                          x:Name="lstBox"
+                          Focusable="False">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="LightGray"
+                                Width="310" Height="278"
+                                BorderThickness="0.7" CornerRadius="10"
+                                Margin="0,0,3,0">
+                                <Grid >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="0.7*"/>
+                                        <RowDefinition Height="0.3*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="{Binding ImageSource,Converter={StaticResource imageValueConverter}}" Grid.Column="0"
+                                            Width="94" Height="94"/>
+                                        <StackPanel Grid.Column="1"
+                                                    HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2,0,0,2">
+                                            <TextBlock FontWeight="Regular"   FontSize="16"
+         TextWrapping="Wrap" FontFamily="{StaticResource BaijamureeFontMediumStyle}"
+         Text="{Binding Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                            <TextBlock FontWeight="Regular" FontSize="16" Margin="0,8,0,0"
+         TextWrapping="Wrap" FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}"
+         Text="{Binding SelectedAddOns}" />
+                                        </StackPanel>
+                                      
+                                    </Grid>
+                                    <Grid  Margin="5" Grid.Row="1" 
+                                       VerticalAlignment="Bottom"
+                                        HorizontalAlignment="Left">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Border Background="#00B5CB"   Grid.Column="0" Height="32" Width="142"
+        Cursor="Hand"  CornerRadius="10" HorizontalAlignment="Left" >
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
+                                                    <i:InvokeCommandAction Command="{Binding DataContext.EditProductCommand,RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                       CommandParameter="{Binding}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                            <TextBlock Text="Edit" HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center" Foreground="Black" />
+                                        </Border>
+                                        <Border Background="#E66E6E"   CornerRadius="10" Margin="5,0,0,0"
+Cursor="Hand"  Grid.Column="1" Height="32" Width="142" HorizontalAlignment="Left"  >
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
+                                                    <i:InvokeCommandAction Command="{Binding DataContext.RemoveProductCommand,RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                       CommandParameter="{Binding}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                            <TextBlock Text="Remove" HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center" Foreground="Black" />
+                                        </Border>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+
+            <!--<Border Background="#00B5CB"  Grid.Row="2"
+         Cursor="Hand" BorderBrush="Black" BorderThickness="1"
+          HorizontalAlignment="Center" Width="150" Height="32"
+                PreviewMouseLeftButtonUp="Border_PreviewMouseLeftButtonUp"
+                Margin="0,5,0,10">
+            <i:Interaction.Triggers>
+         <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
+             <i:InvokeCommandAction Command="{Binding NavigateToCheckoutScreen}" />
+         </i:EventTrigger>
+     </i:Interaction.Triggers>
+            <TextBlock Text="Proceed to Checkout" HorizontalAlignment="Center"
+                 VerticalAlignment="Center" Foreground="Black" />
+        </Border>-->
+
+            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+              Margin="0,0,0,10">
+                <!--<Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>-->
+
+                <ToggleButton   MaxWidth="432"  MaxHeight="61"
+                            Background="Gray" IsEnabled="{Binding IsEnabled,Mode=TwoWay}"
+                            Content="Proceed to Checkout" FontSize="18"
+                            Command="{Binding NavigateToCheckoutScreen}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch" Foreground="White"/>
+            </Grid>
+
+        </Grid>
+    </Border>
+   
+</Window>

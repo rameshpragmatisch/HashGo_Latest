@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="DataContext\TenantConnectItem.cs" />
+    <Compile Remove="Services\CartService.cs" />
+    <Compile Remove="ViewModels\Base\BaseDetailDetailViewModel.cs" />
+    <Compile Remove="ViewModels\Base\BaseListDetailViewModel.cs" />
+    <Compile Remove="ViewModels\ListDetailDetailViewModel.cs" />
+    <Compile Remove="ViewModels\ListDetailViewModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HashGo.Core\HashGo.Core.csproj" />
+    <ProjectReference Include="..\HashGo.Infrastructure\HashGo.Infrastructure.csproj" />
+    <ProjectReference Include="..\HashGo.String\HashGo.String.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controls\" />
+    <Folder Include="Repo\" />
+  </ItemGroup>
+
+</Project>

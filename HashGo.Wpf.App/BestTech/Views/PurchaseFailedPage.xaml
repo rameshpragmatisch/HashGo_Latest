@@ -1,0 +1,63 @@
+﻿<Page x:Class="HashGo.Wpf.App.BestTech.Views.PurchaseFailedPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HashGo.Wpf.App.BestTech.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PurchaseFailedPage">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="210"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="90"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Viewbox Grid.Row="1">
+            <Canvas Width="272" Height="272">
+                <Path Fill="#FF5151" Data="M136,17C69.7,17 17,69.7 17,136C17,202.3 69.7,255 136,255C202.3,255 255,202.3 255,136C255,69.7 202.3,17 136,17ZM181.9,195.5L136,149.6L90.1,195.5L76.5,181.9L122.4,136L76.5,90.1L90.1,76.5L136,122.4L181.9,76.5L195.5,90.1L149.6,136L195.5,181.9L181.9,195.5Z"/>
+            </Canvas>
+        </Viewbox>
+
+        <TextBlock Margin="0,15,0,0" Grid.Row="2"
+                   Text="Your purchase could not be processed"
+                   HorizontalAlignment="Center" FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}"
+                   Foreground="#00B5CB" FontWeight="SemiBold"
+                   FontSize="25"/>
+
+        <Grid Grid.Row="3" Margin="0,25,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Viewbox Grid.Column="2">
+                <Canvas Width="247" Height="86">
+                    <Border Width="247" Height="86" Background="#00B5CB" Cursor="Hand">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22"
+                                   FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}"
+                                   Text="Back" Foreground="White"/>
+                    </Border>
+                </Canvas>
+            </Viewbox>
+            <Viewbox Grid.Column="3">
+                <Canvas Width="247" Height="86">
+                    <Border Width="247" Height="86" Background="#00B5CB" Cursor="Hand">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+           FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}" FontSize="22"
+           Text="Try again" Foreground="White"/>
+                    </Border>
+                </Canvas>
+            </Viewbox>
+        </Grid>
+       
+    </Grid>
+</Page>

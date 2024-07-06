@@ -1,0 +1,23 @@
+﻿<Page x:Class="HashGo.Wpf.App.BestTech.Views.ItemAddedPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HashGo.Wpf.App.BestTech.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ItemAddedPage">
+
+    <Grid Background="White">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Canvas Width="200" Height="200"
+        HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Path Fill="#00B5CB" Data="M0 9.25H44.067L49.1082 27.75H216.33L182.419 129.5H71.965L67.34 148H203.5V166.5H43.66L55.1855 120.352L29.933 27.75H0V9.25ZM71.817 111H169.081L190.67 46.25H54.1587L71.817 111ZM37 194.25C37 189.343 38.9491 184.638 42.4185 181.169C45.8879 177.699 50.5935 175.75 55.5 175.75C60.4065 175.75 65.1121 177.699 68.5815 181.169C72.0509 184.638 74 189.343 74 194.25C74 199.157 72.0509 203.862 68.5815 207.331C65.1121 210.801 60.4065 212.75 55.5 212.75C50.5935 212.75 45.8879 210.801 42.4185 207.331C38.9491 203.862 37 199.157 37 194.25ZM166.5 194.25C166.5 189.343 168.449 184.638 171.919 181.169C175.388 177.699 180.093 175.75 185 175.75C189.907 175.75 194.612 177.699 198.081 181.169C201.551 184.638 203.5 189.343 203.5 194.25C203.5 199.157 201.551 203.862 198.081 207.331C194.612 210.801 189.907 212.75 185 212.75C180.093 212.75 175.388 210.801 171.919 207.331C168.449 203.862 166.5 199.157 166.5 194.25Z"/>
+            </Canvas>
+            <TextBlock Text="An Item has been added to your cart" Margin="0,20,0,0"
+           HorizontalAlignment="Center" FontSize="22"
+                           FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}" />
+        </StackPanel>
+        
+    </Grid>
+</Page>

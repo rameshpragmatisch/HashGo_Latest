@@ -1,0 +1,220 @@
+﻿<baseControls:BasePage x:Class="HashGo.Wpf.App.BestTech.Views.CustomerDetailsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HashGo.Wpf.App.BestTech.Views"
+      mc:Ignorable="d"  
+      d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:baseControls="clr-namespace:HashGo.Wpf.App.BestTech.Controls"
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+      xmlns:converters="clr-namespace:HashGo.Wpf.App.Converters"
+      xmlns:behaviours="clr-namespace:HashGo.Wpf.App.Behavior"
+      Title="CustomerDetailsPage">
+    <baseControls:BasePage.Resources>
+        <converters:BooleanToColorConverter x:Key="booleanToColorConverter" />
+
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="25"></Setter> 
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Margin" Value="5 10 0 0"></Setter>
+        </Style>
+        <Style TargetType="ToggleButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border x:Name="border"   CornerRadius="15" Margin="0,10,0,0"
+                                Height="{TemplateBinding Height}" MinHeight="{TemplateBinding MinHeight}" MaxHeight="{TemplateBinding MaxHeight}"
+                                Background="{Binding IsEnabled,Mode=TwoWay,Converter={StaticResource booleanToColorConverter}}" Cursor="Hand">
+                            <ContentPresenter HorizontalAlignment="Center" TextElement.FontFamily="{StaticResource BaijamureeFontMediumStyle}"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="Black"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="True">
+                                <Setter Property="Background" Value="#00B5CB"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+    </baseControls:BasePage.Resources>
+
+    <Grid Background="White">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="710"/>
+            <ColumnDefinition Width="0.2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="80" MaxHeight="100"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="10,20,0,0" Cursor="Hand"
+              Background="Transparent" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
+                    <i:InvokeCommandAction Command="{Binding PreviousScreenCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <Path Cursor="Hand"  Data="M 10,0 L 0,10 L 10,20 M 0,10 L 20,10" Stroke="Black" StrokeThickness="1" />
+
+        </Grid>
+
+        <Viewbox Width="573" Height="140" Grid.Row="1" Grid.Column="1">
+            <Image Source="/Resources/Images/Home.png" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </Viewbox>
+
+        <StackPanel Grid.Row="2" Grid.Column="1" >
+
+            <StackPanel >
+                <TextBlock Margin="0 10 0 5" FontFamily="{StaticResource BaijamureeFontMediumStyle}"
+            FontSize="12">
+     <Run>Name</Run>
+     <Run Foreground="Red" Text="*"></Run>
+                </TextBlock>
+                <TextBox  Grid.Row="1" Style="{StaticResource RoundedTextBoxWithShadowStyle}" 
+                          MinHeight="44" MaxHeight="66" MaxWidth="713" x:Name="tBoxName"
+           Text="{Binding CustomerDetailsObj.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+KeyDown="TextBox_KeyDown"/>
+            </StackPanel>
+
+            <StackPanel >
+                <TextBlock Margin="0 10 0 5" FontFamily="{StaticResource BaijamureeFontMediumStyle}"
+            FontSize="12">
+     <Run>Address Line 1</Run>
+     <Run Foreground="Red" Text="*"></Run>
+                </TextBlock>
+                <TextBox  Grid.Row="1" Style="{StaticResource RoundedTextBoxWithShadowStyle}" 
+                          MinHeight="44" MaxHeight="66" MaxWidth="713" 
+           Text="{Binding CustomerDetailsObj.AddressLine1,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+KeyDown="TextBox_KeyDown"/>
+            </StackPanel>
+
+            <StackPanel >
+                <TextBlock Margin="0 10 0 5" FontFamily="{StaticResource BaijamureeFontMediumStyle}"
+            FontSize="12" Text="Address Line 2" />
+
+                <TextBox  Grid.Row="1" Style="{StaticResource RoundedTextBoxWithShadowStyle}" 
+                          MinHeight="44" MaxHeight="66" MaxWidth="713" 
+           Text="{Binding CustomerDetailsObj.AddressLine2,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+KeyDown="TextBox_KeyDown"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+
+                <StackPanel>
+                    <TextBlock  Margin="0 10 0 5"
+        FontFamily="{StaticResource BaijamureeFontMediumStyle}"
+        FontSize="12">
+ <Run>Contact Number</Run>
+ <Run Foreground="Red" Text="*"></Run>
+                    </TextBlock>
+
+                    <TextBox  Style="{StaticResource RoundedTextBoxWithShadowStyle}" 
+                      MinHeight="44" MaxHeight="62" MaxWidth="342"
+                              MinWidth="{Binding ActualWidth, ElementName=tBoxName, Converter={converters:PercentageConverter}, ConverterParameter='.49'}"
+Text="{Binding CustomerDetailsObj.ContactNumber,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+KeyDown="TextBox_KeyDown">
+                        <i:Interaction.Behaviors>
+                            <behaviours:IntegerInputBehaviour />
+                        </i:Interaction.Behaviors>
+                    </TextBox>
+                </StackPanel>
+
+                <StackPanel>
+                    <TextBlock Margin="10 10 0 5"
+                    FontFamily="{StaticResource BaijamureeFontMediumStyle}"
+                    FontSize="12"  >
+             <Run>Postal Code</Run>
+             <Run Foreground="Red" Text="*"></Run>
+                    </TextBlock>
+
+
+                    <TextBox  Style="{StaticResource RoundedTextBoxWithShadowStyle}"  Margin="10,0,0,0"
+Text="{Binding CustomerDetailsObj.PostalCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                      MinHeight="44" MaxHeight="66" 
+                              MinWidth="{Binding ActualWidth, ElementName=tBoxName, Converter={converters:PercentageConverter}, ConverterParameter='.49'}"
+                              MaxWidth="342"
+KeyDown="TextBox_KeyDown">
+                        <i:Interaction.Behaviors>
+                            <behaviours:IntegerInputBehaviour />
+                        </i:Interaction.Behaviors>
+                    </TextBox>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch">
+
+                <StackPanel>
+                    <TextBlock  Margin="0 10 0 5"
+                FontFamily="{StaticResource BaijamureeFontMediumStyle}"
+                FontSize="12">
+         <Run>Unit Number</Run>
+         <Run Foreground="Red" Text="*"></Run>
+                    </TextBlock>
+
+                    <TextBox  Style="{StaticResource RoundedTextBoxWithShadowStyle}" 
+Text="{Binding CustomerDetailsObj.UnitNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                               MinHeight="44" MaxHeight="62" 
+         MinWidth="{Binding ActualWidth, ElementName=tBoxName, Converter={converters:PercentageConverter}, ConverterParameter='.49'}"
+         MaxWidth="342"
+KeyDown="TextBox_KeyDown"/>
+                </StackPanel>
+
+                <StackPanel>
+                    <TextBlock Margin="10 10 0 5" 
+             FontFamily="{StaticResource BaijamureeFontMediumStyle}"
+             FontSize="12" Grid.Row="0" Grid.Column="1">
+      <Run>Floor Number</Run>
+      <Run Foreground="Red" Text="*"></Run>
+                    </TextBlock>
+
+                    <TextBox   Style="{StaticResource RoundedTextBoxWithShadowStyle}" Margin="10,0,0,0"
+     Text="{Binding CustomerDetailsObj.FloorNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                               MinHeight="44" MaxHeight="62" 
+         MinWidth="{Binding ActualWidth, ElementName=tBoxName, Converter={converters:PercentageConverter}, ConverterParameter='.49'}"
+         MaxWidth="342"
+     KeyDown="TextBox_KeyDown"/>
+                </StackPanel>
+
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock Margin="0 10 0 5" FontFamily="{StaticResource BaijamureeFontMediumStyle}"
+            FontSize="12" Text="Remarks"/>
+                <TextBox   Style="{StaticResource RoundedTextBoxWithShadowStyleWithCursorTop}" TextWrapping="Wrap"
+                  AcceptsReturn="True"  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                 MinHeight="102"         MaxHeight="140" MaxWidth="713"
+                          
+           Text="{Binding CustomerDetailsObj.Remarks,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+KeyDown="TextBox_KeyDown"/>
+            </StackPanel>
+            <ToggleButton   Margin="0,10,0,0" MaxHeight="78" MinHeight="50"
+                             MaxWidth="529" 
+ IsEnabled="{Binding IsEnabled,Mode=TwoWay}"
+Command="{Binding NextScreenCommand}"
+>
+                <Label Content="CONFIRM" Foreground="White" FontSize="18"
+     />
+            </ToggleButton>
+
+        </StackPanel>
+
+
+
+    </Grid>
+
+</baseControls:BasePage>

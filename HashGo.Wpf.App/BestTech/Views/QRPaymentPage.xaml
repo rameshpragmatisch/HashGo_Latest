@@ -1,0 +1,51 @@
+﻿<baseControls:BasePage x:Class="HashGo.Wpf.App.BestTech.Views.QRPaymentPage"
+      xmlns:baseControls="clr-namespace:HashGo.Wpf.App.BestTech.Controls"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HashGo.Wpf.App.BestTech.Views"
+      xmlns:converters="clr-namespace:HashGo.Wpf.App.Converters"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="QRPaymentPage">
+
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".2*"/>
+            <ColumnDefinition Width=".6*" x:Name="col"/>
+            <ColumnDefinition Width=".2*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".4*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height=".1*"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center"
+                   FontSize="25"
+                   Text="Please scan the QR for payment" x:Name="tBlock"
+                   FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}"
+                   FontWeight="Bold"/>
+
+
+        <Image x:Name="qrIamge"  Grid.Column="1" Grid.Row="2" Margin="0,10,0,10" 
+               HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+               Stretch="Uniform"/>
+
+        <ToggleButton Margin="0,10,0,0" Grid.Column="1" Grid.Row="4" 
+                    Width="{Binding ActualWidth, ElementName=tBlock, ConverterParameter='0.9', Converter={converters:PercentageConverter}}"
+                    Style="{StaticResource defaultToggleButtonStyle4}"
+                    Background="#00B5CB" Height="40" FontFamily="{StaticResource BaijamureeFontRegularStyle}"
+                    Command="{Binding NavigateToPreviousScreenCommand}"
+    HorizontalAlignment="Stretch"
+    VerticalAlignment="Stretch" >   
+            <Viewbox>
+                <Label Content="Go Back" Foreground="White"/>
+            </Viewbox>
+        </ToggleButton>
+    </Grid>
+</baseControls:BasePage>

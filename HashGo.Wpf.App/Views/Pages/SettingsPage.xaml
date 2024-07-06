@@ -1,0 +1,226 @@
+﻿<Page
+    x:Class="HashGo.Wpf.App.Views.Pages.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:HashGo.Wpf.App.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:HashGo.Wpf.App.Views.Pages"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:strings="clr-namespace:HashGo.String.Resources.Strings;assembly=HashGo.String"
+    xmlns:vm="clr-namespace:HashGo.Domain.ViewModels;assembly=HashGo.Domain"
+    Title="Settings"
+    d:DesignHeight="1920"
+    d:DesignWidth="1080"
+    Background="{StaticResource HashGoBackgroundBrush}"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Images/DineConnectIcons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <converters:CollectionToInvertedVisibilityConverter x:Key="collectionToInvertedVisibilityConverter" />
+            <converters:CollectionToVisibilityConverter x:Key="collectionToVisibilityConverter" />
+
+            <converters:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+
+
+            <Style x:Key="selectableItemListBoxStyle" TargetType="{x:Type ListBox}">
+                <Setter Property="BorderThickness" Value=".5" />
+            </Style>
+
+        </ResourceDictionary>
+    </Page.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadDataCommand}" />
+            <i:InvokeCommandAction Command="{Binding InitializeDataCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Border
+        Margin="20,30"
+        Background="{DynamicResource DineConnectFrameBackgroundBrush}"
+        BorderBrush="{DynamicResource DineConnectFrameBorderBrush}"
+        BorderThickness="1"
+        Style="{StaticResource RoundCornerBorder}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".2*" />
+                <RowDefinition />
+                <RowDefinition Height=".2*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".3*" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <ListBox
+                x:Name="lstSettingGroup"
+                Grid.Row="0"
+                Grid.RowSpan="3"
+                Grid.Column="0"
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch"
+                BorderThickness=".5"
+                ItemsSource="{Binding SettingCategories}"
+                SelectedItem="{Binding SelectedCategory}">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="Margin" Value="0" />
+                        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <Border
+                                        Name="_Border"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        SnapsToDevicePixels="true">
+                                        <ContentPresenter />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="true">
+                                            <Setter TargetName="_Border" Property="Background" Value="#DADAF3" />
+                                            <!--<Setter Property="Foreground" Value="Red" />-->
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+
+                </ListBox.ItemContainerStyle>
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border
+                            x:Name="bdrMenuGroup"
+                            Width="{Binding ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}, ConverterParameter='.9', Converter={converters:PercentageConverter}}"
+                            Height="{Binding ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}, ConverterParameter='.45', Converter={converters:PercentageConverter}}"
+                            Margin="0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Background="Transparent"
+                            BorderBrush="{DynamicResource DineConnectTagBackgroundBrush}"
+                            BorderThickness="0,1">
+                            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <TextBlock
+                                    x:Name="txtSettingTitle"
+                                    Grid.Column="1"
+                                    Margin="5,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    FontSize="30"
+                                    FontWeight="Medium"
+                                    Text="{Binding Name}"
+                                    TextWrapping="Wrap" />
+                            </Grid>
+
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <StackPanel
+                x:Name="panelTitle"
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="10,0"
+                VerticalAlignment="Bottom">
+                <TextBlock
+                    x:Name="txtSettingDescription"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontSize="26"
+                    FontWeight="Medium"
+                    Style="{StaticResource RubikTextBlockStyle}"
+                    Text="{Binding SelectedCategory.Description}"
+                    TextWrapping="Wrap" />
+                <TextBlock
+                    x:Name="txtSettingHelperText"
+                    Grid.Column="1"
+                    Margin="0,10,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontSize="20"
+                    FontWeight="Regular"
+                    Style="{StaticResource RubikTextBlockStyle}"
+                    Text="{Binding SelectedCategory.HelperText}"
+                    TextWrapping="Wrap" />
+
+            </StackPanel>
+
+            <Border Grid.Row="1" Grid.Column="1">
+
+                <mah:TransitioningContentControl Content="{Binding ViewContent}" />
+
+            </Border>
+
+            <Grid
+                x:Name="grdButtons"
+                Grid.Row="2"
+                Grid.Column="1"
+                Margin="10"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <mah:Tile
+                    x:Name="btnBack"
+                    Grid.Column="0"
+                    Width="{Binding ActualWidth, ElementName=grdButtons, ConverterParameter='.47', Converter={converters:PercentageConverter}}"
+                    Height="80"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Stretch"
+                    Background="{DynamicResource DineConnectCardBackgroundBrush}"
+                    Command="{Binding DataContext.CancelEditCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:SettingsPage}}}"
+                    Foreground="{DynamicResource DineConnectTextForegroundBrush}"
+                    Style="{StaticResource RoundCornerButtonStyle}">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="28"
+                        Style="{StaticResource PoppinsFontRegularStyle}"
+                        Text="Cancel" />
+                    <Button.Effect>
+                        <DropShadowEffect />
+                    </Button.Effect>
+                </mah:Tile>
+
+                <mah:Tile
+                    x:Name="btnSave"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Width="{Binding ActualWidth, ElementName=grdButtons, ConverterParameter='.47', Converter={converters:PercentageConverter}}"
+                    Height="80"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Background="{DynamicResource DineConnectAccentBrush}"
+                    Command="{Binding DataContext.SaveSettingsCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:SettingsPage}}}"
+                    CommandParameter="{Binding SelectedConnectItem}"
+                    Foreground="{DynamicResource DineConnectTextForegroundBrush}"
+                    Style="{StaticResource RoundCornerButtonStyle}">
+                    <TextBlock
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        FontSize="28"
+                        Style="{StaticResource PoppinsFontRegularStyle}"
+                        Text="Save" />
+                    <Button.Effect>
+                        <DropShadowEffect />
+                    </Button.Effect>
+                </mah:Tile>
+            </Grid>
+
+        </Grid>
+
+    </Border>
+</Page>

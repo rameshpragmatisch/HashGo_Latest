@@ -1,0 +1,142 @@
+﻿<mah:MetroWindow
+    x:Class="HashGo.Wpf.App.Views.ShellWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:HashGo.Wpf.App.Views.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:HashGo.Wpf.App"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    ResizeMode="NoResize"
+    ShowCloseButton="False"
+    ShowIconOnTitleBar="False"
+    ShowInTaskbar="True"
+    ShowMaxRestoreButton="True"
+    ShowMinButton="False"
+    ShowTitleBar="False"
+    Style="{StaticResource BaseWindowStyle}"
+    WindowState="Maximized"
+    mc:Ignorable="d">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Unloaded">
+            <i:InvokeCommandAction Command="{Binding UnloadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <!--<Grid.RenderTransform>
+            <RotateTransform Angle="-90" CenterX="960" CenterY="540" />
+        </Grid.RenderTransform>-->
+        <controls:HashGoFrame NavigationUIVisibility="Hidden"
+            x:Name="shellFrame"
+            Focusable="False"
+             />
+
+        <Border
+            Grid.RowSpan="3"
+            Background="#80000000"
+            BorderBrush="Black"
+            BorderThickness="1"
+            Visibility="Hidden">
+            <Grid>
+
+                <Border
+                    Width="950"
+                    Height="800"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="{StaticResource DineConnectFrameBackgroundBrush}"
+                    CornerRadius="20">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".2*" />
+                            <RowDefinition Height=".2*" />
+                            <RowDefinition Height=".3*" />
+                            <RowDefinition Height=".2*" />
+
+                            <RowDefinition Height=".2*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            Grid.Row="0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="60"
+                            FontWeight="Bold"
+                            Style="{StaticResource ListLatoSubTitleStyle}"
+                            Text="Session Timeout" />
+                        <TextBlock
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="36"
+                            FontWeight="Regular"
+                            Style="{StaticResource ListLatoSubTitleStyle}"
+                            Text="Your session has been idle for some time. do you need more time ?"
+                            TextAlignment="Center"
+                            TextWrapping="Wrap" />
+
+                        <TextBlock
+                            Grid.Row="2"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="130"
+                            FontWeight="Bold"
+                            Style="{StaticResource ListLatoSubTitleStyle}"
+                            Text="3"
+                            TextAlignment="Center"
+                            TextWrapping="Wrap" />
+
+                        <Button
+                            Grid.Row="3"
+                            Width="680"
+                            Height="100"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Background="#0190F4"
+                            Foreground="{StaticResource DineConnectFrameBackgroundBrush}"
+                            Style="{StaticResource RoundCornerButtonStyle}">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="50"
+                                FontWeight="Bold"
+                                Style="{StaticResource ListLatoSubTitleStyle}"
+                                Text="I Need More Time"
+                                TextAlignment="Center"
+                                TextWrapping="Wrap" />
+                        </Button>
+                        <Button
+                            Grid.Row="4"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="#0190F4">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="36"
+                                FontWeight="Bold"
+                                Style="{StaticResource ListLatoSubTitleStyle}"
+                                Text="Quick and Restart" />
+                        </Button>
+
+                    </Grid>
+
+                </Border>
+                <!--<TextBlock
+                    Margin="0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="24"
+                    FontWeight="Bold"
+                    Foreground="#7EFFFFFF"
+                    Text="Please Wait..."
+                    TextWrapping="Wrap" />-->
+            </Grid>
+        </Border>
+    </Grid>
+
+
+</mah:MetroWindow>

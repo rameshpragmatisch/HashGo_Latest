@@ -1,0 +1,243 @@
+﻿<baseControls:BasePage x:Class="HashGo.Wpf.App.BestTech.Views.PaymentsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HashGo.Wpf.App.BestTech.Views"
+      mc:Ignorable="d"
+      xmlns:baseControls="clr-namespace:HashGo.Wpf.App.BestTech.Controls"
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+      xmlns:converters="clr-namespace:HashGo.Wpf.App.Converters"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PaymentsPage">
+    <baseControls:BasePage.Resources>
+        <converters:HashTechImageConverter x:Key="imageValueConverter" />
+    </baseControls:BasePage.Resources>
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="170"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="Black">
+            <TextBlock Text="YOUR ORDER" FontSize="30" Foreground="White"
+                       FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+
+        <!--<Border Grid.Row="1" Background="#91E4F7">
+            --><!--<TextBlock Text="Estimated waiting time: N/A" FontFamily="Bold" Foreground="White"
+                       Margin="0,0,1,0"
+                HorizontalAlignment="Right" VerticalAlignment="Center"/>--><!--
+        </Border>-->
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="2" Margin="0,10,0,0">
+            <ItemsControl  BorderThickness="0" 
+          ItemsSource="{Binding SelectedUnits,Mode=TwoWay}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="4,5,4,0"
+                                Height="151">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="142"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition Width="110"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="{Binding ImageSource,Converter={StaticResource imageValueConverter}}" Grid.Column="0" Height="131" />
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap"
+                                               FontSize="18"
+                                               FontFamily="{StaticResource BaijamureeFontMediumStyle}"/>
+                                    <TextBlock FontWeight="Regular" FontSize="16" Margin="0,8,0,0"
+TextWrapping="Wrap" FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}"
+Text="{Binding SelectedAddOnsCheckOutPage}" />
+                                </StackPanel>
+                                
+                                <local:ProductCountControl  Grid.Column="2" Margin="10,0,0,0"
+                                                            AddProductCommand="{Binding DataContext.AddProductCommand,RelativeSource={RelativeSource AncestorType=baseControls:BasePage}}"
+                                                            SubtractProductCommand="{Binding DataContext.RemoveProductCommand,RelativeSource={RelativeSource AncestorType=baseControls:BasePage}}"
+                                                            RemoveProductParamter="{Binding}"
+                                                            Count="{Binding UnitCount,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                <StackPanel Grid.Column="3" Margin="10,0,2,0" VerticalAlignment="Center">
+                                    <Border Background="Red" Grid.Column="1"
+    BorderBrush="Gray"
+    BorderThickness="1" Margin="0,5,0,6"
+    Cursor="Hand"
+    HorizontalAlignment="Center" 
+    Width="92" Height="29"
+    CornerRadius="5">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
+                                                <i:InvokeCommandAction Command="{Binding DataContext.RemoveUnitCommand,RelativeSource={RelativeSource AncestorType=baseControls:BasePage}}"
+                                                                  CommandParameter="{Binding}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <TextBlock Text="Remove" HorizontalAlignment="Center"
+                                                   FontSize="15" FontFamily="{StaticResource BaijamureeFontMediumStyle}"
+           VerticalAlignment="Center" Foreground="Black" />
+                                    </Border>
+                                    
+                                    <TextBlock Text="{Binding TotalPrice,StringFormat=C,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                               FontSize="15" FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}"
+                                               Foreground="Black" />
+
+                                    <Border Background="Gray" Grid.Column="1"
+         BorderBrush="Gray"
+         BorderThickness="1"
+         Cursor="Hand" Margin="0,5,0,6"
+         HorizontalAlignment="Center" 
+         Width="92" Height="24"
+         CornerRadius="5">
+                                        <i:Interaction.Triggers>
+         <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
+                                                <i:InvokeCommandAction Command="{Binding DataContext.EditProductCommand,RelativeSource={RelativeSource AncestorType=baseControls:BasePage}}"
+                                                                       CommandParameter="{Binding}"/>
+         </i:EventTrigger>
+     </i:Interaction.Triggers>
+                                        <TextBlock Text="Edit" HorizontalAlignment="Center"
+                                                   FontSize="15" 
+                VerticalAlignment="Center" Foreground="Black" FontFamily="{StaticResource BaijamureeFontMediumStyle}"/>
+                                    </Border>
+                                </StackPanel>
+
+                            </Grid>
+                        </Border>
+
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <Border Height="1" Grid.Row="3" BorderBrush="Black" BorderThickness="1"/>
+        <Grid Grid.Row="4" Margin="5,2,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel>
+                <Border Background="#00B5CB" Margin="10,10,0,0"
+                        Cursor="Hand" BorderBrush="Black" BorderThickness="1"
+                        HorizontalAlignment="Left"
+                        Width="281" Height="56"
+                        CornerRadius="20">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
+                            <i:InvokeCommandAction Command="{Binding AddRefferalCodeCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <TextBlock Text="ReferralCode" HorizontalAlignment="Center"
+       VerticalAlignment="Center" Foreground="Black" FontSize="24"
+                  FontFamily="{StaticResource BaijamureeFontRegularStyle}"/>
+                </Border>
+
+                <StackPanel Orientation="Horizontal" Margin="10,5,0,5">
+                    <TextBlock Text="Referral Code: " FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}"
+                               FontSize="18" FontWeight="SemiBold"/>
+                    <TextBlock Text="{Binding ReferralCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                               FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}"
+                               FontSize="18" FontWeight="SemiBold" Foreground="Red"/>
+                </StackPanel>
+                
+                <!--<Border BorderBrush="Black" BorderThickness="0.2" CornerRadius="10"
+                        HorizontalAlignment="Left" Margin="0,8,0,0"
+                        Height="24" Width="150">
+                    <TextBox  Foreground="Black" Background="Transparent" BorderThickness="0"
+                              Margin="2,5,0,0"
+                              VerticalContentAlignment="Center"
+                              Text="{Binding ReferralCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                </Border>-->
+            </StackPanel>
+
+            <Grid Grid.Column="2"
+                  Margin="10,5,10,5">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Order Summary" VerticalAlignment="Center" FontSize="18"
+                           Grid.Row="0" Grid.Column="0" FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}"/>
+                <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 10 0"
+                           Grid.Row="0" Grid.Column="1" FontSize="18">
+                     <Hyperlink Command="{Binding ClearCartCommand}">Clear</Hyperlink>
+                </TextBlock>
+
+                <TextBlock Text="SubTotal" VerticalAlignment="Center" FontSize="18"
+                            Grid.Row="1" Grid.Column="0" FontFamily="{StaticResource BaijamureeFontMediumStyle}"/>
+                <TextBlock Text="{Binding TotalPrice,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,StringFormat=C}" VerticalAlignment="Center"
+                           Grid.Row="1" Grid.Column="1" Margin="0 0 10 0" HorizontalAlignment="Right" FontSize="18"/>
+
+                <TextBlock Text="Total(incl. Deposit)" VerticalAlignment="Center" FontSize="18"
+                            Grid.Row="2" Grid.Column="0" FontFamily="{StaticResource BaijamureeFontMediumStyle}"/>
+                <TextBlock Text="{Binding TotalPrice,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,StringFormat=C}" VerticalAlignment="Center"
+                           FontFamily="{StaticResource BaijamureeFontMediumStyle}"
+                            Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Right" Margin="0 0 10 0" FontSize="18" />
+            </Grid>
+        </Grid>
+        <StackPanel Grid.Row="5" Margin="10,10,10,0">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Background="White" Grid.Column="0"
+         BorderBrush="Black" HorizontalAlignment="Stretch"
+         BorderThickness="0.7" CornerRadius="5"
+         Cursor="Hand" 
+          Height="73">
+                    <i:Interaction.Triggers>
+         <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
+                            <i:InvokeCommandAction Command="{Binding StartOverCommand}" />
+         </i:EventTrigger>
+     </i:Interaction.Triggers>
+                    <TextBlock Text="Start Over" HorizontalAlignment="Center" FontWeight="Medium"
+                VerticalAlignment="Center" Foreground="Black" FontSize="25" FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}"/>
+                </Border>
+
+                <Border Background="White" Margin="5,0,0,0"
+    BorderBrush="Black" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+    BorderThickness="0.7" Grid.Column="1" CornerRadius="5"
+    Cursor="Hand" Height="73">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
+                            <i:InvokeCommandAction Command="{Binding OrderMoreCommand}" />
+    </i:EventTrigger>
+</i:Interaction.Triggers>
+                    <TextBlock Text="Order More" HorizontalAlignment="Center"
+           VerticalAlignment="Center" Foreground="Black" FontWeight="Medium" FontSize="25" FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}"/>
+                </Border>
+            </Grid>
+            
+            <Border  HorizontalAlignment="Stretch"
+    Background="#00B5CB" Height="73" Margin="0,5"
+    BorderThickness="1" CornerRadius="5"
+    Cursor="Hand" >
+                <i:Interaction.Triggers>
+    <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
+        <i:InvokeCommandAction Command="{Binding ProceedToPaymentsCommand}" />
+    </i:EventTrigger>
+</i:Interaction.Triggers>
+                <TextBlock Text="Proceed to Payment" HorizontalAlignment="Center" FontWeight="SemiBold"
+           VerticalAlignment="Center" Foreground="White" FontSize="25" FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}"/>
+            </Border>
+
+        </StackPanel>
+    </Grid>
+</baseControls:BasePage>

@@ -1,0 +1,108 @@
+﻿<baseControls:BasePage x:Class="HashGo.Wpf.App.BestTech.Views.EnquiriesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HashGo.Wpf.App.BestTech.Views"
+      mc:Ignorable="d" 
+      xmlns:baseControls="clr-namespace:HashGo.Wpf.App.BestTech.Controls"
+      xmlns:behaviours="clr-namespace:HashGo.Wpf.App.Behavior"
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                       xmlns:converters="clr-namespace:HashGo.Wpf.App.Converters"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EnquiriesPage">
+    <baseControls:BasePage.Resources>
+        <converters:BooleanToColorConverter x:Key="booleanToColorConverter" />
+        <Style TargetType="ToggleButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border x:Name="border"  Height="35" CornerRadius="10" Margin="0,20,0,0"
+                        Background="{Binding IsEnabled,Mode=TwoWay,Converter={StaticResource booleanToColorConverter}}" Cursor="Hand">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="Black"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="True">
+                                <Setter Property="Background" Value="#00B5CB"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+    </baseControls:BasePage.Resources>
+
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.15*"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="0.15*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="0.6*"/>
+            <RowDefinition Height="0.23*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="6,20,0,0" Cursor="Hand"
+               Background="Transparent" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
+                    <i:InvokeCommandAction Command="{Binding PreviousScreenCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <Path Cursor="Hand"  Data="M 10,0 L 0,10 L 10,20 M 0,10 L 20,10" Stroke="Black" StrokeThickness="1" />
+
+        </Grid>
+
+        <TextBlock Text="Enquiries" Grid.Row="0" Grid.Column="1"
+                   HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                   FontSize="20" FontWeight="Bold"/>
+
+        <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock  Text="Please state your enquiries below" FontWeight="SemiBold" Margin="0,0,0,5"/>
+            <TextBox  Grid.Row="1" Style="{StaticResource RoundedTextBoxWithShadowStyleWithCursorTop}"  VerticalScrollBarVisibility="Auto" 
+                Text="{Binding Enquiries,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                      
+                AcceptsReturn="True" TextWrapping="Wrap"
+                    KeyDown="TextBox_KeyDown"/>
+        </Grid>
+
+        <Grid HorizontalAlignment="Stretch"
+      Grid.Row="2" Grid.Column="1" Margin="0,25,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition  Height="Auto"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock  Text="Phone number" FontWeight="SemiBold"/>
+
+            <TextBox  Grid.Row="1" Style="{StaticResource RoundedTextBoxWithShadowStyle}" 
+       Text="{Binding PhoneNumber,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+       KeyDown="TextBox_KeyDown">
+                <i:Interaction.Behaviors>
+                    <behaviours:IntegerInputBehaviour />
+                </i:Interaction.Behaviors>
+            </TextBox>
+        </Grid>
+
+       
+        <ToggleButton Grid.Row="3" Grid.Column="1" Width="257" 
+               Background="Gray" Margin="20,10,10,10"
+               Content="Submit" IsEnabled="{Binding IsEnabled,Mode=TwoWay}"
+               Command="{Binding NextScreenCommand}"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center" Foreground="White"/>
+    </Grid>
+</baseControls:BasePage>

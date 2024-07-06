@@ -1,0 +1,609 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="INSTALLFOLDER">
+            <Component Id="cmpF82FCA80BBAF44D285C97F10993DEEE6" Guid="{E4F18B25-B94B-4B28-B63A-49417F159DFF}">
+                <File Id="fil840B80AC19861C7F9F04FBDCFAE331CE" KeyPath="yes" Source="$(env.HashGoDir)\appsettings.json" />
+            </Component>
+            <Component Id="cmp269D78649FD9F330C5C591512326A7FF" Guid="{897ACD6E-133B-4296-A3D4-3DF78DAA4DC3}">
+                <File Id="filE112EAA7BB8AB4BA3E56159E0DDCC58E" KeyPath="yes" Source="$(env.HashGoDir)\CommunityToolkit.Mvvm.dll" />
+            </Component>
+            <Component Id="cmp9110E4565D76564E9BC2F34625854902" Guid="{991CBC01-E140-4E1A-9DD1-08E8D70E5BE8}">
+                <File Id="filAC751AB8116CEF372F8CFDA54B395D08" KeyPath="yes" Source="$(env.HashGoDir)\ControlzEx.dll" />
+            </Component>
+            <Component Id="cmpAAA3974F1622249EAFAE3E61946B628A" Guid="{11EF86E4-8E60-46DC-8A85-B570DDD89BA3}">
+                <File Id="fil96C5E29F592F9A0D2BD1D882DB1B0FA8" KeyPath="yes" Source="$(env.HashGoDir)\HashGo.Core.dll" />
+            </Component>
+            <Component Id="cmp23B3DB439FAC81AA4F22469BFBE4D590" Guid="{A5A0734A-0895-41ED-91E5-6D458AF8A1E5}">
+                <File Id="fil43523AF2380B8A6B28E06E759B10F380" KeyPath="yes" Source="$(env.HashGoDir)\HashGo.Core.pdb" />
+            </Component>
+            <Component Id="cmp5A2EA3D3953836D90F8B6D0260907D51" Guid="{BECE66E5-11B7-4849-91CE-CF6A43DBC6DF}">
+                <File Id="fil05AD1D04EF25A26E38C9107D9F6A8EBD" KeyPath="yes" Source="$(env.HashGoDir)\HashGo.Domain.dll" />
+            </Component>
+            <Component Id="cmpDA3F7307B287DAA2BBDD8C35C1E9A6E7" Guid="{4A157F8A-4269-4F12-A94D-CF5C7ADAAE41}">
+                <File Id="fil72011EE89336BA4710820AFF4ECBE454" KeyPath="yes" Source="$(env.HashGoDir)\HashGo.Domain.pdb" />
+            </Component>
+            <Component Id="cmp48F84900931B7B5BF2E13C4B61E162CE" Guid="{DD5A57F5-133E-45E2-A561-86929FB227CE}">
+                <File Id="filA39A2F4C8611608727646FB32B078C29" KeyPath="yes" Source="$(env.HashGoDir)\HashGo.Infrastructure.dll" />
+            </Component>
+            <Component Id="cmp9EE73100F06FB7BCE073C099A596C5F9" Guid="{892EF4F4-3C34-44FE-9028-BCC3149C6B3E}">
+                <File Id="fil7DFAE568389ECFB9A934B52EA012A9E0" KeyPath="yes" Source="$(env.HashGoDir)\HashGo.Infrastructure.pdb" />
+            </Component>
+            <Component Id="cmp25C40F6715DE4A814CC88E620CC134AA" Guid="{9CDCD455-AD08-4D86-9A35-DD0E5E88775D}">
+                <File Id="fil69B37061BBF31CC99E1C6BFD0A3CB83C" KeyPath="yes" Source="$(env.HashGoDir)\HashGo.String.dll" />
+            </Component>
+            <Component Id="cmp5CE7BC4E85CC6389BE37D571EE523235" Guid="{5872437C-F683-401A-9298-5B574BF534C4}">
+                <File Id="filEBABE2C136967F61E88A744B59DB5B61" KeyPath="yes" Source="$(env.HashGoDir)\HashGo.String.pdb" />
+            </Component>
+            <Component Id="cmp5B2847E6F8B48084533E791F5ED366F8" Guid="{7CE269AA-AA4F-4A0D-9605-C35BB889DE86}">
+                <File Id="fil071987A83BC4301276A93C0BFB92E04C" KeyPath="yes" Source="$(env.HashGoDir)\HashGo.Wpf.App.deps.json" />
+            </Component>
+            <Component Id="cmpD641D75C97AA6EAE6221C8A6C1EDA5F7" Guid="{7583F536-2C2B-4B03-860F-3847308420A5}">
+                <File Id="fil4FE9EB3C3DD8CCD37B0A3252A427BAC5" KeyPath="yes" Source="$(env.HashGoDir)\HashGo.Wpf.App.dll" />
+            </Component>
+            <Component Id="cmp811C42CBAD51B84B29E71C1A1E021A2B" Guid="{3425B36C-1788-4184-8EF6-3C4ACAF19332}">
+                <File Id="fil9F46360E247C6D9ADBAC206BFF6A5EE2" KeyPath="yes" Source="$(env.HashGoDir)\HashGo.Wpf.App.exe" />
+            </Component>
+            <Component Id="cmpD55631C4271EAF7C5B8CBE974DF72B57" Guid="{863A473E-D335-4CED-A31C-BDEA704C5342}">
+                <File Id="fil6BF58033BFEAA14218E84AB73021FF4C" KeyPath="yes" Source="$(env.HashGoDir)\HashGo.Wpf.App.pdb" />
+            </Component>
+            <Component Id="cmp0EC52BCCE8B28363385A20210C0CD577" Guid="{648104D3-57A5-4B08-BC26-B021B373B198}">
+                <File Id="filA418BB99F4CA1013C09176FB7E1E3205" KeyPath="yes" Source="$(env.HashGoDir)\HashGo.Wpf.App.runtimeconfig.json" />
+            </Component>
+            <Component Id="cmp223D4754378C01052DA8253A843FD297" Guid="{70E35BB8-A918-4282-9D71-A361AA6420F8}">
+                <File Id="filBC562C5B3D9848A2114F0AF7275FF1E6" KeyPath="yes" Source="$(env.HashGoDir)\MahApps.Metro.dll" />
+            </Component>
+            <Component Id="cmpB14CC8B154928EA6225F174BDE107F6B" Guid="{B55B8362-A964-4B8E-B985-31C3B51DA32C}">
+                <File Id="filB459F36ECC4A67FE3864BCBC2F0D640D" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Data.Sqlite.dll" />
+            </Component>
+            <Component Id="cmpF6638B4348C85D6A2F1219A3502A560F" Guid="{5328EBD4-DD0D-4855-A4B9-FD749F47314F}">
+                <File Id="fil41A831787271EAF16C45C5BCB537E199" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.EntityFrameworkCore.Abstractions.dll" />
+            </Component>
+            <Component Id="cmp8ECB45C87038A07C9C036DACB12BD3D3" Guid="{39F369BE-145B-48D1-BCCF-CAAE6D2556EB}">
+                <File Id="filFEE672B37FD89848D8A45C0C8751EECD" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.EntityFrameworkCore.dll" />
+            </Component>
+            <Component Id="cmp3D0A5CB47707279B9AED9C4655BA24DD" Guid="{40D28587-3137-4769-85AA-7E6FEBCCCBC4}">
+                <File Id="fil4C803CF4486F15F8392710290E97A2D4" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.EntityFrameworkCore.Relational.dll" />
+            </Component>
+            <Component Id="cmpD3186AEB38530EBF5D93FB5DF1525945" Guid="{F792D910-2073-486B-87E6-9A94AF378AE8}">
+                <File Id="fil65B42FC009489C480135C6D18393272F" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.EntityFrameworkCore.Sqlite.dll" />
+            </Component>
+            <Component Id="cmp75E1D360F7F3BEA782095608B95EAF01" Guid="{EAF82B2B-C7AC-47E7-B54F-E7FB7BEC5F78}">
+                <File Id="filB2EC777A0DF3BC93E22F83FF2D6AA439" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.Caching.Abstractions.dll" />
+            </Component>
+            <Component Id="cmp47B9C1CDB4B766E8C1572505E98E4035" Guid="{FDCD34D7-F88D-4B38-86EA-01D0B91EF023}">
+                <File Id="fil64C18EEB612BDE1E8703C04B205ED0F6" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.Caching.Memory.dll" />
+            </Component>
+            <Component Id="cmpDC19BA21EFF423B27F8787A2AB8F2B3C" Guid="{CED121C7-6BF8-4AC3-833A-568119F9FF48}">
+                <File Id="filF6767F9D22B6D46DD3A2FC798B5F23DE" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.Configuration.Abstractions.dll" />
+            </Component>
+            <Component Id="cmp85A16DDDD438C8839C302EEFF54E8E0C" Guid="{163421FB-061D-4EA2-A40F-9E93F2392981}">
+                <File Id="fil52FC3D526CBD9DC330C6FE3380563F0C" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.Configuration.Binder.dll" />
+            </Component>
+            <Component Id="cmp4A61E3F01E16F7C35D22D304DE7C3D7D" Guid="{1D2A063A-2DC5-44BA-BC73-CDBC37868B0D}">
+                <File Id="filB3B34A4CDA6A327AC31CAD64389BC80C" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.Configuration.CommandLine.dll" />
+            </Component>
+            <Component Id="cmpC2B3CC4C105FBF588A9EBBD45742C349" Guid="{E91A59BC-CD9B-4D69-BFD3-63FB2A388DE4}">
+                <File Id="filE9F345539532616C2BEF86BE1CEB83E2" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.Configuration.dll" />
+            </Component>
+            <Component Id="cmp695DF09F0E9EE30558F8C6D16553F843" Guid="{AB8D20BC-51DE-4973-A12C-4F08846D973E}">
+                <File Id="filEAA27D91AD78E3FCD8BA846C92752BAA" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.Configuration.EnvironmentVariables.dll" />
+            </Component>
+            <Component Id="cmp0F72FDFC2B5DABBEED0952957424C516" Guid="{B6E6A377-57B3-48C8-9524-B0A51671ED36}">
+                <File Id="fil732B9D1BB8B2BA629B3802CB721B7E55" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.Configuration.FileExtensions.dll" />
+            </Component>
+            <Component Id="cmp191446DEBB621CC91C2B2E713F085F01" Guid="{44EDB32C-06E2-49D9-9FBA-D431EC1FFC6C}">
+                <File Id="fil0CC9532B169036B73874B81A5F9C8F97" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.Configuration.Json.dll" />
+            </Component>
+            <Component Id="cmp306F083BB44F8AEA42DD7E2AB9CD82C2" Guid="{68AB24E2-7DEB-4642-89EA-060B425B1A1E}">
+                <File Id="fil867F166CDED00C699F6B217A4FC42957" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.Configuration.UserSecrets.dll" />
+            </Component>
+            <Component Id="cmp198468A4AE980CD6955CB6EB86083726" Guid="{4C30FE64-6B45-4813-A501-0D6FD3FEA9E2}">
+                <File Id="fil02E4E4D119BFC4831CEA5A71F1288443" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+            </Component>
+            <Component Id="cmp493E9BC44885B6BC5C57BDB1302C40D9" Guid="{05768C4F-5514-47CC-9F4A-ED3559F57699}">
+                <File Id="filA40291A4FBD4719B6995DEB783A39A65" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.DependencyInjection.dll" />
+            </Component>
+            <Component Id="cmp828BABCAA179DFEF8C123894E628FE4B" Guid="{40B73E93-3A37-4AC3-A95F-2262669AEA35}">
+                <File Id="filF6E569B7A4467871DC459846AD8CAB0C" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.DependencyModel.dll" />
+            </Component>
+            <Component Id="cmpD71177CD3BCD768F1F74211E6E2E353D" Guid="{7677F3ED-6FFC-4A30-926A-23F47A384E08}">
+                <File Id="filD6E38AF71AD3567AEFAB7A283BC7D3C6" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.Diagnostics.Abstractions.dll" />
+            </Component>
+            <Component Id="cmpBB58932E81784E90600A3B2DEB2E2D6A" Guid="{CAEB356F-104C-4B3E-83AB-DD8D079A6C33}">
+                <File Id="filBFD8FDE91AE486857624064B5808A0C1" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.Diagnostics.dll" />
+            </Component>
+            <Component Id="cmp0209E8308C907CAD5474151F7C6836F5" Guid="{D36958E8-A46D-4ECC-B0A8-6565DEC9F30F}">
+                <File Id="fil1036FDFADEB4E1F1FB133485A70A0DD4" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.FileProviders.Abstractions.dll" />
+            </Component>
+            <Component Id="cmp6361EE614B62630DD923390326EAF03C" Guid="{6C551373-EB36-4E16-A510-B5CC22988E46}">
+                <File Id="fil1B3C0C67DC448F84DA45630529031E78" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.FileProviders.Physical.dll" />
+            </Component>
+            <Component Id="cmp1E5A63B6F657DD090469973A1C3D2C59" Guid="{CC22ECC1-E2E3-48C1-9740-C08721D2205B}">
+                <File Id="fil931DDF3633F4CABF1422600B672C70DE" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.FileSystemGlobbing.dll" />
+            </Component>
+            <Component Id="cmpB96239F931804879A085E057C6E72657" Guid="{0940BE7B-0C0C-483A-980B-F89458D224AA}">
+                <File Id="filFE47041DFF0F714E6C7D801D2D2C140A" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.Hosting.Abstractions.dll" />
+            </Component>
+            <Component Id="cmp1ED5B5DCD1725E69F71E98865BCEAAB9" Guid="{1EDF7A1C-F390-421F-B9BF-91C7CCBAD0DA}">
+                <File Id="filD0586081609434942EDB53299EF52D71" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.Hosting.dll" />
+            </Component>
+            <Component Id="cmp8C674FD6A69988A60A77A4CEE0F53781" Guid="{A3E65490-728E-4D96-93D6-1F8FF978290B}">
+                <File Id="fil72342637E9F74EE945317D4603CEBA2F" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.Logging.Abstractions.dll" />
+            </Component>
+            <Component Id="cmp9B211F39744547E733F9040027FF1A3B" Guid="{5648986A-908E-4BFA-8ACA-EC9A980F81D4}">
+                <File Id="filC6D4BDB43CC150D24C5E1BDE9EB552F7" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.Logging.Configuration.dll" />
+            </Component>
+            <Component Id="cmp60BA3AB6448C5A0208FEDA4F886EDDE8" Guid="{585C55C6-34D0-43D3-B5DB-82CDE715CEC0}">
+                <File Id="filA347F900C2828DE2F50C35BDA8F5CE44" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.Logging.Console.dll" />
+            </Component>
+            <Component Id="cmp591239506CAB75D331DE5D90D6713057" Guid="{6C9A3C79-1D55-492D-99C7-C5FB999DC85F}">
+                <File Id="fil1CB90B4A15160F351B5EB5D2DED1B050" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.Logging.Debug.dll" />
+            </Component>
+            <Component Id="cmp835034F744990576E31C2DBC7C9293BF" Guid="{AD98FC21-6045-420F-9C54-5C20BE16316A}">
+                <File Id="fil71DD299EE7649E964200A4127797D1C0" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.Logging.dll" />
+            </Component>
+            <Component Id="cmp3D087D80699D13BCB013A8533A2C0DCF" Guid="{66356A4E-1975-44F4-BE85-60ACAD3DEE74}">
+                <File Id="filA050696110EF79DCA5E76B6513E54FB2" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.Logging.EventLog.dll" />
+            </Component>
+            <Component Id="cmp63493859708989EE0F11F5DF7347E61A" Guid="{3F13E1B7-CA08-4282-8732-20BB50A5F0DB}">
+                <File Id="filBF2F378F474FFE2ABA30A373F8BB00C0" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.Logging.EventSource.dll" />
+            </Component>
+            <Component Id="cmpF5D2F2D913749765205DC918BD981CD0" Guid="{BF846994-4BD0-4645-952E-94B3AA2BAC55}">
+                <File Id="fil3F5CF8D11C3311A25D3082B99A709528" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.Options.ConfigurationExtensions.dll" />
+            </Component>
+            <Component Id="cmp3279C150AE8DF554FD7EEE2085672A2B" Guid="{01A3EC8F-9920-4878-AB03-76501036BF77}">
+                <File Id="filA8D1F5D61FD7BC25099F707CBF5B1F24" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.Options.dll" />
+            </Component>
+            <Component Id="cmp946145B53A7DCDFA822B0EFD2314FAB6" Guid="{0DE35F12-60F6-4010-BDAA-B885E48A49EA}">
+                <File Id="fil773F29942324AAB2A7E1977E1AC63609" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Extensions.Primitives.dll" />
+            </Component>
+            <Component Id="cmp5A07035FA52F4F9E1424BE35CC16915F" Guid="{6FA9052C-9A83-4FC0-8015-A3FF970F056B}">
+                <File Id="fil72C197D43EC7996E816CEB4279B7388C" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Windows.SDK.NET.dll" />
+            </Component>
+            <Component Id="cmp8AC833CFB7DC6722697152FE46DA157A" Guid="{E646B06D-8675-4CA3-8270-5D10E0FF67B0}">
+                <File Id="filD3CAD095889A5DE7EAAE25C73BC9910A" KeyPath="yes" Source="$(env.HashGoDir)\Microsoft.Xaml.Behaviors.dll" />
+            </Component>
+            <Component Id="cmpBC4FC00A26E7D32479D42D3411317FC5" Guid="{C657FBCD-3BD2-4E5A-9DE4-8F1955AE7D9B}">
+                <File Id="fil90A8AAD9FC612906D405476D61CEA3F4" KeyPath="yes" Source="$(env.HashGoDir)\Newtonsoft.Json.dll" />
+            </Component>
+            <Component Id="cmp42CE9AE95732AA34478329FB9DE90B9C" Guid="{7BAC977B-D880-41CF-9F7D-93DC09FECEEC}">
+                <File Id="filD7AACEE505C0A6D9F0953957C6B91C28" KeyPath="yes" Source="$(env.HashGoDir)\NLog.config" />
+            </Component>
+            <Component Id="cmpB7F1EBE42DCB1051B92D42C1EF84E2F9" Guid="{853754A9-026B-4CED-A0FE-A66AE9486172}">
+                <File Id="filA09ADF42C6343B9B7C7780D266455CC4" KeyPath="yes" Source="$(env.HashGoDir)\NLog.dll" />
+            </Component>
+            <Component Id="cmp59564654D02343646998A8D6A6F0C25F" Guid="{5F7C535E-A8AD-4BE8-B3F0-133C4CB7C117}">
+                <File Id="fil86F2842A309A2CABD479166F2B4E0588" KeyPath="yes" Source="$(env.HashGoDir)\Prism.dll" />
+            </Component>
+            <Component Id="cmp64C05AA1C43E0D9DBAD9C14A66C00F23" Guid="{9F451937-615E-4783-9552-DFCE9EC8A456}">
+                <File Id="fil5AAF8D55B9964F995719180C0C280633" KeyPath="yes" Source="$(env.HashGoDir)\SQLitePCLRaw.batteries_v2.dll" />
+            </Component>
+            <Component Id="cmp9E349E891D154ADBFB83038532027A46" Guid="{2A66FECB-4C95-431E-BFE7-A045D9634D49}">
+                <File Id="fil64FA3FA0141690B101C8E041EB30B810" KeyPath="yes" Source="$(env.HashGoDir)\SQLitePCLRaw.core.dll" />
+            </Component>
+            <Component Id="cmpBF8809ED33815FD076E06377CDD76FBC" Guid="{8799E72C-90CD-4F59-BD93-110C153E7FF1}">
+                <File Id="fil56DF007369EFF5DF7AED8BD5CD383E2A" KeyPath="yes" Source="$(env.HashGoDir)\SQLitePCLRaw.provider.e_sqlite3.dll" />
+            </Component>
+            <Component Id="cmpAA71AC0ED023C2C24B4F61CC98B27F64" Guid="{C4387DED-413C-4E2B-93D4-34CE13D4C5CD}">
+                <File Id="fil49D56705AF9A04B1D7C05BA68795D333" KeyPath="yes" Source="$(env.HashGoDir)\System.IO.Ports.dll" />
+            </Component>
+            <Component Id="cmp33C30AAD37872CE4355CA33B0DDA2127" Guid="{747AD619-EFD9-4A32-8F80-C81AE7B72136}">
+                <File Id="filEBB43C021EAE67A8D0F42ED495F441FF" KeyPath="yes" Source="$(env.HashGoDir)\WinRT.Runtime.dll" />
+            </Component>
+            <Directory Id="dir242DC17B8DFC53C13CAF172FC08B730A" Name="de">
+                <Component Id="cmp55E09061A1DF30E9878313719FAE6664" Guid="{415B99FA-E876-4FAA-B9C6-A8EA225185E8}">
+                    <File Id="fil1424015000F4C871286F581C5375B980" KeyPath="yes" Source="$(env.HashGoDir)\de\MahApps.Metro.resources.dll" />
+                </Component>
+            </Directory>
+            <Directory Id="dir41772C233BE465DE0D167364B3BB566C" Name="Resources">
+                <Directory Id="dirB472AEEAB307E3D4E95950BA56CC897C" Name="Images">
+                    <Component Id="cmp4555AD0B2C3C2A291FC942F420585F56" Guid="{D238E170-7BD5-4BE3-B537-E894E6EA296E}">
+                        <File Id="fil113EE8F2E8D6C14AD72583E5B105B8DB" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\alacarte.png" />
+                    </Component>
+                    <Component Id="cmpF8758001F6E07E800E10901DFC884B19" Guid="{EDBC6F6C-4CE9-410E-B657-D0C9B61EC145}">
+                        <File Id="filDB3E00411C311A7C388B4EFCAF5BCFF0" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\brocoli.png" />
+                    </Component>
+                    <Component Id="cmp76E69A7CEF4C8310D589765FD0DB4214" Guid="{A7364024-4337-49B4-AB4B-A8CE070CFCA2}">
+                        <File Id="fil9E0FBA70E11AC07761B021E60F84D738" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\bundles.png" />
+                    </Component>
+                    <Component Id="cmp6125331B6404601CDEFB140E4F12D323" Guid="{A1AD83B1-A1FF-498F-A48B-E7AC3EEA8824}">
+                        <File Id="fil792005FB8982D4CEED90DC182D664119" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\canned.png" />
+                    </Component>
+                    <Component Id="cmpDD3AC35C4F73364885D0BCF009A1C93F" Guid="{A8D584A9-2C72-48B9-AC9D-F015FDAC0ADC}">
+                        <File Id="fil34FC5BD02B4067F9DB29DDC37B5D581F" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\cola.png" />
+                    </Component>
+                    <Component Id="cmp4254E502C8239231F897310D379B7F4C" Guid="{57C934A7-6B58-410F-8D69-8AD415758FBC}">
+                        <File Id="filAF7E9AC2ED17BA692F4B8E85CB785A73" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\flashpay_logo.png" />
+                    </Component>
+                    <Component Id="cmp203480B3F5C3B551D7F510B806D98580" Guid="{649F5BDF-F9AE-43EC-9753-B8EE6EF943C8}">
+                        <File Id="fil6F3B0F02D7AE14CCE6C62635DE71CAEE" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\flip_image_1.png" />
+                    </Component>
+                    <Component Id="cmp5D46FF09133AB025F743DBDF56DF78D7" Guid="{2467CB68-DAA9-4D98-B5BC-AB35BA23CD5C}">
+                        <File Id="fil8331A1E94A1F1E72EDF0E74EE6FA3735" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\garlic.png" />
+                    </Component>
+                    <Component Id="cmp6BE073AF3B7E3E02C440B7DCE7E4B6E7" Guid="{C83766DE-640A-45E8-9A0C-D1AA28611F8A}">
+                        <File Id="fil451E4043E9A360D29B81A1C8DA491719" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\hugabo_background.jpg" />
+                    </Component>
+                    <Component Id="cmpB31015648A01DB68598F09876F560099" Guid="{1681E1E0-935D-422B-8192-8E63C2D992BE}">
+                        <File Id="fil67297A95B09B3FAB0814F838EF13B6B7" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\hugabo_logo.png" />
+                    </Component>
+                    <Component Id="cmpF0ED503AACA2DEBE15752209D2263AB6" Guid="{18BA1E9C-317B-47FC-8CCB-B6DBAE16BBAE}">
+                        <File Id="filDC5FC39586D082E6EEDA4DCF27DE959C" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\jalapeno.png" />
+                    </Component>
+                    <Component Id="cmpDDA7FC0E736F88762919029B3687C476" Guid="{56FF089A-95F0-4AB3-A057-AEE5A5FEB096}">
+                        <File Id="fil37456675FE88BE426825CB19F0392826" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\lemon_tea.png" />
+                    </Component>
+                    <Component Id="cmpC0BF605AE9E3048F76B6D5EC9E575B27" Guid="{FB9B87BD-9E92-4CB7-8020-9D8786C5F301}">
+                        <File Id="fil09E4FD0BEB4B28FFA645F9D120B8FAE9" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\mealit_1.png" />
+                    </Component>
+                    <Component Id="cmpFD1F1F1694240AF82656737D13FF04C9" Guid="{698DD091-95C6-4F59-8D18-AAECF2728B6B}">
+                        <File Id="fil1B3FF00533E11D1818CE090D54A73E24" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\menu_image1.png" />
+                    </Component>
+                    <Component Id="cmpA9892C67B0AE4D21AD452E380493293D" Guid="{0801FEAA-4C0E-4C4C-BC96-D1AFE2CA8A88}">
+                        <File Id="fil3C80F1FB5EF781755CBE0E27AD666EFD" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\menu_image2.png" />
+                    </Component>
+                    <Component Id="cmpF2119FDFC2706FB7FE9464C6320AB975" Guid="{36D8F2B4-40BA-4C40-8C10-3A1D79E99273}">
+                        <File Id="filFC2A758977B1AC0EE0293ED9187D8911" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\menu_image3.png" />
+                    </Component>
+                    <Component Id="cmpE9E0C62ABABDF2FB3D89CA218E4ECBAB" Guid="{B8CF9181-F334-4EFB-AB1C-3BB008452CDE}">
+                        <File Id="fil1CA1E7B40DAC831629244D04511AA2CF" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\menu_image4.png" />
+                    </Component>
+                    <Component Id="cmp3844948E7378ABCA01C8A0D2A4533FC3" Guid="{B2A210C6-308D-4740-93C5-61201929B98A}">
+                        <File Id="fil2676E9F271F430E9625A2BF331228894" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\menu_image5.png" />
+                    </Component>
+                    <Component Id="cmp073370024E592D73FDCC374ED5A566E3" Guid="{C0807A0E-CA59-4433-81F3-9A973767C9FA}">
+                        <File Id="fil3433C5643780ACF6F0D1201BA94C9A6D" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\mybowl_logo.png" />
+                    </Component>
+                    <Component Id="cmp916E51C665470C6BE5CCC1F42D7F3DE1" Guid="{63A633DD-0B42-470F-84BE-C2C0084F98B1}">
+                        <File Id="fil6A82EA25EADB1039A43B5D6C27FDEAD4" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\paynow_logo.png" />
+                    </Component>
+                    <Component Id="cmp1018671A5650AEEEA2106D9BB889CCA9" Guid="{C19FD24F-8A2D-4A03-A97E-B446BF7FDE48}">
+                        <File Id="fil7AEF14891AE5BF97DE1F00DDEB05838D" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\product_image1.png" />
+                    </Component>
+                    <Component Id="cmp22B841125330464643C84FB632D69238" Guid="{3F077C06-8D25-4E3B-993F-D5FA5F6F10A5}">
+                        <File Id="fil595E53D4B6781F916581F9709775CA5A" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\product_image2.png" />
+                    </Component>
+                    <Component Id="cmp53928FA596379FF3E58523B2A7E48AFD" Guid="{53306766-1F03-49F2-98A1-632497BB7988}">
+                        <File Id="fil1438E433368561A7B69FA5CDC75A138B" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\product_image3.png" />
+                    </Component>
+                    <Component Id="cmp085C421F12D9A8450F5A2690B65102D2" Guid="{955DA986-6B9F-4D35-9145-3656B8EF4760}">
+                        <File Id="filDDB16F9E42A3E7F470233CB1ECABE118" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\product_image4.png" />
+                    </Component>
+                    <Component Id="cmpB75A09D8AE396DAAA2AA8C239276C6E3" Guid="{B51E4416-13E1-40FC-8389-95A63A605376}">
+                        <File Id="fil25B901D81D7972BA592A791189824C5C" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\product_image5.png" />
+                    </Component>
+                    <Component Id="cmp3BECE3344276BD5BE64FE3EE1CD2EF52" Guid="{473A7ADE-ECCF-49C7-B31E-6910FB03335A}">
+                        <File Id="filFF0C3EDCCC6978C3D79D0A66FD395E53" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\redChillis.png" />
+                    </Component>
+                    <Component Id="cmp27E2EE66C144161B3449B7AA7C93E80C" Guid="{F0C7E1C3-78A7-45FA-8BB8-A3E5F09D2405}">
+                        <File Id="filA7FE0BFABF7CA709AB53C6E1A3246A81" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\rice_1.png" />
+                    </Component>
+                    <Component Id="cmpA5919BFBA4DFE30BB6FE6534B8228587" Guid="{02DDA10A-978F-4177-AEF7-CCA22E173B40}">
+                        <File Id="fil87A69BEA049D5C0B87F3CB601F1F7617" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\subway_logo.png" />
+                    </Component>
+                    <Component Id="cmp8238516F6132C1C4CD432B49F27B14DA" Guid="{8C1D3C1A-AA59-410E-8291-C146CA6079E5}">
+                        <File Id="fil672E805FB1271EEFB75D15B5B94D51A3" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\visa_logo.png" />
+                    </Component>
+                    <Component Id="cmp2CDABFE47E367245811D4B0C73E70694" Guid="{52887065-E64F-4F24-A909-DB3A85248908}">
+                        <File Id="fil106139C40FAA10BCDD033E5C7342235F" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\wokhey_background.png" />
+                    </Component>
+                    <Component Id="cmpAA409D4B8CAA9BC4E6546E8096271920" Guid="{4D7F32CE-1788-4D68-B322-FC40D0FD4BE6}">
+                        <File Id="fil893A55A219B1A0E68785B457990AEC8D" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\wokhey_banner.png" />
+                    </Component>
+                    <Component Id="cmpA0EBDA3BB080A5CD68EE56B1A900E4A9" Guid="{AA33CF21-1147-4606-9A82-E25881CBDEB6}">
+                        <File Id="filF9BACFCC012326172D21A265A4B1B7AB" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\wokhey_detail.png" />
+                    </Component>
+                    <Component Id="cmpA00766EAD8403A4FE7BA937F482D3109" Guid="{DAD74C25-47AB-4BAD-8EAF-ABF1BD9DAC43}">
+                        <File Id="fil612752EA3CF036BED6566AD102AFCEDB" KeyPath="yes" Source="$(env.HashGoDir)\Resources\Images\wokhey_logo.png" />
+                    </Component>
+                </Directory>
+            </Directory>
+            <Directory Id="dir58E8247E2885C01898CAD009F9EFD8BA" Name="runtimes">
+                <Directory Id="dir1316D55A8FC55CB339BC20F207B25AB2" Name="browser-wasm">
+                    <Directory Id="dirD515A5531794D80BFE72E434C05D6382" Name="nativeassets">
+                        <Directory Id="dir3F4A748245980BFD2A720282BA1D4F75" Name="net8.0">
+                            <Component Id="cmp043055CD631A35181FD8CF2684887368" Guid="{AAFFA37C-5E19-4C82-BDF3-57F662615AE0}">
+                                <File Id="fil6D1DD1B1E8D9CB462F6387F90DEAB5ED" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\browser-wasm\nativeassets\net8.0\e_sqlite3.a" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir6F75383DB633D8F130457F52F58EA410" Name="linux-arm">
+                    <Directory Id="dirDE2B6474A7AE43169B31CD69645DD47A" Name="native">
+                        <Component Id="cmpB7009B0474FB9B6971F5B3DEF75E92BD" Guid="{33F99C15-33AC-40D8-B780-6C8A1CDF66EE}">
+                            <File Id="filE002D3CB3B23B1868787E964E241BFD7" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\linux-arm\native\libe_sqlite3.so" />
+                        </Component>
+                        <Component Id="cmp280CA51366DBDBE494390D741E510539" Guid="{97A7FA01-4374-4EEC-8AEE-443A3C245491}">
+                            <File Id="filCFA65FEC1E61E5C1410FB189E4DDC6D9" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\linux-arm\native\libSystem.IO.Ports.Native.so" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir4368456DE80A31A0FABEF422CF868A74" Name="linux-arm64">
+                    <Directory Id="dirD4D406B0649E8BA45C0D436FC1C3D7B7" Name="native">
+                        <Component Id="cmp9610396A30E278178332CAFB8008E496" Guid="{C08A2D0A-EC33-4ED4-AA64-AA942A7E65CD}">
+                            <File Id="filB3B8AB9E39F4DDB1DC995E05E88ECBB8" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\linux-arm64\native\libe_sqlite3.so" />
+                        </Component>
+                        <Component Id="cmpA5DCC1EC6CC35B2066C91F037055DBD7" Guid="{AD554E0C-63A0-45B6-9918-DE9BD38B4A5F}">
+                            <File Id="fil88D61011EB77E6D2BDACF5100A785CC6" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\linux-arm64\native\libSystem.IO.Ports.Native.so" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir5A82E1B4CD9A0049E60DF9F72B629F26" Name="linux-armel">
+                    <Directory Id="dirD74A970094F17ABF99BEB555E46D909F" Name="native">
+                        <Component Id="cmp27A87AA75E3F85D47A0A4270EC26C4AA" Guid="{1D880CEC-13F2-409D-AE62-8A57A9709CAF}">
+                            <File Id="fil0228161978605FB6B8CF025A0DB592C8" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\linux-armel\native\libe_sqlite3.so" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir08F1499A5EC08F149FEC7D1452B8E871" Name="linux-mips64">
+                    <Directory Id="dir5CA2FC65245C76AFE89CF82A52205E7C" Name="native">
+                        <Component Id="cmp5DF8A80689066A55576FEB424E592FB3" Guid="{386112BB-15E5-4358-BAF6-CB10C8BE5ED4}">
+                            <File Id="filE213347E4D10110E7F638EF6CFABACFC" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\linux-mips64\native\libe_sqlite3.so" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dirA428313306DAC7804456AE497823A13C" Name="linux-musl-arm">
+                    <Directory Id="dirD76ACF565EA9B10D70DB2C8FF98995D4" Name="native">
+                        <Component Id="cmp99D95B65524BFC849377CD605BC2D914" Guid="{2554DEAB-180E-4387-B343-8853C94E2C88}">
+                            <File Id="fil49319ADF4C48D5E28D0E63C77E24A1A4" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\linux-musl-arm\native\libe_sqlite3.so" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dirBFEF8EBA4AB9946902F3931E45A1DAAC" Name="linux-musl-arm64">
+                    <Directory Id="dir6063A5EA4028D1C926F2099FA576EEF6" Name="native">
+                        <Component Id="cmp6714E4DD9F6931DCC2D424E087860C40" Guid="{5F854435-768F-466A-8D89-9C04D965AB87}">
+                            <File Id="fil79BD8821DCE84481D985A01E23B3E2A3" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\linux-musl-arm64\native\libe_sqlite3.so" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir43C41CC727670B5306674FCA0856E156" Name="linux-musl-x64">
+                    <Directory Id="dir45A4D9035B4FF6D574E71B5F5E92BDDF" Name="native">
+                        <Component Id="cmp9E9BD460222227BAE2178BA20D0D2CE9" Guid="{6BE0C244-9611-479A-8DAD-524CFF42C6CE}">
+                            <File Id="filC6026E8CF197D9CFC854B38E9F032BF7" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\linux-musl-x64\native\libe_sqlite3.so" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dirECD0BBC95AFFC9DBA9C9F962A35DEFFF" Name="linux-ppc64le">
+                    <Directory Id="dir2BD906521C675BFD60DA65D8F7B02C24" Name="native">
+                        <Component Id="cmpAF2D42B950338A16DF27953B0FE03907" Guid="{2CC21174-B061-47C1-B404-763703522363}">
+                            <File Id="filB9AB18D292FF21526BC67CC08D9C17C7" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\linux-ppc64le\native\libe_sqlite3.so" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir230A8FA1033089CAF6EBAA0538709AEF" Name="linux-s390x">
+                    <Directory Id="dirE478170B124CF86212F900385E32E859" Name="native">
+                        <Component Id="cmp8D93181EDC8201D278538F0C157D2537" Guid="{3A0A3272-E850-4DC8-822D-732C551A748F}">
+                            <File Id="filF4FBDD3EAEB685D1D12B1AEF46B0B62E" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\linux-s390x\native\libe_sqlite3.so" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir986BEF73997BE02DCDBC34E856C19B36" Name="linux-x64">
+                    <Directory Id="dirE1E651EB5B4F1522E5E10B81FEA70677" Name="native">
+                        <Component Id="cmp8F4BDFEEE9AF85C20F40DD34017FCEFE" Guid="{A1B3FCC4-EACE-44E2-A73D-97F8FEC432B6}">
+                            <File Id="fil65C9A12BB9BC4C6DD2573C55B28F7A47" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\linux-x64\native\libe_sqlite3.so" />
+                        </Component>
+                        <Component Id="cmpF5FD3E25EB57522BE42D92E3C953CD4F" Guid="{34662931-25CA-41C8-B4E8-B9C2A96FEF0F}">
+                            <File Id="fil4BBD21896089B94874D22332306120EF" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\linux-x64\native\libSystem.IO.Ports.Native.so" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dirC0CA974BC478884507E349436F81698C" Name="linux-x86">
+                    <Directory Id="dir0EDA4459BC820EC0980B27A47C7CF5AA" Name="native">
+                        <Component Id="cmp327A6E270479B6EF4FC84584F0E57DD4" Guid="{43A8D66B-082E-4CAF-A18C-381CEF0D6265}">
+                            <File Id="filFCBC96ECC71CDC910BD5EC6E35F1FF8B" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\linux-x86\native\libe_sqlite3.so" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dirD99FDB93EE0FF8EBF475D423F347AC92" Name="maccatalyst-arm64">
+                    <Directory Id="dir061EED55DBD8BA28EE353FBFFD24DFCA" Name="native">
+                        <Component Id="cmpD4529B527F857C189B1AE07EDE9F6D19" Guid="{F639DE11-BBA5-4B28-80B9-50EA9CD51943}">
+                            <File Id="filFD599462758D66ACD77B9F3C158F8A83" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\maccatalyst-arm64\native\libe_sqlite3.dylib" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir725C710B19977C76374038BEBFE449A4" Name="maccatalyst-x64">
+                    <Directory Id="dir316CE79B45BEC2BDBCE1198C353C9208" Name="native">
+                        <Component Id="cmpD7662722970A0AE7E0B5E29D4A7D8274" Guid="{E9B9C4E9-6894-4B85-8188-171A734AE0B5}">
+                            <File Id="fil873E529DBBE2B1DB5E2800DF8C613505" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\maccatalyst-x64\native\libe_sqlite3.dylib" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir2F16A789372805F097C242E23779E164" Name="osx-arm64">
+                    <Directory Id="dir2A5033986A8D1FF1B6E317B1A9949571" Name="native">
+                        <Component Id="cmp4B0E6F097DBB16CADE5367A2D01712F0" Guid="{88B52045-CB49-440D-98FC-A2D3452F27DC}">
+                            <File Id="fil9E86824B3127083357CEA2CADD124C06" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\osx-arm64\native\libe_sqlite3.dylib" />
+                        </Component>
+                        <Component Id="cmp7FE6A73F916C32B74F2AAC82875FFB30" Guid="{F6D4AC93-3007-4085-A899-EA60E64686E2}">
+                            <File Id="fil6222348F4CA252DF1BDC6C997D3E5E4E" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\osx-arm64\native\libSystem.IO.Ports.Native.dylib" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir42B901FB10752B2744AE05D46EAF35EC" Name="osx-x64">
+                    <Directory Id="dir71D0D403061D4DE071C64AEB774E16CF" Name="native">
+                        <Component Id="cmpD30EB815E1BB7C781EBC4B2C74DFD3A4" Guid="{28870C1D-8B6A-47B5-BF60-707B60075987}">
+                            <File Id="fil28FF9350DD7649A23360C4913868DFA7" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\osx-x64\native\libe_sqlite3.dylib" />
+                        </Component>
+                        <Component Id="cmpD36B1EEEC5491AF65B4412E9F5CE3425" Guid="{F3770E7F-1446-4EA5-98CD-132CAFB5E55F}">
+                            <File Id="filDB5D30749D6E61F70BBF67F36DCB0BC1" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\osx-x64\native\libSystem.IO.Ports.Native.dylib" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dirDD6F90495A1A6169171F36CE85E975B6" Name="unix">
+                    <Directory Id="dirF5C312D00ABBDC163194A7BEF01BFACF" Name="lib">
+                        <Directory Id="dir0DCDFDA8D285DD04A47FCE144C48D1F5" Name="net8.0">
+                            <Component Id="cmp791088B42A6142E494DF4FF4D2D0E194" Guid="{5606A98B-5238-4881-830E-B32616DB3E8D}">
+                                <File Id="fil0166C94E9769E486723FC6667374CFB3" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\unix\lib\net8.0\System.IO.Ports.dll" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir9BE9104649A116CC7BCCF4D9CCD3331B" Name="win">
+                    <Directory Id="dirD19B0610952D1EE2D417EB5361695989" Name="lib">
+                        <Directory Id="dir83F1876DE08D123126E8658B6C89D603" Name="net8.0">
+                            <Component Id="cmpA086E435B877D72463DBA72F9AB68A37" Guid="{9A2DC4C1-1260-43FA-B637-AFFFB3277785}">
+                                <File Id="fil8F5D8571AE0C7A77794109393A11FB3F" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\win\lib\net8.0\System.IO.Ports.dll" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir9FF0F9C1A7463CA0B24689AA89D869B5" Name="win-arm">
+                    <Directory Id="dir46754318AAFE7C2D3BBAC065B627290B" Name="native">
+                        <Component Id="cmpDF76CDFA0F073AE6CAE38BE68141B800" Guid="{AA828678-B906-40FB-B121-2CC6B34746EC}">
+                            <File Id="fil20F2F59E480B8E7CFE29DFCE5820F38B" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\win-arm\native\e_sqlite3.dll" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dirFF6AADC4B618984E1542CDA5FCBD7BB1" Name="win-arm64">
+                    <Directory Id="dir65EC979D52EB501E3A656AA03EE4F2F5" Name="native">
+                        <Component Id="cmp5B80613EDA6D1987B36876340787DE50" Guid="{DDF1E337-E47C-4675-9AD3-93D1E32B8D4E}">
+                            <File Id="filA441D8B3B8F271B05C97169A28079BFE" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\win-arm64\native\e_sqlite3.dll" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dirB9C75524282911E40C3C964A8836A714" Name="win-x64">
+                    <Directory Id="dir1F9DF9DD2FB29AE2942604FAC206D5C4" Name="native">
+                        <Component Id="cmpA9FE95CFE68BB3A9037D1155AED6FAD7" Guid="{7BAF67FA-35D5-40CE-A51A-184EE1A78AA2}">
+                            <File Id="fil0B331E0491A1A27C58D92DDCDB266DC2" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\win-x64\native\e_sqlite3.dll" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir92F336DAA82E5A629052407A3F87EF27" Name="win-x86">
+                    <Directory Id="dir2B43AAE918D399CEF13EC6CBA2D3D5EA" Name="native">
+                        <Component Id="cmp33D08136382ADFFC5979284E4701D9C6" Guid="{ECF83909-58F4-467A-8EF4-FBC37077111F}">
+                            <File Id="fil7A70FE8106C6D5315BF2EBA10C487BF2" KeyPath="yes" Source="$(env.HashGoDir)\runtimes\win-x86\native\e_sqlite3.dll" />
+                        </Component>
+                    </Directory>
+                </Directory>
+            </Directory>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="HashGoComponents">
+            <ComponentRef Id="cmpF82FCA80BBAF44D285C97F10993DEEE6" />
+            <ComponentRef Id="cmp269D78649FD9F330C5C591512326A7FF" />
+            <ComponentRef Id="cmp9110E4565D76564E9BC2F34625854902" />
+            <ComponentRef Id="cmpAAA3974F1622249EAFAE3E61946B628A" />
+            <ComponentRef Id="cmp23B3DB439FAC81AA4F22469BFBE4D590" />
+            <ComponentRef Id="cmp5A2EA3D3953836D90F8B6D0260907D51" />
+            <ComponentRef Id="cmpDA3F7307B287DAA2BBDD8C35C1E9A6E7" />
+            <ComponentRef Id="cmp48F84900931B7B5BF2E13C4B61E162CE" />
+            <ComponentRef Id="cmp9EE73100F06FB7BCE073C099A596C5F9" />
+            <ComponentRef Id="cmp25C40F6715DE4A814CC88E620CC134AA" />
+            <ComponentRef Id="cmp5CE7BC4E85CC6389BE37D571EE523235" />
+            <ComponentRef Id="cmp5B2847E6F8B48084533E791F5ED366F8" />
+            <ComponentRef Id="cmpD641D75C97AA6EAE6221C8A6C1EDA5F7" />
+            <ComponentRef Id="cmp811C42CBAD51B84B29E71C1A1E021A2B" />
+            <ComponentRef Id="cmpD55631C4271EAF7C5B8CBE974DF72B57" />
+            <ComponentRef Id="cmp0EC52BCCE8B28363385A20210C0CD577" />
+            <ComponentRef Id="cmp223D4754378C01052DA8253A843FD297" />
+            <ComponentRef Id="cmpB14CC8B154928EA6225F174BDE107F6B" />
+            <ComponentRef Id="cmpF6638B4348C85D6A2F1219A3502A560F" />
+            <ComponentRef Id="cmp8ECB45C87038A07C9C036DACB12BD3D3" />
+            <ComponentRef Id="cmp3D0A5CB47707279B9AED9C4655BA24DD" />
+            <ComponentRef Id="cmpD3186AEB38530EBF5D93FB5DF1525945" />
+            <ComponentRef Id="cmp75E1D360F7F3BEA782095608B95EAF01" />
+            <ComponentRef Id="cmp47B9C1CDB4B766E8C1572505E98E4035" />
+            <ComponentRef Id="cmpDC19BA21EFF423B27F8787A2AB8F2B3C" />
+            <ComponentRef Id="cmp85A16DDDD438C8839C302EEFF54E8E0C" />
+            <ComponentRef Id="cmp4A61E3F01E16F7C35D22D304DE7C3D7D" />
+            <ComponentRef Id="cmpC2B3CC4C105FBF588A9EBBD45742C349" />
+            <ComponentRef Id="cmp695DF09F0E9EE30558F8C6D16553F843" />
+            <ComponentRef Id="cmp0F72FDFC2B5DABBEED0952957424C516" />
+            <ComponentRef Id="cmp191446DEBB621CC91C2B2E713F085F01" />
+            <ComponentRef Id="cmp306F083BB44F8AEA42DD7E2AB9CD82C2" />
+            <ComponentRef Id="cmp198468A4AE980CD6955CB6EB86083726" />
+            <ComponentRef Id="cmp493E9BC44885B6BC5C57BDB1302C40D9" />
+            <ComponentRef Id="cmp828BABCAA179DFEF8C123894E628FE4B" />
+            <ComponentRef Id="cmpD71177CD3BCD768F1F74211E6E2E353D" />
+            <ComponentRef Id="cmpBB58932E81784E90600A3B2DEB2E2D6A" />
+            <ComponentRef Id="cmp0209E8308C907CAD5474151F7C6836F5" />
+            <ComponentRef Id="cmp6361EE614B62630DD923390326EAF03C" />
+            <ComponentRef Id="cmp1E5A63B6F657DD090469973A1C3D2C59" />
+            <ComponentRef Id="cmpB96239F931804879A085E057C6E72657" />
+            <ComponentRef Id="cmp1ED5B5DCD1725E69F71E98865BCEAAB9" />
+            <ComponentRef Id="cmp8C674FD6A69988A60A77A4CEE0F53781" />
+            <ComponentRef Id="cmp9B211F39744547E733F9040027FF1A3B" />
+            <ComponentRef Id="cmp60BA3AB6448C5A0208FEDA4F886EDDE8" />
+            <ComponentRef Id="cmp591239506CAB75D331DE5D90D6713057" />
+            <ComponentRef Id="cmp835034F744990576E31C2DBC7C9293BF" />
+            <ComponentRef Id="cmp3D087D80699D13BCB013A8533A2C0DCF" />
+            <ComponentRef Id="cmp63493859708989EE0F11F5DF7347E61A" />
+            <ComponentRef Id="cmpF5D2F2D913749765205DC918BD981CD0" />
+            <ComponentRef Id="cmp3279C150AE8DF554FD7EEE2085672A2B" />
+            <ComponentRef Id="cmp946145B53A7DCDFA822B0EFD2314FAB6" />
+            <ComponentRef Id="cmp5A07035FA52F4F9E1424BE35CC16915F" />
+            <ComponentRef Id="cmp8AC833CFB7DC6722697152FE46DA157A" />
+            <ComponentRef Id="cmpBC4FC00A26E7D32479D42D3411317FC5" />
+            <ComponentRef Id="cmp42CE9AE95732AA34478329FB9DE90B9C" />
+            <ComponentRef Id="cmpB7F1EBE42DCB1051B92D42C1EF84E2F9" />
+            <ComponentRef Id="cmp59564654D02343646998A8D6A6F0C25F" />
+            <ComponentRef Id="cmp64C05AA1C43E0D9DBAD9C14A66C00F23" />
+            <ComponentRef Id="cmp9E349E891D154ADBFB83038532027A46" />
+            <ComponentRef Id="cmpBF8809ED33815FD076E06377CDD76FBC" />
+            <ComponentRef Id="cmpAA71AC0ED023C2C24B4F61CC98B27F64" />
+            <ComponentRef Id="cmp33C30AAD37872CE4355CA33B0DDA2127" />
+            <ComponentRef Id="cmp55E09061A1DF30E9878313719FAE6664" />
+            <ComponentRef Id="cmp4555AD0B2C3C2A291FC942F420585F56" />
+            <ComponentRef Id="cmpF8758001F6E07E800E10901DFC884B19" />
+            <ComponentRef Id="cmp76E69A7CEF4C8310D589765FD0DB4214" />
+            <ComponentRef Id="cmp6125331B6404601CDEFB140E4F12D323" />
+            <ComponentRef Id="cmpDD3AC35C4F73364885D0BCF009A1C93F" />
+            <ComponentRef Id="cmp4254E502C8239231F897310D379B7F4C" />
+            <ComponentRef Id="cmp203480B3F5C3B551D7F510B806D98580" />
+            <ComponentRef Id="cmp5D46FF09133AB025F743DBDF56DF78D7" />
+            <ComponentRef Id="cmp6BE073AF3B7E3E02C440B7DCE7E4B6E7" />
+            <ComponentRef Id="cmpB31015648A01DB68598F09876F560099" />
+            <ComponentRef Id="cmpF0ED503AACA2DEBE15752209D2263AB6" />
+            <ComponentRef Id="cmpDDA7FC0E736F88762919029B3687C476" />
+            <ComponentRef Id="cmpC0BF605AE9E3048F76B6D5EC9E575B27" />
+            <ComponentRef Id="cmpFD1F1F1694240AF82656737D13FF04C9" />
+            <ComponentRef Id="cmpA9892C67B0AE4D21AD452E380493293D" />
+            <ComponentRef Id="cmpF2119FDFC2706FB7FE9464C6320AB975" />
+            <ComponentRef Id="cmpE9E0C62ABABDF2FB3D89CA218E4ECBAB" />
+            <ComponentRef Id="cmp3844948E7378ABCA01C8A0D2A4533FC3" />
+            <ComponentRef Id="cmp073370024E592D73FDCC374ED5A566E3" />
+            <ComponentRef Id="cmp916E51C665470C6BE5CCC1F42D7F3DE1" />
+            <ComponentRef Id="cmp1018671A5650AEEEA2106D9BB889CCA9" />
+            <ComponentRef Id="cmp22B841125330464643C84FB632D69238" />
+            <ComponentRef Id="cmp53928FA596379FF3E58523B2A7E48AFD" />
+            <ComponentRef Id="cmp085C421F12D9A8450F5A2690B65102D2" />
+            <ComponentRef Id="cmpB75A09D8AE396DAAA2AA8C239276C6E3" />
+            <ComponentRef Id="cmp3BECE3344276BD5BE64FE3EE1CD2EF52" />
+            <ComponentRef Id="cmp27E2EE66C144161B3449B7AA7C93E80C" />
+            <ComponentRef Id="cmpA5919BFBA4DFE30BB6FE6534B8228587" />
+            <ComponentRef Id="cmp8238516F6132C1C4CD432B49F27B14DA" />
+            <ComponentRef Id="cmp2CDABFE47E367245811D4B0C73E70694" />
+            <ComponentRef Id="cmpAA409D4B8CAA9BC4E6546E8096271920" />
+            <ComponentRef Id="cmpA0EBDA3BB080A5CD68EE56B1A900E4A9" />
+            <ComponentRef Id="cmpA00766EAD8403A4FE7BA937F482D3109" />
+            <ComponentRef Id="cmp043055CD631A35181FD8CF2684887368" />
+            <ComponentRef Id="cmpB7009B0474FB9B6971F5B3DEF75E92BD" />
+            <ComponentRef Id="cmp280CA51366DBDBE494390D741E510539" />
+            <ComponentRef Id="cmp9610396A30E278178332CAFB8008E496" />
+            <ComponentRef Id="cmpA5DCC1EC6CC35B2066C91F037055DBD7" />
+            <ComponentRef Id="cmp27A87AA75E3F85D47A0A4270EC26C4AA" />
+            <ComponentRef Id="cmp5DF8A80689066A55576FEB424E592FB3" />
+            <ComponentRef Id="cmp99D95B65524BFC849377CD605BC2D914" />
+            <ComponentRef Id="cmp6714E4DD9F6931DCC2D424E087860C40" />
+            <ComponentRef Id="cmp9E9BD460222227BAE2178BA20D0D2CE9" />
+            <ComponentRef Id="cmpAF2D42B950338A16DF27953B0FE03907" />
+            <ComponentRef Id="cmp8D93181EDC8201D278538F0C157D2537" />
+            <ComponentRef Id="cmp8F4BDFEEE9AF85C20F40DD34017FCEFE" />
+            <ComponentRef Id="cmpF5FD3E25EB57522BE42D92E3C953CD4F" />
+            <ComponentRef Id="cmp327A6E270479B6EF4FC84584F0E57DD4" />
+            <ComponentRef Id="cmpD4529B527F857C189B1AE07EDE9F6D19" />
+            <ComponentRef Id="cmpD7662722970A0AE7E0B5E29D4A7D8274" />
+            <ComponentRef Id="cmp4B0E6F097DBB16CADE5367A2D01712F0" />
+            <ComponentRef Id="cmp7FE6A73F916C32B74F2AAC82875FFB30" />
+            <ComponentRef Id="cmpD30EB815E1BB7C781EBC4B2C74DFD3A4" />
+            <ComponentRef Id="cmpD36B1EEEC5491AF65B4412E9F5CE3425" />
+            <ComponentRef Id="cmp791088B42A6142E494DF4FF4D2D0E194" />
+            <ComponentRef Id="cmpA086E435B877D72463DBA72F9AB68A37" />
+            <ComponentRef Id="cmpDF76CDFA0F073AE6CAE38BE68141B800" />
+            <ComponentRef Id="cmp5B80613EDA6D1987B36876340787DE50" />
+            <ComponentRef Id="cmpA9FE95CFE68BB3A9037D1155AED6FAD7" />
+            <ComponentRef Id="cmp33D08136382ADFFC5979284E4701D9C6" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>

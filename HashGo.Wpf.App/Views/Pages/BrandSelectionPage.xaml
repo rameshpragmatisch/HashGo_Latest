@@ -1,0 +1,304 @@
+﻿<Page
+    x:Class="HashGo.Wpf.App.Views.Pages.BrandSelectionPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:HashGo.Wpf.App.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:HashGo.Wpf.App.Views.Pages"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:strings="clr-namespace:HashGo.String.Resources.Strings;assembly=HashGo.String"
+    xmlns:vm="clr-namespace:HashGo.Domain.ViewModels;assembly=HashGo.Domain"
+    Title="BrandSelectionPage"
+    d:DataContext="{x:Type vm:BrandSelectionViewModel}"
+    d:DesignHeight="1920"
+    d:DesignWidth="1080"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Images/DineConnectIcons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <DropShadowEffect
+                x:Key="dropShadowEffect"
+                Opacity=".5"
+                ShadowDepth="0" />
+
+            <ItemsPanelTemplate x:Key="WrapPanelItemsPanelTemplate">
+                <WrapPanel IsItemsHost="True" Orientation="Horizontal" />
+            </ItemsPanelTemplate>
+
+            <ItemsPanelTemplate x:Key="SingleGridPanelItemsPanelTemplate">
+                <Grid IsItemsHost="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                </Grid>
+            </ItemsPanelTemplate>
+
+            <ItemsPanelTemplate x:Key="TwoGridPanelItemsPanelTemplate">
+                <Grid IsItemsHost="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                </Grid>
+            </ItemsPanelTemplate>
+
+            <ItemsPanelTemplate x:Key="ThreeGridPanelItemsPanelTemplate">
+                <Grid IsItemsHost="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                </Grid>
+            </ItemsPanelTemplate>
+
+            <ItemsPanelTemplate x:Key="StackPanelItemsPanelTemplate">
+                <StackPanel IsItemsHost="True" />
+            </ItemsPanelTemplate>
+
+            <converters:ImageValueConverter x:Key="imageValueConverter" />
+
+            <converters:CollectionToItemPanelConverter
+                x:Key="collectionToItemPanelConverter"
+                GridItemTemplate="{StaticResource SingleGridPanelItemsPanelTemplate}"
+                StackItemTemplate="{StaticResource StackPanelItemsPanelTemplate}"
+                WrapPanelItemTemplate="{StaticResource WrapPanelItemsPanelTemplate}" />
+
+
+
+            <DataTemplate x:Key="sinleItemTemplate">
+                <Button
+                    x:Name="parentElement"
+                    Width="{Binding ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                    Height="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                    Margin="0"
+                    Padding="0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding DataContext.NavigateToRestaurantHomeCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                    CommandParameter="{Binding .}"
+                    Style="{StaticResource NoHoverButtonStyle}">
+                    <Button.Background>
+                        <SolidColorBrush Color="{Binding Brand.ThemeSettingObj.BackgroundColor}" />
+                    </Button.Background>
+
+                    <WrapPanel
+                        Name="container"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                        <Image
+                            x:Name="imgRestaurant"
+                            Width="{Binding ActualHeight, ElementName=parentElement, Converter={converters:PercentageConverter}, ConverterParameter='.5'}"
+                            Height="{Binding ActualHeight, ElementName=parentElement, Converter={converters:PercentageConverter}, ConverterParameter='.5'}"
+                            Margin="15"
+                            DataContext="{Binding HomeLogo, Converter={StaticResource imageValueConverter}}"
+                            Stretch="Uniform"
+                            Style="{StaticResource imageAsyncSourceConverterStyle}" />
+                        <WrapPanel.OpacityMask>
+                            <VisualBrush>
+                                <VisualBrush.Visual>
+                                    <Border
+                                        Width="{Binding ElementName=container, Path=ActualWidth}"
+                                        Height="{Binding ElementName=container, Path=ActualHeight}"
+                                        Background="White"
+                                        CornerRadius="15" />
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </WrapPanel.OpacityMask>
+                    </WrapPanel>
+
+                </Button>
+            </DataTemplate>
+
+            <DataTemplate x:Key="twoItemTemplate">
+                <Button
+                    x:Name="parentElement"
+                    Width="{Binding ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                    Height="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}, Converter={converters:PercentageConverter}, ConverterParameter='.5'}"
+                    Margin="0"
+                    Padding="0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding DataContext.NavigateToRestaurantHomeCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                    CommandParameter="{Binding .}"
+                    Style="{StaticResource NoHoverButtonStyle}">
+                    <Button.Background>
+                        <SolidColorBrush Color="{Binding Brand.ThemeSettingObj.BackgroundColor}" />
+                    </Button.Background>
+
+                    <WrapPanel
+                        Name="container"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                        <Image
+                            x:Name="imgRestaurant"
+                            Width="{Binding ActualHeight, ElementName=parentElement, Converter={converters:PercentageConverter}, ConverterParameter='.5'}"
+                            Height="{Binding ActualHeight, ElementName=parentElement, Converter={converters:PercentageConverter}, ConverterParameter='.5'}"
+                            Margin="15"
+                            DataContext="{Binding HomeLogo, Converter={StaticResource imageValueConverter}}"
+                            Stretch="Uniform"
+                            Style="{StaticResource imageAsyncSourceConverterStyle}" />
+                        <WrapPanel.OpacityMask>
+                            <VisualBrush>
+                                <VisualBrush.Visual>
+                                    <Border
+                                        Width="{Binding ElementName=container, Path=ActualWidth}"
+                                        Height="{Binding ElementName=container, Path=ActualHeight}"
+                                        Background="White"
+                                        CornerRadius="15" />
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </WrapPanel.OpacityMask>
+                    </WrapPanel>
+
+
+                </Button>
+            </DataTemplate>
+
+            <DataTemplate x:Key="threeItemTemplate">
+
+                <Button
+                    x:Name="parentElement"
+                    Width="{Binding ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                    Height="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}, Converter={converters:PercentageConverter}, ConverterParameter='.333'}"
+                    Margin="0"
+                    Padding="0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding DataContext.NavigateToRestaurantHomeCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                    CommandParameter="{Binding .}"
+                    Style="{StaticResource NoHoverButtonStyle}">
+                    <Button.Background>
+                        <SolidColorBrush Color="{Binding Brand.ThemeSettingObj.BackgroundColor}" />
+                    </Button.Background>
+
+                    <WrapPanel
+                        Name="container"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                        <Image
+                            x:Name="imgRestaurant"
+                            Width="{Binding ActualHeight, ElementName=parentElement, Converter={converters:PercentageConverter}, ConverterParameter='.6'}"
+                            Height="{Binding ActualHeight, ElementName=parentElement, Converter={converters:PercentageConverter}, ConverterParameter='.6'}"
+                            Margin="15"
+                            DataContext="{Binding HomeLogo, Converter={StaticResource imageValueConverter}}"
+                            Stretch="Uniform"
+                            Style="{StaticResource imageAsyncSourceConverterStyle}" />
+                        <WrapPanel.OpacityMask>
+                            <VisualBrush>
+                                <VisualBrush.Visual>
+                                    <Border
+                                        Width="{Binding ElementName=container, Path=ActualWidth}"
+                                        Height="{Binding ElementName=container, Path=ActualHeight}"
+                                        Background="White"
+                                        CornerRadius="15" />
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </WrapPanel.OpacityMask>
+                    </WrapPanel>
+
+                </Button>
+
+            </DataTemplate>
+
+            <DataTemplate x:Key="fourItemTemplate">
+
+                <Button
+                    x:Name="parentElement"
+                    Width="{Binding ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}, Converter={converters:PercentageConverter}, ConverterParameter='.5'}"
+                    Height="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}, Converter={converters:PercentageConverter}, ConverterParameter='.5'}"
+                    Margin="0"
+                    Padding="0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding DataContext.NavigateToRestaurantHomeCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}"
+                    CommandParameter="{Binding .}"
+                    Style="{StaticResource NoHoverButtonStyle}">
+                    <Button.Background>
+                        <SolidColorBrush Color="{Binding Brand.ThemeSettingObj.BackgroundColor}" />
+                    </Button.Background>
+
+                    <WrapPanel
+                        Name="container"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                        <Image
+                            x:Name="imgRestaurant"
+                            Width="{Binding ActualHeight, ElementName=parentElement, Converter={converters:PercentageConverter}, ConverterParameter='.6'}"
+                            Height="{Binding ActualHeight, ElementName=parentElement, Converter={converters:PercentageConverter}, ConverterParameter='.6'}"
+                            Margin="15"
+                            DataContext="{Binding HomeLogo, Converter={StaticResource imageValueConverter}}"
+                            Stretch="Uniform"
+                            Style="{StaticResource imageAsyncSourceConverterStyle}" />
+                        <WrapPanel.OpacityMask>
+                            <VisualBrush>
+                                <VisualBrush.Visual>
+                                    <Border
+                                        Width="{Binding ElementName=container, Path=ActualWidth}"
+                                        Height="{Binding ElementName=container, Path=ActualHeight}"
+                                        Background="White"
+                                        CornerRadius="15" />
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </WrapPanel.OpacityMask>
+                    </WrapPanel>
+
+                </Button>
+
+            </DataTemplate>
+
+
+            <converters:CollectionToItemTemplateConverter
+                x:Key="collectionToItemTemplateConverter"
+                FourItemTemplate="{StaticResource fourItemTemplate}"
+                SingleItemTemplate="{StaticResource sinleItemTemplate}"
+                ThreeItemTemplate="{StaticResource threeItemTemplate}"
+                TwoItemTemplate="{StaticResource twoItemTemplate}" />
+
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <ItemsControl
+            x:Name="lstRestaurants"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Stretch"
+            ItemTemplate="{Binding Restaurants, Mode=OneWay, Converter={StaticResource collectionToItemTemplateConverter}}"
+            ItemsPanel="{Binding Restaurants, Mode=OneWay, Converter={StaticResource collectionToItemPanelConverter}}"
+            ItemsSource="{Binding Restaurants, Mode=OneWay}"
+            Style="{StaticResource ItemsControlStyleWithScroll}" />
+
+        <Button
+            x:Name="btnProceedToConfigurations"
+            Width="30"
+            Height="30"
+            Margin="5,5,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Command="{Binding NavigateToConfigurationPageCommand}"
+            Opacity="0">
+            <Image Source="{StaticResource backIcon}" Stretch="Uniform" />
+            <Button.Style>
+                <Style BasedOn="{StaticResource NoHoverButtonStyle}" TargetType="{x:Type Button}">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource fadeInAnimation}" />
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource fadeOutAnimation}" />
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+    </Grid>
+</Page>
