@@ -1,19 +1,9 @@
 ﻿using HashGo.Domain.Models.Base;
-using HashGo.Infrastructure.DataContext;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace HashGo.Wpf.App.BestTech.Controls
@@ -24,7 +14,7 @@ namespace HashGo.Wpf.App.BestTech.Controls
     public partial class VirtualKeyboard : Window
     {
         SharedDataService sharedDataService;
-        int processId = -1;
+        Process oskProcess;
         public VirtualKeyboard(SharedDataService sharedDataService)
         {
             InitializeComponent();
@@ -58,27 +48,21 @@ namespace HashGo.Wpf.App.BestTech.Controls
         {
             try
             {
-                //if (processId != -1)
-                //{
-                //    var oskProcess = Process.GetProcessById(processId);
+                Process[] oskProcesses = Process.GetProcessesByName("TabTip");
 
-                //    if (oskProcess != null)
-                //    {
-                //        oskProcess.Kill();
-                //        processId = -1;
-                //    }
-                //}
+                if(oskProcesses?.Length > 0)
+                {
+                    foreach (Process process in oskProcesses)
+                    {
+                        //process.Close();
+                        process.Kill();
+                    }
+                }
 
-                //uint WM_SYSCOMMAND = 0x0112;
-                //UIntPtr SC_CLOSE = new UIntPtr(0xF060);
-                //IntPtr y = new IntPtr(0);
-                //IntPtr KeyboardWnd = FindWindow("IPTip_Main_Window", null);
-                //PostMessage(KeyboardWnd, WM_SYSCOMMAND, SC_CLOSE, y);
-
-                var uiHostNoLaunch = new UIHostNoLaunch();
-                var tipInvocation = (ITipInvocation)uiHostNoLaunch;
-                tipInvocation.Toggle(IntPtr.Zero); // Pass IntPtr.Zero to close the keyboard
-                Marshal.ReleaseComObject(uiHostNoLaunch);
+                //var uiHostNoLaunch = new UIHostNoLaunch();
+                //var tipInvocation = (ITipInvocation)uiHostNoLaunch;
+                //tipInvocation.Toggle(IntPtr.Zero); // Pass IntPtr.Zero to close the keyboard
+                //Marshal.ReleaseComObject(uiHostNoLaunch);
             }
             catch(Exception ex)
             {
@@ -86,116 +70,36 @@ namespace HashGo.Wpf.App.BestTech.Controls
             }
         }
 
+        string programFiles = @"C:\Program Files\Common Files\Microsoft shared\ink";
+
         void OpenVirtualKeyboard()
         {
             try
             {
-                var uiHostNoLaunch = new UIHostNoLaunch();
-                var tipInvocation = (ITipInvocation)uiHostNoLaunch;
-                tipInvocation.Toggle(GetDesktopWindow());
-                Marshal.ReleaseComObject(uiHostNoLaunch);
+                string onScreenkeyboardPath = System.IO.Path.Combine(programFiles, "TabTip.exe");
+
+                ProcessStartInfo processStartInfo = new ProcessStartInfo(onScreenkeyboardPath);
+                processStartInfo.UseShellExecute = true;
+
+               oskProcess = Process.Start(processStartInfo);
+
+                //var uiHostNoLaunch = new UIHostNoLaunch();
+                //var tipInvocation = (ITipInvocation)uiHostNoLaunch;
+                //tipInvocation.Toggle(GetDesktopWindow());
+                //Marshal.ReleaseComObject(uiHostNoLaunch);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
             
         }
 
-        //void OpenVirtualKeyboard()
-        //{
-        //    //ProcessStartInfo processStartInfo = new ProcessStartInfo("C:\\Program Files\\Common Files\\Microsoft Shared\\ink\\TabTip.exe");
-        //    //processStartInfo.UseShellExecute = true;
-
-        //    //var oskProcess =  Process.Start(processStartInfo);
-        //    //processId = oskProcess.Id;
-        //    //oskProcess.Exited += (sender, e) =>
-        //    //{
-        //    //    processId = -1;
-        //    //};
-
-        //    //var uiHostNoLaunch = new UIHostNoLaunch();
-        //    //var tipInvocation = (ITipInvocation)uiHostNoLaunch;
-        //    //tipInvocation.Toggle(GetDesktopWindow());
-        //    //Marshal.ReleaseComObject(uiHostNoLaunch);
-        //    string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "Common Files\\Microsoft Shared\\ink\\TabTip.exe");
-        //    if (!System.IO.File.Exists(path))
-        //    {
-        //        return;
-        //    }
-
-        //    try
-        //    {
-        //        ProcessStartInfo processStartInfo = new ProcessStartInfo
-        //        {
-        //            FileName = path,
-        //            UseShellExecute = true
-        //        };
-
-        //        var oskProcess = Process.Start(processStartInfo);
-
-        //        if (oskProcess != null)
-        //        {
-        //            processId = oskProcess.Id;
-        //            oskProcess.EnableRaisingEvents = true;
-        //            oskProcess.Exited += (sender, e) =>
-        //            {
-        //                processId = -1;
-        //                //Console.WriteLine("On-Screen Keyboard has exited.");
-        //            };
-
-        //            //Console.WriteLine("Started On-Screen Keyboard with Process ID: " + processId);
-        //        }
-        //        else
-        //        {
-        //            //Console.WriteLine("Failed to start On-Screen Keyboard.");
-        //        }
-        //    }
-        //    catch (COMException comEx)
-        //    {
-        //        //Console.WriteLine("COM exception occurred: " + comEx.Message);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        //Console.WriteLine("An error occurred while starting the On-Screen Keyboard: " + ex.Message);
-        //    }
-        //}
-
-        #region Keyboard   TabTip.exe
-        [ComImport, Guid("4ce576fa-83dc-4F88-951c-9d0782b4e376")]
-        class UIHostNoLaunch
-        {
-        }
-
-        [ComImport, Guid("37c994e7-432b-4834-a2f7-dce1f13b834b")]
-        [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-        interface ITipInvocation
-        {
-            void Toggle(IntPtr hwnd);
-        }
-
-        [DllImport("user32.dll", SetLastError = false)]
-        static extern IntPtr GetDesktopWindow();
-        [DllImport("user32.dll", CharSet = CharSet.Unicode)] 
-        static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
-
-        //[DllImport("user32.dll", SetLastError = false)]
-        //static extern IntPtr GetDesktopWindow();
-
-        [return: MarshalAs(UnmanagedType.Bool)]
-        [DllImport("user32.dll", SetLastError = true)]
-        static extern bool PostMessage(IntPtr hWnd, uint Msg, UIntPtr wParam, IntPtr lParam);
-
-        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
-        static extern IntPtr FindWindow(string sClassName, string sAppName);
-
-        #endregion
-
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.Enter)
             {
-                e.Handled = true;
+                //e.Handled = true;
                 closeVirtualKeyboard();
                 sharedDataService.RefferalCode = tBoxInput.Text;
                 this.DialogResult = true;
@@ -270,6 +174,7 @@ namespace HashGo.Wpf.App.BestTech.Controls
 
         private void Path_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            closeVirtualKeyboard();
             //sharedDataService.RefferalCode = tBoxInput.Text;
             this.Close();
             //this.DialogResult = false;
