@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using HashGo.Core.Models.BestTech;
 using HashGo.Infrastructure.Common;
 using HashGo.Infrastructure.Models;
 using System.Collections.ObjectModel;
@@ -120,6 +121,16 @@ namespace HashGo.Domain.Models.Base
             if (PropertyChanged != null) { PropertyChanged(this, new PropertyChangedEventArgs(propertyName)); }
         }
 
+        public Unit()
+        {
+            //LstUnitInstallationTypes = new List<SelectedUnitInstallationType>()
+            //                       {
+            //                           new SelectedUnitInstallationType(UniqueIdGenerator.GenerateId(), "No Add-Ons", CommonConstants.NOADDONIAMGE, UnitId),
+            //                           new SelectedUnitInstallationType(UniqueIdGenerator.GenerateId(),"Power Point", CommonConstants.DEFAULTIMAGE, UnitId),
+            //                           new SelectedUnitInstallationType(UniqueIdGenerator.GenerateId(),"Stainless Steel Bracket", CommonConstants.DEFAULTIMAGE, UnitId),
+            //                       };
+        }
+
         public Unit(int unitId, int id, string unitName, string name, string imageSource, double unitPrice, string remarks)
         {
             Name = name;
@@ -132,12 +143,31 @@ namespace HashGo.Domain.Models.Base
              DescriptionNotes = remarks;
 
             descriptionNotes = "An article is a piece of writing written for a large audience. The main motive behind writing an article is that it should be published in either newspapers or magazines or journals so as to make some difference to the world. It may be the topics of interest of the writer or it may be related to some current issues.An article is a piece of writing written for a large audience. The main motive behind writing an article is that it should be published in either newspapers or magazines or journals so as to make some difference to the world. It may be the topics of interest of the writer or it may be related to some current issues.An article is a piece of writing written for a large audience. The main motive behind writing an article is that it should be published in either newspapers or magazines or journals so as to make some difference to the world. It may be the topics of interest of the writer or it may be related to some current issues.";
-            LstUnitInstallationTypes = new List<SelectedUnitInstallationType>()
-                                   {
-                                       new SelectedUnitInstallationType(UniqueIdGenerator.GenerateId(), "No Add-Ons", CommonConstants.NOADDONIAMGE, UnitId),
-                                       new SelectedUnitInstallationType(UniqueIdGenerator.GenerateId(),"Power Point", CommonConstants.DEFAULTIMAGE, UnitId),
-                                       new SelectedUnitInstallationType(UniqueIdGenerator.GenerateId(),"Stainless Steel Bracket", CommonConstants.DEFAULTIMAGE, UnitId),
-                                   };
+            //LstUnitInstallationTypes = new List<SelectedUnitInstallationType>()
+            //                       {
+            //                           new SelectedUnitInstallationType(UniqueIdGenerator.GenerateId(), "No Add-Ons", CommonConstants.NOADDONIAMGE, UnitId),
+            //                           new SelectedUnitInstallationType(UniqueIdGenerator.GenerateId(),"Power Point", CommonConstants.DEFAULTIMAGE, UnitId),
+            //                           new SelectedUnitInstallationType(UniqueIdGenerator.GenerateId(),"Stainless Steel Bracket", CommonConstants.DEFAULTIMAGE, UnitId),
+            //                       };
+        }
+
+        public void AddAddOns(IReadOnlyCollection<ServiceUnit> result)
+        {
+            List<SelectedUnitInstallationType> tmpPlst = new List<SelectedUnitInstallationType>();
+            tmpPlst.Add(new SelectedUnitInstallationType(UniqueIdGenerator.GenerateId(), "No Add-Ons", CommonConstants.NOADDONIAMGE, UnitId));
+
+            if (result != null && result.Count > 0)
+            {
+                foreach (var addOn in result)
+                {
+                    tmpPlst.Add(new SelectedUnitInstallationType(addOn.id, 
+                                                                 addOn.name,
+                                                                 string.IsNullOrEmpty(addOn.imagePath)?CommonConstants.DEFAULTIMAGE: addOn.imagePath,
+                                                                 addOn.unitId));
+                }
+            }
+
+            LstUnitInstallationTypes = new List<SelectedUnitInstallationType>(tmpPlst);
         }
 
         List<SelectedUnitInstallationType> lstUnitInstallationTypes = new List<SelectedUnitInstallationType>();

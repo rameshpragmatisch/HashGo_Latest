@@ -159,7 +159,7 @@ namespace HashGo.Domain.Services
             return new List<SubCategory>();
         }
 
-        public async Task<IReadOnlyCollection<ServiceUnit>> GetProductsByCategoryId(int subCtgryId)
+        public async Task<IReadOnlyCollection<ServiceUnit>> GetProductsByCategoryId(int categoryId)
         {
             try
             {
@@ -170,9 +170,9 @@ namespace HashGo.Domain.Services
                 string? responeString = client.Post(
                        JsonConvert.SerializeObject(new
                        {
-                           Subcategoryid = subCtgryId,
+                           categoryId = categoryId,
                        }),
-                       ApplicationStateContext.ConnectItem.Url + RetailConnectApiRouterNames.GET_PRODUCTS_BY_SUBCATEGORY_ID);
+                       ApplicationStateContext.ConnectItem.Url + RetailConnectApiRouterNames.GET_PRODUCTS_BY_CATEGORY_ID);
 
                 Base<ServiceUnit> result = JsonConvert.DeserializeObject<Base<ServiceUnit>>(responeString);
 

@@ -11,7 +11,7 @@ namespace HashGo.Core.Contracts.Services
         Task<IReadOnlyCollection<Category>> GetCategoryiesByDepartmentId(int deptId);
 
         Task<IReadOnlyCollection<SubCategory>> GetSubCategoriesByCategoryId(int catId);
-        Task<IReadOnlyCollection<ServiceUnit>> GetProductsByCategoryId(int subCtgryId);
+        Task<IReadOnlyCollection<ServiceUnit>> GetProductsByCategoryId(int categoryId);
         Task<TransactionDetails> CreateSalesOrderWithPayment(SalesOrderRequest saleOrder);
 
         Task<IReadOnlyCollection<ServiceUnit>> GetProductsByCategoryAndSubcategoryId(int categoryId, int subCtgryId);

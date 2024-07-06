@@ -177,10 +177,11 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
                 LstUnitInstallationTypes = new List<SelectedUnitInstallationType>(sharedDataService.SelectedUnit?.LstUnitInstallationTypes);
             eventAggregator.GetEvent<ClearAllSelectedDataEvent>().Subscribe(OnClearData);
 
-            //if (sharedDataService.AddOnId != 0)
-            //{
-            //    var v = this.retailConnectService.GetProductsByCategoryId(sharedDataService.AddOnId);
-            //}
+            if (sharedDataService.AddOnId != 0)
+            {
+                sharedDataService.SelectedUnit?.AddAddOns(this.retailConnectService.GetProductsByCategoryId(sharedDataService.AddOnId).Result);
+                OnPropertyChanged(nameof(LstUnitInstallationTypes));
+            }
         }
 
         private void OnClearData(bool obj)
@@ -237,7 +238,7 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
             get
             {
                 return sharedDataService?.SelectedUnit?.LstUnitInstallationTypes;
-            }
+             }
             set
             {
                 sharedDataService.SelectedUnit.LstUnitInstallationTypes = value;

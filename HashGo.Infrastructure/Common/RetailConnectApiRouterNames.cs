@@ -12,6 +12,7 @@ public static class RetailConnectApiRouterNames
     public const string GET_PRODUCTS_BY_SUBCATEGORY_ID = "/api/services/app/product/GetApiProductsBySubCategory";
     public const string POST_SALEORDER = "/api/services/app/salesReceipt/ApiCreateSalesOrderWithPayment";
     public const string GET_PRODUCTS_BY_CTGRYANDSUBCATEGORY_ID = "/api/services/app/product/GetApiProductsByCategoryAndSubCategory";
+    public const string GET_PRODUCTS_BY_CATEGORY_ID = "/api/services/app/product/GetApiProductsByCategoryId";
 }
  
 public static class AppConfigKeys

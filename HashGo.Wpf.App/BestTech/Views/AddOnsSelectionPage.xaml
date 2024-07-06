@@ -96,7 +96,7 @@ HorizontalAlignment="Left"/>
                     <Run FontFamily="{StaticResource BaijamureeFontRegularStyle}" FontSize="15">Pick min 0 max (?)</Run>
                 </TextBlock>
                 
-                <ListBox ItemsSource="{Binding LstUnitInstallationTypes,Mode=TwoWay}" Grid.Row="1"
+                <ListBox ItemsSource="{Binding LstUnitInstallationTypes,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="1"
                          SelectionMode="Single" x:Name="lstBoxAddOns" BorderThickness="0"
                          ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <!--<i:Interaction.Triggers>
@@ -143,9 +143,9 @@ HorizontalAlignment="Left"/>
 CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListBox}, Path=SelectedItem}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
-                                            <Image Source="{Binding ImageSource,Mode=TwoWay}" 
-        Width="{Binding ActualWidth, ElementName=lstBoxAddOns, Converter={converters:PercentageConverter}, ConverterParameter='.2'}"
-        Height="{Binding ActualHeight, ElementName=lstBoxAddOns, Converter={converters:PercentageConverter}, ConverterParameter='.4'}">
+                                            <Image Source="{Binding ImageSource,Converter={StaticResource imageValueConverter}}" 
+                                                   Width="{Binding ActualWidth, ElementName=lstBoxAddOns, Converter={converters:PercentageConverter}, ConverterParameter='.2'}"
+                                                   Height="{Binding ActualHeight, ElementName=lstBoxAddOns, Converter={converters:PercentageConverter}, ConverterParameter='.4'}">
                                                
                                             </Image>
                                         </Border>
