@@ -14,7 +14,7 @@ namespace HashGo.Wpf.App.BestTech.Controls
     public partial class VirtualKeyboard : Window
     {
         SharedDataService sharedDataService;
-        Process oskProcess;
+        int oskProcessId = -1;
         public VirtualKeyboard(SharedDataService sharedDataService)
         {
             InitializeComponent();
@@ -48,6 +48,16 @@ namespace HashGo.Wpf.App.BestTech.Controls
         {
             try
             {
+                //if(oskProcessId != -1)
+                //{
+                //    Process oskProcess = Process.GetProcessById(oskProcessId);
+
+                //    if(oskProcess != null)
+                //    {
+                //        oskProcess.Kill();
+                //    }
+                //}
+
                 Process[] oskProcesses = Process.GetProcessesByName("TabTip");
 
                 if(oskProcesses?.Length > 0)
@@ -81,8 +91,8 @@ namespace HashGo.Wpf.App.BestTech.Controls
                 ProcessStartInfo processStartInfo = new ProcessStartInfo(onScreenkeyboardPath);
                 processStartInfo.UseShellExecute = true;
 
-               oskProcess = Process.Start(processStartInfo);
-
+                Process oskProcess = Process.Start(processStartInfo);
+                oskProcessId = oskProcess.Id;
                 //var uiHostNoLaunch = new UIHostNoLaunch();
                 //var tipInvocation = (ITipInvocation)uiHostNoLaunch;
                 //tipInvocation.Toggle(GetDesktopWindow());
