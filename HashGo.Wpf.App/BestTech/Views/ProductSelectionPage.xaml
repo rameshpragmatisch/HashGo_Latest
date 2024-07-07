@@ -97,7 +97,11 @@ Background="Transparent" >
                     <ListBox HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="0"
                               ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                              ItemsSource="{Binding SelectedCategory.LstUISubCategories,UpdateSourceTrigger=PropertyChanged}"
-                             SelectedItem="{Binding SelectedSubCategory,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                             SelectedItem="{Binding SelectedSubCategory,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                             PreviewTouchDown="LstBoxSubCategoreis_PreviewTouchDown"
+                            PreviewTouchMove="LstBoxSubCategoreis_PreviewTouchMove"
+                            PreviewTouchUp="LstBoxSubCategoreis_PreviewTouchUp"
+                            PreviewMouseLeftButtonDown="LstBoxSubCategoreis_PreviewMouseLeftButtonDown">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <VirtualizingStackPanel Orientation="Horizontal" />
@@ -167,10 +171,14 @@ Background="Transparent" >
                     </TextBlock.Style>
                 </TextBlock>
 
-                <ListBox ItemsSource="{Binding SelectedSubCategory.LstUnits}" x:Name="lstBox" ScrollViewer.ScrollChanged="lstBox_ScrollChanged"
-                         SelectionMode="Single"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.PanningMode="VerticalOnly"
-                         SelectedItem="{Binding SelectedUnit,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                <ListBox ItemsSource="{Binding SelectedSubCategory.LstUnits}" x:Name="lstBox" 
+                         SelectionMode="Single"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                          
+                         SelectedItem="{Binding SelectedUnit,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                         PreviewTouchDown="ListBox_PreviewTouchDown"
+                 PreviewTouchMove="ListBox_PreviewTouchMove"
+                 PreviewTouchUp="ListBox_PreviewTouchUp"
+                 PreviewMouseLeftButtonDown="ListBox_PreviewMouseLeftButtonDown"
                          BorderThickness="0" Grid.Row="2" >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
@@ -299,9 +307,9 @@ Background="Transparent" >
                         <i:InvokeCommandAction Command="{Binding StartOverScreenCommand}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-                <TextBlock Text="Start Over" HorizontalAlignment="Center"
-                VerticalAlignment="Center" Foreground="Black" FontSize="24"
-                           FontFamily="{StaticResource BaijamureeFontRegularStyle}"/>
+                <TextBlock Text="Start Over" HorizontalAlignment="Center" FontWeight="SemiBold"
+                           VerticalAlignment="Center" Foreground="Black" FontSize="24"
+                           FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}"/>
             </Border>
             <Image Grid.Column="2" Cursor="Hand" Margin="0,0,5,0"
         Width="70" Height="70"
