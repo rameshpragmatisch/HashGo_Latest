@@ -166,7 +166,7 @@ namespace HashGo.Domain.Models.Base
         public void AddAddOns(IReadOnlyCollection<ServiceUnit> result)
         {
             List<SelectedUnitInstallationType> tmpPlst = new List<SelectedUnitInstallationType>();
-            tmpPlst.Add(new SelectedUnitInstallationType(UniqueIdGenerator.GenerateId(), "No Add-Ons", CommonConstants.NOADDONIAMGE, UnitId));
+            tmpPlst.Add(new SelectedUnitInstallationType(UniqueIdGenerator.GenerateId(), "No Add-Ons", CommonConstants.NOADDONIAMGE, UnitId,150));
 
             if (result != null && result.Count > 0)
             {
@@ -175,7 +175,7 @@ namespace HashGo.Domain.Models.Base
                     tmpPlst.Add(new SelectedUnitInstallationType(addOn.id, 
                                                                  addOn.name,
                                                                  string.IsNullOrEmpty(addOn.imagePath)?CommonConstants.DEFAULTIMAGE: addOn.imagePath,
-                                                                 addOn.unitId));
+                                                                 addOn.unitId, addOn.price));
                 }
             }
 
@@ -237,12 +237,16 @@ namespace HashGo.Domain.Models.Base
 
         int installationTypeCount;
 
-        public SelectedUnitInstallationType(int installationTypeId, string installationType, string imageSource, int unitId)
+        public SelectedUnitInstallationType(int installationTypeId, 
+                                            string installationType, 
+                                            string imageSource, int unitId, 
+                                            double addOnPrice)
         {
             InstallationTypeId = installationTypeId;
             InstallationType = installationType;
             ImageSource = imageSource;
             UnitId = unitId;
+            AddOnPrice = addOnPrice;
         }
     }
 
