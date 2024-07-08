@@ -1,6 +1,8 @@
 ﻿using HashGo.Core.Contracts.Views;
 using HashGo.Core.Enum;
 using HashGo.Infrastructure.DataContext;
+using HashGo.Infrastructure.Events;
+using Prism.Events;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,12 +29,14 @@ namespace HashGo.Wpf.App.BestTech.Popups
     {
         DispatcherTimer timer;
         INavigationService navigationService;
+        IEventAggregator eventAggregator;
 
-        public ResetOrderPopup(INavigationService navigationService)
+        public ResetOrderPopup(INavigationService navigationService, IEventAggregator eventAggregator)
         {
             InitializeComponent();
             DataContext = this;
             this.navigationService = navigationService;
+            this.eventAggregator = eventAggregator;
 
             this.Loaded += (sender, e) =>
             {
@@ -52,6 +56,7 @@ namespace HashGo.Wpf.App.BestTech.Popups
                         timer = null;
                         this.Close();
                         navigationService.NavigateToAsync(Pages.RestaurantStartup.ToString());
+                        eventAggregator.GetEvent<ClosePopupEvent>().Publish(true);
                     } 
 
                     Count--;

@@ -1,4 +1,6 @@
-﻿using HashGo.Wpf.App.BestTech.ViewModels.Popups;
+﻿using HashGo.Infrastructure.Events;
+using HashGo.Wpf.App.BestTech.ViewModels.Popups;
+using Prism.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +22,22 @@ namespace HashGo.Wpf.App.BestTech.Popups
     /// </summary>
     public partial class ConfirmCustomerDetailsPopup : Window
     {
-        public ConfirmCustomerDetailsPopup(ConfirmCustomerDetailsPopupViewModel confirmCustomerDetailsPopupViewModel)
+        IEventAggregator eventAggregator;
+        public ConfirmCustomerDetailsPopup(ConfirmCustomerDetailsPopupViewModel confirmCustomerDetailsPopupViewModel,
+            IEventAggregator eventAggregator)
         {
             InitializeComponent();
 
             this.DataContext = confirmCustomerDetailsPopupViewModel;
+            this.eventAggregator = eventAggregator;
+
+            eventAggregator.GetEvent<ClosePopupEvent>().Subscribe((canClose) =>
+            {
+                if(canClose)
+                {
+                    this.DialogResult = true;
+                }
+            });
         }
     }
 }
