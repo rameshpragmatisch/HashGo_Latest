@@ -126,10 +126,8 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
                         }
                     }
                 }
-                //else
-                //{
-                //    selectedUnitInstallationType.InstallationTypeCount++;
-                //}
+
+                OnPropertyChanged(nameof(SelectedAddOns));
             }
          }
 
@@ -229,8 +227,12 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
             set
             {
                 sharedDataService.SelectedUnit = value;
-
             }
+        }
+
+        public string SelectedAddOns
+        {
+            get { return sharedDataService.SelectedUnit.SelectedAddOns; }
         }
 
         public List<SelectedUnitInstallationType> LstUnitInstallationTypes
@@ -238,7 +240,7 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
             get
             {
                 return sharedDataService?.SelectedUnit?.LstUnitInstallationTypes;
-             }
+            }
             set
             {
                 sharedDataService.SelectedUnit.LstUnitInstallationTypes = value;

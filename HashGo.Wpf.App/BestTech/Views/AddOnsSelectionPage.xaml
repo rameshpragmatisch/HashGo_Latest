@@ -59,6 +59,7 @@ HorizontalAlignment="Left"/>
                 <TextBlock Text="Product Name" FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}" FontSize="18"
                            FontWeight="Bold"/>
                 <TextBlock Text="{Binding SelectedUnitName}" FontFamily="{StaticResource BaijamureeFontRegularStyle}" FontSize="18"/>
+                <TextBlock Text="{Binding SelectedAddOns}" FontFamily="{StaticResource BaijamureeFontRegularStyle}" FontSize="18"/>
             </StackPanel>
         </StackPanel>
         
