@@ -3,6 +3,7 @@ using HashGo.Wpf.App.BestTech.Controls;
 using HashGo.Wpf.App.BestTech.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,11 +24,38 @@ namespace HashGo.Wpf.App.BestTech.Views
     /// </summary>
     public partial class CustomerDetailsPage : BasePage
     {
+        string programFiles = @"C:\Program Files\Common Files\Microsoft shared\ink";
         public CustomerDetailsPage(CustomerDetailsPageViewModel customerDetailsPageViewModel, IPopupService popupService) : base(popupService)
         {
             InitializeComponent();
 
             this.DataContext = customerDetailsPageViewModel;
+
+            this.Loaded += (sender, e) =>
+            {
+                tBoxName.Focus();
+
+                string onScreenkeyboardPath = System.IO.Path.Combine(programFiles, "TabTip.exe");
+
+                ProcessStartInfo processStartInfo = new ProcessStartInfo(onScreenkeyboardPath);
+                processStartInfo.UseShellExecute = true;
+
+                Process oskProcess = Process.Start(processStartInfo);
+            };
+
+            this.Unloaded += (sender, e) => 
+            {
+                Process[] oskProcesses = Process.GetProcessesByName("TabTip");
+
+                if (oskProcesses?.Length > 0)
+                {
+                    foreach (Process process in oskProcesses)
+                    {
+                        //process.Close();
+                        process.Kill();
+                    }
+                }
+            };
         }
 
         private void TextBox_KeyDown(object sender, KeyEventArgs e)

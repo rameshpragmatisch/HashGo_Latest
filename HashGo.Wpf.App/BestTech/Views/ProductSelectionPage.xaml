@@ -98,7 +98,7 @@ Background="Transparent" >
                               ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                              ItemsSource="{Binding SelectedCategory.LstUISubCategories,UpdateSourceTrigger=PropertyChanged}"
                              SelectedItem="{Binding SelectedSubCategory,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                             PreviewTouchDown="LstBoxSubCategoreis_PreviewTouchDown"
+                              PreviewTouchDown="LstBoxSubCategoreis_PreviewTouchDown"
                             PreviewTouchMove="LstBoxSubCategoreis_PreviewTouchMove"
                             PreviewTouchUp="LstBoxSubCategoreis_PreviewTouchUp"
                             PreviewMouseLeftButtonDown="LstBoxSubCategoreis_PreviewMouseLeftButtonDown">
