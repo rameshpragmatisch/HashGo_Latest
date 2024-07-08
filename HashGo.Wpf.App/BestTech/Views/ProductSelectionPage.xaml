@@ -227,7 +227,7 @@ Background="Transparent" >
                                                    Text="{Binding Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                                         <Border Grid.Column="1"  Background="#00B5CB"  MinHeight="42" MinWidth="40"
                                                 CornerRadius="15" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,8,0"
+                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,8,0" 
                                                        Foreground="White" FontSize="12" FontFamily="{StaticResource BaijamureeFontRegularStyle}"
                                                        Text="{Binding UnitPrice,StringFormat=C,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                                         </Border>
@@ -309,7 +309,7 @@ Background="Transparent" >
                 </i:Interaction.Triggers>
                 <TextBlock Text="Start Over" HorizontalAlignment="Center" FontWeight="SemiBold"
                            VerticalAlignment="Center" Foreground="Black" FontSize="24"
-                           FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}"/>
+                           FontFamily="{StaticResource BaijamureeFontBoldStyle}"/>
             </Border>
             <Image Grid.Column="2" Cursor="Hand" Margin="0,0,5,0"
         Width="70" Height="70"

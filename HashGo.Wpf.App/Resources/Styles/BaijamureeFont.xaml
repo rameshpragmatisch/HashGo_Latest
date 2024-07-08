@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <FontFamily x:Key="BaijamureeFontMediumStyle">pack://application:,,,/Resources/fonts/baijamjuree-medium.ttf</FontFamily>
-    <FontFamily x:Key="BaijamureeFontRegularStyle">pack://application:,,,/Resources/fonts/BaiJamjuree-Regular.ttf</FontFamily>
-    <FontFamily x:Key="BaijamureeFontSemiBoldStyle">pack://application:,,,/Resources/fonts/BaiJamjuree-SemiBold.ttf</FontFamily>
+    <FontFamily x:Key="BaijamureeFontMediumStyle">pack://application:,,,/Resources/fonts/#BaiJamjuree-Medium</FontFamily>
+    <FontFamily x:Key="BaijamureeFontRegularStyle">pack://application:,,,/Resources/fonts/#BaiJamjuree-Regular</FontFamily>
+    <FontFamily x:Key="BaijamureeFontSemiBoldStyle">pack://application:,,,/Resources/fonts/#BaiJamjuree-SemiBold</FontFamily>
+    <FontFamily x:Key="BaijamureeFontBoldStyle">pack://application:,,,/Resources/fonts/#BaiJamjuree-Bold</FontFamily>
 </ResourceDictionary>

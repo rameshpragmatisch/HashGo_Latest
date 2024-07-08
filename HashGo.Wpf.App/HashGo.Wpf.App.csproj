@@ -17,6 +17,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <None Remove="Resources\Fonts\BaiJamjuree-Bold.ttf" />
     <None Remove="Resources\Fonts\BaiJamjuree-Medium.ttf" />
     <None Remove="Resources\Fonts\BaiJamjuree-Regular.ttf" />
     <None Remove="Resources\Fonts\BaiJamjuree-SemiBold.ttf" />
@@ -190,6 +191,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Fonts\BaiJamjuree-Bold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Fonts\BaiJamjuree-Medium.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
