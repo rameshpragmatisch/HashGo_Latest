@@ -28,6 +28,18 @@ namespace HashGo.Domain.Models.Base
 
         public double UnitPrice { get => unitPrice; set { unitPrice = value; OnPropertyChanged(); } }
 
+        public double AddOnsPrice
+        {
+            get
+            {
+                if(this.LstUnitInstallationTypes != null && this.LstUnitInstallationTypes.Count > 0)
+                {
+                    return LstUnitInstallationTypes.Where(ee => ee.InstallationTypeCount > 0).Sum(xx => xx.AddOnPrice * xx.InstallationTypeCount);
+                }
+                return 0;
+            }
+        }
+
 
         int unitCount = 1;
         public int UnitCount

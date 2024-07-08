@@ -87,7 +87,7 @@ Text="{Binding SelectedAddOnsCheckOutPage}" />
                                     </Border>
                                     
                                     <TextBlock Text="{Binding TotalPrice,StringFormat=C,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                               FontSize="15" FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}"
+                                               FontSize="15" FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}" Margin="2,0,0,0"
                                                Foreground="Black" />
 
                                     <Border Background="Gray" Grid.Column="1"
@@ -170,6 +170,7 @@ Text="{Binding SelectedAddOnsCheckOutPage}" />
                     <RowDefinition />
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
 
                 <TextBlock Text="Order Summary" VerticalAlignment="Center" FontSize="18"
@@ -189,6 +190,12 @@ Text="{Binding SelectedAddOnsCheckOutPage}" />
                 <TextBlock Text="{Binding TotalPrice,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,StringFormat=C}" VerticalAlignment="Center"
                            FontFamily="{StaticResource BaijamureeFontMediumStyle}"
                             Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Right" Margin="0 0 10 0" FontSize="18" />
+
+                <TextBlock Text="Deposit (20%)" VerticalAlignment="Center" FontSize="18" FontWeight="Bold"
+             Grid.Row="3" Grid.Column="0" FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}"/>
+                <TextBlock Text="{Binding Deposit,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,StringFormat=C}" VerticalAlignment="Center"
+            FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}" FontWeight="Bold" TextDecorations="Underline"
+             Grid.Row="3" Grid.Column="1"  HorizontalAlignment="Right" Margin="0 0 10 0" FontSize="18" />
             </Grid>
         </Grid>
         <StackPanel Grid.Row="5" Margin="10,10,10,0">

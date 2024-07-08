@@ -103,7 +103,7 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
         }
         void CalculateTotalPrice()
         {
-            this.TotalPrice = sharedDataService.SelectedUnits?.Sum(ee => (ee.UnitPrice * ee.UnitCount));
+            this.TotalPrice = sharedDataService.SelectedUnits?.Sum(ee => ((ee.UnitPrice+ee.AddOnsPrice) * ee.UnitCount));
         }
 
         void OnRemoveClicked(Unit unit)
@@ -261,6 +261,23 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
             set
             {
                 totalPrice = value;
+
+                if(totalPrice != null)
+                {
+                    Deposit = totalPrice / 5;
+                }
+                OnPropertyChanged();
+            }
+        }
+
+        double? deposit;
+
+        public double? Deposit 
+        {
+            get => deposit;
+            set
+            {
+                deposit = value;
                 OnPropertyChanged();
             }
         }
@@ -277,6 +294,7 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
         public RelayCommand<Unit> EditProductCommand { get; set; }
         public RelayCommand<Unit> RemoveUnitCommand { get; private set; }
         public ICommand AddRefferalCodeCommand { get; private set; }
+        
         #endregion
     }
 }
