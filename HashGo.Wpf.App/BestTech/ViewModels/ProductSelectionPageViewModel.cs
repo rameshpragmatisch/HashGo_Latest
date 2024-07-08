@@ -214,28 +214,29 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
         /// <summary>
         /// Navigate to home screen.
         /// </summary>
-        //void OnMoveToStartScreen()
-        //{
-        //    //Confirm first
-        //    ConfirmPopup confirmPopup = new ConfirmPopup();
-        //    var diaglogResult = confirmPopup.ShowDialog();
-
-        //    if (diaglogResult.Value)
-        //    {
-        //        this.OnClearData(true);
-        //        navigationService.NavigateToAsync(Pages.RestaurantStartup.ToString());
-        //    }
-        //}
-
         void OnMoveToStartScreen()
         {
-            var parameters = new Dictionary<string, object>
+            //Confirm first
+            ConfirmPopup confirmPopup = new ConfirmPopup();
+            var diaglogResult = confirmPopup.ShowDialog();
+
+            if (diaglogResult.Value)
             {
-                { "CanAddItem", true },
-            };
-            //sharedDataService.AddItem(this.SelectedUnit);
-            navigationService.NavigateToAsync(Pages.Addons.ToString(), parameters);  //, parameters
+                this.OnClearData(true);
+                navigationService.NavigateToAsync(Pages.RestaurantStartup.ToString());
+            }
         }
+
+        //void OnMoveToStartScreen()
+        //{
+        //    //var parameters = new Dictionary<string, object>
+        //    //{
+        //    //    { "CanAddItem", true },
+        //    //};
+        //    //navigationService.NavigateToAsync(Pages.Addons.ToString(), parameters);  //, parameters
+
+        //    navigationService.NavigateToAsync(Pages.RestaurantStartup.ToString());
+        //}
 
         #region Commands
 
