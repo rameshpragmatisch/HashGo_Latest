@@ -324,7 +324,7 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
             {
                 Application.Current.Dispatcher.BeginInvoke(() =>
                 {
-                    SelectedSubCategory.SetProducts(products);
+                    SelectedSubCategory?.SetProducts(products);
                 });
             }
         }
