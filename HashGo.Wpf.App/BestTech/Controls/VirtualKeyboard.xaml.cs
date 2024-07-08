@@ -86,17 +86,23 @@ namespace HashGo.Wpf.App.BestTech.Controls
         {
             try
             {
-                string onScreenkeyboardPath = System.IO.Path.Combine(programFiles, "TabTip.exe");
+                try
+                {
+                    var uiHostNoLaunch = new UIHostNoLaunch();
+                    var tipInvocation = (ITipInvocation)uiHostNoLaunch;
+                    tipInvocation.Toggle(GetDesktopWindow());
+                    Marshal.ReleaseComObject(uiHostNoLaunch);
+                }
+                catch(Exception ex)
+                {
+                    string onScreenkeyboardPath = System.IO.Path.Combine(programFiles, "TabTip.exe");
 
-                ProcessStartInfo processStartInfo = new ProcessStartInfo(onScreenkeyboardPath);
-                processStartInfo.UseShellExecute = true;
+                    ProcessStartInfo processStartInfo = new ProcessStartInfo(onScreenkeyboardPath);
+                    processStartInfo.UseShellExecute = true;
 
-                Process oskProcess = Process.Start(processStartInfo);
-                oskProcessId = oskProcess.Id;
-                //var uiHostNoLaunch = new UIHostNoLaunch();
-                //var tipInvocation = (ITipInvocation)uiHostNoLaunch;
-                //tipInvocation.Toggle(GetDesktopWindow());
-                //Marshal.ReleaseComObject(uiHostNoLaunch);
+                    Process oskProcess = Process.Start(processStartInfo);
+                    oskProcessId = oskProcess.Id;
+                }
             }
             catch (Exception ex)
             {
@@ -104,6 +110,25 @@ namespace HashGo.Wpf.App.BestTech.Controls
             }
             
         }
+
+        #region touch keyboard
+
+        [ComImport, Guid("4ce576fa-83dc-4F88-951c-9d0782b4e376")]
+        class UIHostNoLaunch
+        {
+        }
+
+        [ComImport, Guid("37c994e7-432b-4834-a2f7-dce1f13b834b")]
+        [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+        interface ITipInvocation
+        {
+            void Toggle(IntPtr hwnd);
+        }
+
+        [DllImport("user32.dll", SetLastError = false)]
+        static extern IntPtr GetDesktopWindow();
+
+        #endregion
 
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {

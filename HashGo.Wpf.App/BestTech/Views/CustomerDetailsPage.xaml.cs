@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -35,12 +36,22 @@ namespace HashGo.Wpf.App.BestTech.Views
             {
                 tBoxName.Focus();
 
-                string onScreenkeyboardPath = System.IO.Path.Combine(programFiles, "TabTip.exe");
 
-                ProcessStartInfo processStartInfo = new ProcessStartInfo(onScreenkeyboardPath);
-                processStartInfo.UseShellExecute = true;
+                try
+                {
+                    var uiHostNoLaunch = new UIHostNoLaunch();
+                    var tipInvocation = (ITipInvocation)uiHostNoLaunch;
+                    tipInvocation.Toggle(GetDesktopWindow());
+                    Marshal.ReleaseComObject(uiHostNoLaunch);
+                }
+                catch (Exception ex)
+                {
+                    string onScreenkeyboardPath = System.IO.Path.Combine(programFiles, "TabTip.exe");
 
-                Process oskProcess = Process.Start(processStartInfo);
+                    ProcessStartInfo processStartInfo = new ProcessStartInfo(onScreenkeyboardPath);
+                    processStartInfo.UseShellExecute = true;
+                    Process oskProcess = Process.Start(processStartInfo);
+                }   
             };
 
             this.Unloaded += (sender, e) => 
@@ -57,6 +68,25 @@ namespace HashGo.Wpf.App.BestTech.Views
                 }
             };
         }
+
+        #region touch keyboard
+
+        [ComImport, Guid("4ce576fa-83dc-4F88-951c-9d0782b4e376")]
+        class UIHostNoLaunch
+        {
+        }
+
+        [ComImport, Guid("37c994e7-432b-4834-a2f7-dce1f13b834b")]
+        [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+        interface ITipInvocation
+        {
+            void Toggle(IntPtr hwnd);
+        }
+
+        [DllImport("user32.dll", SetLastError = false)]
+        static extern IntPtr GetDesktopWindow();
+
+        #endregion
 
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
         {
