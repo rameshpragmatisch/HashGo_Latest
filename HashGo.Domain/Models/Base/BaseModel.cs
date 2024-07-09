@@ -70,7 +70,7 @@ namespace HashGo.Domain.Models.Base
         {
             get
             {
-                var selectedAddons = LstUnitInstallationTypes?.Where(ee => ee.InstallationTypeCount > 0);
+                var selectedAddons = this.LstSelectedUnitInstallationTypes?.Where(ee => ee.InstallationTypeCount > 0);
                 string addOnText = string.Empty;
                 foreach(var addOn in selectedAddons)
                 {
@@ -163,10 +163,22 @@ namespace HashGo.Domain.Models.Base
             //                       };
         }
 
+        SelectedUnitInstallationType selectedUnitInstallationTypeObj;
+
+        public SelectedUnitInstallationType SelectedUnitInstallationTypeObj
+        {
+            get => selectedUnitInstallationTypeObj;
+            set
+            {
+                selectedUnitInstallationTypeObj = value;
+                OnPropertyChanged();
+            }
+        }
+
         public void AddAddOns(IReadOnlyCollection<ServiceUnit> result)
         {
             List<SelectedUnitInstallationType> tmpPlst = new List<SelectedUnitInstallationType>();
-            tmpPlst.Add(new SelectedUnitInstallationType(UniqueIdGenerator.GenerateId(), "No Add-Ons", CommonConstants.NOADDONIAMGE, UnitId,150));
+            tmpPlst.Add(new SelectedUnitInstallationType(-1, "No Add-Ons", CommonConstants.NOADDONIAMGE, UnitId,150));
 
             if (result != null && result.Count > 0)
             {
@@ -182,6 +194,8 @@ namespace HashGo.Domain.Models.Base
                         {
                             installationTypeCount = slctdInstallationType.InstallationTypeCount;
                         }
+
+                       
                     }
 
                     tmpPlst.Add(new SelectedUnitInstallationType(addOn.id, 
@@ -192,6 +206,14 @@ namespace HashGo.Domain.Models.Base
             }
 
             LstUnitInstallationTypes = new List<SelectedUnitInstallationType>(tmpPlst);
+
+            if (LstSelectedUnitInstallationTypes.Count == 1 &&
+                           LstSelectedUnitInstallationTypes.Any(ee => ee.InstallationType == "No Add-Ons" ))
+            {
+                this.SelectedUnitInstallationTypeObj = LstUnitInstallationTypes.FirstOrDefault(ee => ee.InstallationType == "No Add-Ons");
+            }
+
+            
         }
 
         List<SelectedUnitInstallationType> lstUnitInstallationTypes = new List<SelectedUnitInstallationType>();

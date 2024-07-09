@@ -59,7 +59,7 @@ HorizontalAlignment="Left"/>
                 <TextBlock Text="Product Name" FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}" FontSize="18"
                            FontWeight="Bold"/>
                 <TextBlock Text="{Binding SelectedUnitName}" FontFamily="{StaticResource BaijamureeFontRegularStyle}" FontSize="18"/>
-                <TextBlock Text="{Binding SelectedAddOns}" FontFamily="{StaticResource BaijamureeFontRegularStyle}" FontSize="18"/>
+                <TextBlock Text="{Binding SelectedAddOns,Mode=OneWay}" FontFamily="{StaticResource BaijamureeFontRegularStyle}" FontSize="18"/>
             </StackPanel>
         </StackPanel>
         
@@ -99,6 +99,7 @@ HorizontalAlignment="Left"/>
                 
                 <ListBox ItemsSource="{Binding LstUnitInstallationTypes,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="1"
                          SelectionMode="Single" x:Name="lstBoxAddOns" BorderThickness="0"
+                         SelectedItem="{Binding SelectedUnitInstallationTypeObj}"
                          ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <!--<i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonUp">
@@ -156,7 +157,7 @@ CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListBox},
                                                                    Count="{Binding InstallationTypeCount,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                                     AddProductCommand="{Binding DataContext.SelectedAddonCommand,RelativeSource={RelativeSource AncestorType=Page}}"
                                                                     SubtractProductCommand="{Binding DataContext.RemoveAddOnCommand,RelativeSource={RelativeSource AncestorType=Page}}"
-                                                                   AddProductParameter="{Binding}"/>
+                                                                   AddProductParameter="{Binding}" RemoveProductParamter="{Binding}"/>
                                     </Grid>
                                 </Border>
                                
