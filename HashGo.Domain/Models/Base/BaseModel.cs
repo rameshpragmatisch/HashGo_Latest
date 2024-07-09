@@ -172,10 +172,22 @@ namespace HashGo.Domain.Models.Base
             {
                 foreach (var addOn in result)
                 {
+                    int installationTypeCount = 0;
+                    if(this.LstSelectedUnitInstallationTypes != null && this.LstSelectedUnitInstallationTypes.Count > 0)
+                    {
+                        var slctdInstallationType = this.LstSelectedUnitInstallationTypes.FirstOrDefault(ee => ee.UnitId == addOn.unitId &&
+                                                                                ee.InstallationTypeId == addOn.id);
+
+                        if(slctdInstallationType != null)
+                        {
+                            installationTypeCount = slctdInstallationType.InstallationTypeCount;
+                        }
+                    }
+
                     tmpPlst.Add(new SelectedUnitInstallationType(addOn.id, 
                                                                  addOn.name,
                                                                  string.IsNullOrEmpty(addOn.imagePath)?CommonConstants.DEFAULTIMAGE: addOn.imagePath,
-                                                                 addOn.unitId, addOn.price));
+                                                                 addOn.unitId, addOn.price, installationTypeCount));
                 }
             }
 
@@ -183,7 +195,7 @@ namespace HashGo.Domain.Models.Base
         }
 
         List<SelectedUnitInstallationType> lstUnitInstallationTypes = new List<SelectedUnitInstallationType>();
-        public List<KeyValuePair<SelectedUnitInstallationType, int>> LstSelectedUnitInstallationTypes { get; set; } = new List<KeyValuePair<SelectedUnitInstallationType, int>>();
+        public List<SelectedUnitInstallationType> LstSelectedUnitInstallationTypes { get; set; } = new List<SelectedUnitInstallationType>();
         public string DescriptionNotes { get => descriptionNotes; set => descriptionNotes = value; }
     }
 
@@ -240,13 +252,15 @@ namespace HashGo.Domain.Models.Base
         public SelectedUnitInstallationType(int installationTypeId, 
                                             string installationType, 
                                             string imageSource, int unitId, 
-                                            double addOnPrice)
+                                            double addOnPrice, 
+                                            int installationTypeCount = 0)
         {
             InstallationTypeId = installationTypeId;
             InstallationType = installationType;
             ImageSource = imageSource;
             UnitId = unitId;
             AddOnPrice = addOnPrice;
+            InstallationTypeCount = installationTypeCount;
         }
     }
 
