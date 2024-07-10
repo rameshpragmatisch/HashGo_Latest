@@ -102,15 +102,18 @@ Data="M19.2 57L15 52.8L31.8 36L15 19.2L19.2 15L36 31.8L52.8 15L57 19.2L40.2 36L5
                                         </Grid.ColumnDefinitions>
                                         <Image Source="{Binding ImageSource,Converter={StaticResource imageValueConverter}}" Grid.Column="0"
                                             Width="94" Height="94"/>
-                                        <StackPanel Grid.Column="1"
-                                                    HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2,0,0,2">
-                                            <TextBlock FontWeight="Regular"   FontSize="16"
-         TextWrapping="Wrap" FontFamily="{StaticResource BaijamureeFontMediumStyle}"
-         Text="{Binding Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
-                                            <TextBlock FontWeight="Regular" FontSize="16" Margin="0,8,0,0"
-         TextWrapping="Wrap" FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}"
-         Text="{Binding SelectedAddOns}" />
-                                        </StackPanel>
+                                        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1" 
+                                           HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2,0,0,2">
+                                            <StackPanel >
+                                                <TextBlock FontWeight="Regular"   FontSize="16"
+TextWrapping="Wrap" FontFamily="{StaticResource BaijamureeFontMediumStyle}"
+Text="{Binding Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                                <TextBlock FontWeight="Regular" FontSize="16" Margin="0,8,0,0"
+TextWrapping="Wrap" FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}" 
+Text="{Binding SelectedAddOns}" />
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                        
                                       
                                     </Grid>
                                     <Grid  Margin="5" Grid.Row="1" 

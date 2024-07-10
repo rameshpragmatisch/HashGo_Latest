@@ -55,12 +55,15 @@ HorizontalAlignment="Left"/>
             <!--<TextBlock Text="Selected Product: " FontWeight="Bold"/>-->
             <Image Source="{Binding SelectedUnitImage,Converter={StaticResource imageValueConverter}}" Width="191" Height="178"/>
 
-            <StackPanel VerticalAlignment="Center">
-                <TextBlock Text="Product Name" FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}" FontSize="18"
-                           FontWeight="Bold"/>
-                <TextBlock Text="{Binding SelectedUnitName}" FontFamily="{StaticResource BaijamureeFontRegularStyle}" FontSize="18"/>
-                <TextBlock Text="{Binding SelectedAddOns,Mode=OneWay}" FontFamily="{StaticResource BaijamureeFontRegularStyle}" FontSize="18"/>
-            </StackPanel>
+            <ScrollViewer VerticalScrollBarVisibility="Visible" VerticalAlignment="Center">
+                <StackPanel >
+                    <TextBlock Text="Product Name" FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}" FontSize="18"
+               FontWeight="Bold"/>
+                    <TextBlock Text="{Binding SelectedUnitName}" FontFamily="{StaticResource BaijamureeFontRegularStyle}" FontSize="18"/>
+                    <TextBlock Text="{Binding SelectedAddOns,Mode=OneWay}" FontFamily="{StaticResource BaijamureeFontRegularStyle}" FontSize="18"/>
+                </StackPanel>
+            </ScrollViewer>
+               
         </StackPanel>
         
         <Border Grid.Row="2" Height="3"  Margin="0,11,0,0"
