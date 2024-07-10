@@ -48,35 +48,25 @@ namespace HashGo.Wpf.App.BestTech.Controls
         {
             try
             {
-                //if(oskProcessId != -1)
-                //{
-                //    Process oskProcess = Process.GetProcessById(oskProcessId);
-
-                //    if(oskProcess != null)
-                //    {
-                //        oskProcess.Kill();
-                //    }
-                //}
-
-                Process[] oskProcesses = Process.GetProcessesByName("TabTip");
-
-                if(oskProcesses?.Length > 0)
-                {
-                    foreach (Process process in oskProcesses)
-                    {
-                        //process.Close();
-                        process.Kill();
-                    }
-                }
-
-                //var uiHostNoLaunch = new UIHostNoLaunch();
-                //var tipInvocation = (ITipInvocation)uiHostNoLaunch;
-                //tipInvocation.Toggle(IntPtr.Zero); // Pass IntPtr.Zero to close the keyboard
-                //Marshal.ReleaseComObject(uiHostNoLaunch);
+                var uiHostNoLaunch = new UIHostNoLaunch();
+                var tipInvocation = (ITipInvocation)uiHostNoLaunch;
+                tipInvocation.Toggle(IntPtr.Zero); // Pass IntPtr.Zero to close the keyboard
+                Marshal.ReleaseComObject(uiHostNoLaunch);
             }
             catch(Exception ex)
             {
 
+            }
+
+            Process[] oskProcesses = Process.GetProcessesByName("TabTip");
+
+            if (oskProcesses?.Length > 0)
+            {
+                foreach (Process process in oskProcesses)
+                {
+                    //process.Close();
+                    process.Kill();
+                }
             }
         }
 

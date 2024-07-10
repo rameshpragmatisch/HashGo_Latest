@@ -126,7 +126,8 @@ KeyDown="TextBox_KeyDown"/>
                     <TextBox  Style="{StaticResource RoundedTextBoxWithShadowStyle}" 
                       MinHeight="44" MaxHeight="62" MaxWidth="342"
                               MinWidth="{Binding ActualWidth, ElementName=tBoxName, Converter={converters:PercentageConverter}, ConverterParameter='.49'}"
-Text="{Binding CustomerDetailsObj.ContactNumber,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+Text="{Binding CustomerDetailsObj.ContactNumber,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxLength="8"
+                              PreviewTextInput="TextBox_PreviewTextInput"
 KeyDown="TextBox_KeyDown">
                         <i:Interaction.Behaviors>
                             <behaviours:IntegerInputBehaviour />

@@ -74,7 +74,7 @@
             </Grid.RowDefinitions>
             <TextBlock  Text="Please state your enquiries below" FontWeight="SemiBold" Margin="0,0,0,5"/>
             <TextBox  Grid.Row="1" Style="{StaticResource RoundedTextBoxWithShadowStyleWithCursorTop}"  VerticalScrollBarVisibility="Auto" 
-                Text="{Binding Enquiries,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                Text="{Binding Enquiries,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" x:Name="tBoxEnquiries"
                       
                 AcceptsReturn="True" TextWrapping="Wrap"
                     KeyDown="TextBox_KeyDown"/>
@@ -90,6 +90,7 @@
 
             <TextBox  Grid.Row="1" Style="{StaticResource RoundedTextBoxWithShadowStyle}" 
        Text="{Binding PhoneNumber,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                      PreviewTextInput="TextBox_PreviewTextInput"
        KeyDown="TextBox_KeyDown">
                 <i:Interaction.Behaviors>
                     <behaviours:IntegerInputBehaviour />

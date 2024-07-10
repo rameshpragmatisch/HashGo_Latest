@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -56,6 +57,19 @@ namespace HashGo.Wpf.App.BestTech.Views
 
             this.Unloaded += (sender, e) => 
             {
+                try
+                {
+                    var uiHostNoLaunch = new UIHostNoLaunch();
+                    var tipInvocation = (ITipInvocation)uiHostNoLaunch;
+                    tipInvocation.Toggle(IntPtr.Zero); // Pass IntPtr.Zero to close the keyboard
+                    Marshal.ReleaseComObject(uiHostNoLaunch);
+                }
+                catch (Exception ex)
+                {
+
+                }
+
+
                 Process[] oskProcesses = Process.GetProcessesByName("TabTip");
 
                 if (oskProcesses?.Length > 0)
@@ -88,6 +102,13 @@ namespace HashGo.Wpf.App.BestTech.Views
 
         #endregion
 
+        private static readonly Regex _regex = new Regex("^[896][0-9]*$");
+
+        private bool IsTextValid(string text)
+        {
+            return _regex.IsMatch(text) && text.Length <= 8;
+        }
+
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.Enter)
@@ -108,6 +129,14 @@ namespace HashGo.Wpf.App.BestTech.Views
                 nextElement = Keyboard.FocusedElement as UIElement;
             } 
             while(nextElement is TextBlock);
+        }
+
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            string newText = textBox.Text.Insert(textBox.SelectionStart, e.Text);
+
+            e.Handled = !IsTextValid(newText);
         }
     }
 }
