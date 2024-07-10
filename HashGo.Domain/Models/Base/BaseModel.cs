@@ -80,7 +80,7 @@ namespace HashGo.Domain.Models.Base
                     }
                     else
                     {
-                        addOnText += ".   " + addOn.InstallationType + "\t" + addOn.InstallationTypeCount + "X" + "\n";
+                        addOnText += ".   " + addOn.InstallationType + "\t" + addOn.InstallationTypeCount + "X" + "\t" +"+" + string.Format("{0:C}", addOn.AddOnPrice) + "\n";
                     }
                     
                 }

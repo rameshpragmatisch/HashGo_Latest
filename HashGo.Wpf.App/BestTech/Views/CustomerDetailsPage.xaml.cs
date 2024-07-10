@@ -69,7 +69,6 @@ namespace HashGo.Wpf.App.BestTech.Views
 
                 }
 
-
                 Process[] oskProcesses = Process.GetProcessesByName("TabTip");
 
                 if (oskProcesses?.Length > 0)
