@@ -165,7 +165,7 @@ namespace HashGo.Domain.Services
                     //Icon = LoadImageToBase64String("\\Resources\\Images\\visa_logo.png"),
                      Icon = "\\Resources\\Images\\Nets.png",
                      Description = "NETS",
-                     PaymentType = "NETSQR"
+                     PaymentMode = "NETSQR"
                 },
                 new PaymentMethod()
                 {
@@ -174,7 +174,7 @@ namespace HashGo.Domain.Services
                     //Icon = LoadImageToBase64String("\\Resources\\Images\\flashpay_logo.png"),
                     Icon = "\\Resources\\Images\\Visa.png",
                     Description="Credit Card/Debit Card",
-                    PaymentType = "CREDITCARD"
+                    PaymentMode = "CREDITCARD"
                 },
                 //new PaymentMethod()
                 //{

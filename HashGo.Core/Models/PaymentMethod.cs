@@ -10,7 +10,7 @@ namespace HashGo.Core.Models
     {
         public string Icon { get; set; }
 
-        public string PaymentType { get; set; }
+        public string PaymentMode { get; set; }
         public string Description { get; set; }
     }
 }
