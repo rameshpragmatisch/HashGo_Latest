@@ -148,7 +148,7 @@ namespace HashGo.Domain.Services
 
                 if (result != null && result.success && result.result.items != null)
                 {
-                    return result.result.items;
+                    return result.result.items.OrderBy(ee=>ee.id).ToList();
                 }
             }
             catch (Exception ex)

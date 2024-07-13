@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HashGo.Wpf.App.BestTech.Views"
         mc:Ignorable="d" Background="White"  Margin="5,0"
-        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors" ShowInTaskbar="False"
         WindowStartupLocation="Manual" WindowStyle="None" Deactivated="popupWindow_Deactivated"
         ResizeMode="NoResize" BorderBrush="Gray" BorderThickness="1"
         Loaded="Window_Loaded" local:DialogResultHelper.DialogResult="{Binding DiaglogResult,Mode=TwoWay}"
