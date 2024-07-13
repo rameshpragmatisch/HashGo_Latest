@@ -71,6 +71,8 @@ namespace HashGo.Wpf.App.BestTech.Controls
                     this.AddHandler(UIElement.TouchDownEvent, new EventHandler<TouchEventArgs>(OnTouchDown));
                     this.AddHandler(UIElement.MouseWheelEvent, new MouseWheelEventHandler(userActivity));
                     this.AddHandler(UIElement.MouseMoveEvent, new MouseEventHandler(userActivity));
+                    this.AddHandler(UIElement.TouchMoveEvent, new EventHandler<TouchEventArgs>(OnTouchDown));
+                    this.AddHandler(UIElement.TouchUpEvent, new EventHandler<TouchEventArgs>(OnTouchDown));
 
                     startIdleTimer();
                 }
