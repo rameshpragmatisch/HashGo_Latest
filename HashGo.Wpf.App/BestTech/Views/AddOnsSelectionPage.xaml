@@ -133,7 +133,7 @@ HorizontalAlignment="Left"/>
                                 </Grid.RowDefinitions>
 
                                 <Border Grid.Row="0" BorderBrush="LightGray" BorderThickness="0.5"
-                                        Width="273" Height="264"
+                                        Width="284" Height="274"
                                         CornerRadius="20">
                                     <Grid>
                                         <Grid.RowDefinitions>
@@ -148,11 +148,36 @@ HorizontalAlignment="Left"/>
 CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListBox}, Path=SelectedItem}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
-                                            <Image Source="{Binding ImageSource,Converter={StaticResource imageValueConverter}}" 
-                                                   Width="{Binding ActualWidth, ElementName=lstBoxAddOns, Converter={converters:PercentageConverter}, ConverterParameter='.2'}"
-                                                   Height="{Binding ActualHeight, ElementName=lstBoxAddOns, Converter={converters:PercentageConverter}, ConverterParameter='.4'}">
-                                               
-                                            </Image>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition />
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Image Source="{Binding ImageSource,Converter={StaticResource imageValueConverter}}" 
+         Width="{Binding ActualWidth, ElementName=lstBoxAddOns, Converter={converters:PercentageConverter}, ConverterParameter='.2'}"
+         Height="{Binding ActualHeight, ElementName=lstBoxAddOns, Converter={converters:PercentageConverter}, ConverterParameter='.4'}"/>
+                                                <TextBlock  HorizontalAlignment="Center"
+             Text="{Binding InstallationType}" Grid.Row="1"
+             FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}"
+             FontWeight="SemiBold"/>
+                                                <TextBlock  HorizontalAlignment="Center"
+              Text="{Binding AddOnPrice,StringFormat=C}" Grid.Row="2"
+              FontFamily="{StaticResource BaijamureeFontSemiBoldStyle}">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding AddOnPrice}" Value="0">
+                                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+
+                                            </Grid>
+                                           
                                         </Border>
                                        
                                         <local:ProductCountControl Grid.Row="1" MaxWidth="100"
@@ -176,15 +201,18 @@ CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListBox},
                                 <Setter.Value>
                                     <ControlTemplate TargetType="ListBoxItem">
                                         
-                                            <StackPanel>
+                                            <!--<StackPanel>
                                             <Border x:Name="ItemBorder" CornerRadius="10" BorderThickness="2" >
                                                 <ContentPresenter x:Name="ContentPresenter" HorizontalAlignment="Stretch" />
                                             </Border>
                                             <TextBlock  HorizontalAlignment="Center"
                                                            Text="{Binding InstallationType}"/>
-                                            </StackPanel>
-                                            
-                                       
+                                            </StackPanel>-->
+                                        <Border x:Name="ItemBorder" CornerRadius="10" BorderThickness="2" >
+                                            <ContentPresenter x:Name="ContentPresenter" HorizontalAlignment="Stretch" />
+                                        </Border>
+
+
 
                                         <ControlTemplate.Triggers>
                                             <Trigger Property="IsSelected" Value="True">
