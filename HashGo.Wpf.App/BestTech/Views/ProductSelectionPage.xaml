@@ -311,12 +311,32 @@ Background="Transparent" >
                            VerticalAlignment="Center" Foreground="Black" FontSize="24"
                            FontFamily="{StaticResource BaijamureeFontBoldStyle}"/>
             </Border>
-            <Image Grid.Column="2" Cursor="Hand" Margin="0,0,5,0"
-        Width="70" Height="70"
-        Source="/Resources/Images/ShoppingCart.png" baseControls:MouseClickBehaviour.Command="{Binding ViewCartCommand}"
-        VerticalAlignment="Bottom" HorizontalAlignment="Right" />
+            <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                <Image Grid.Column="1" Cursor="Hand" 
+Width="70" Height="70"
+Source="/Resources/Images/ShoppingCart.png" baseControls:MouseClickBehaviour.Command="{Binding ViewCartCommand}"
+ />
 
+                <StackPanel  VerticalAlignment="Top" Margin="-22,0,50,0" Panel.ZIndex="1000" Orientation="Horizontal">
+                    <!-- Red Circle -->
+                    <Ellipse  Width="28" Height="28" Fill="#FF5050"/>
+                    <TextBlock Text="{Binding SelectedProductsCount}" Foreground="White" FontWeight="SemiBold" FontSize="16"
+                               Margin="-30,0,0,4"
+                               HorizontalAlignment="Center" VerticalAlignment="Center" Panel.ZIndex="2000"/>
 
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SelectedProductsCount}" Value="0">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+                </StackPanel>
+            </StackPanel>
+           
 
         </Grid>
     </Grid>

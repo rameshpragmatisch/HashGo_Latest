@@ -204,6 +204,8 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
             InitializeDataAsync();
             eventAggregator.GetEvent<ClearAllSelectedDataEvent>().Unsubscribe(OnClearData);
             eventAggregator.GetEvent<ClearAllSelectedDataEvent>().Subscribe(OnClearData);
+
+            OnPropertyChanged(nameof(SelectedProductsCount));
         }
 
         public override void ViewUnloaded()
@@ -249,6 +251,11 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
         #endregion
 
         #region Properties
+
+        public int SelectedProductsCount
+        {
+            get { return sharedDataService.SelectedUnits.Count; }
+        }
 
         bool isBusy = false;
         public bool IsBusy 
