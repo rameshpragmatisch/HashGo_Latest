@@ -8,6 +8,7 @@ using HashGo.Domain.DataContext;
 using HashGo.Domain.Models.Base;
 using HashGo.Domain.ViewModels;
 using HashGo.Domain.ViewModels.Base;
+using HashGo.Infrastructure;
 using HashGo.Infrastructure.DataContext;
 using HashGo.Infrastructure.Events;
 using HashGo.Infrastructure.Services;
@@ -53,6 +54,13 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
             NavigateToStoreLocatorsCommand = new RelayCommand(OnNavigateToStoreLocators);
             NavigateToSettingsScreenCommand = new RelayCommand(OnNavigateToSettingsScreen);
             this.sharedDataService = sharedDataService;
+
+            LoadCompanyLogo();
+        }
+
+        async void LoadCompanyLogo()
+        {
+            ImagePath = await retailConnectService.GetCompanyLogo(HashGoAppSettings.LocationId);
         }
 
         void OnNavigateToSettingsScreen()
@@ -125,6 +133,7 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
         public ICommand NavigateToStoreLocatorsCommand { get; private set; }
 
         public ICommand NavigateToSettingsScreenCommand { get; private set; }
+        
 
         #endregion
 
@@ -188,6 +197,18 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
             sharedDataService.ClearData();
             sharedDataService.ClearCustomerData();
             //ApplicationStateContext.CustomerDate = null;
+        }
+
+        string imagePath;
+
+        public string ImagePath 
+        {
+            get => imagePath;
+            set
+            {
+                imagePath = value;
+                OnPropertyChanged();
+            }
         }
     }
 

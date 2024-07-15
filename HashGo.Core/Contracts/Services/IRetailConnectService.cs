@@ -17,5 +17,7 @@ namespace HashGo.Core.Contracts.Services
         Task<IReadOnlyCollection<ServiceUnit>> GetProductsByCategoryAndSubcategoryId(int categoryId, int subCtgryId);
 
         Task<bool> CreateEnquiryRequest(EnquiriesRequestObject enquiriesRequest);
+
+        Task<string> GetCompanyLogo(string LocationId);
     }
 }

@@ -281,5 +281,32 @@ namespace HashGo.Domain.Services
 
             return  false;
         }
+
+        public async Task<string> GetCompanyLogo(string locationId)
+        {
+            try
+            {
+                var client = HttpHelper.GetInstance();
+
+                if (client == null) throw new Exception("Unable to create HttpClient.");
+
+                string? responeString = client.Post(
+                       JsonConvert.SerializeObject(new
+                       {
+                           locationId
+                       }),
+                       ApplicationStateContext.ConnectItem.Url + RetailConnectApiRouterNames.CREATE_ENQUIRY);
+
+                EnquiriesResponseObject result = JsonConvert.DeserializeObject<EnquiriesResponseObject>(responeString);
+
+                if (result != null && result.success && result.result != null)
+                {
+                    return Convert.ToString(result.result);
+                }
+            }
+            catch (Exception ex) { logger.TraceException(ex); }
+
+            return CommonConstants.DEFAULTIMAGE;
+        }
     }
 }

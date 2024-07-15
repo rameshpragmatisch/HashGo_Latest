@@ -14,6 +14,7 @@ public static class RetailConnectApiRouterNames
     public const string GET_PRODUCTS_BY_CTGRYANDSUBCATEGORY_ID = "/api/services/app/product/GetApiProductsByCategoryAndSubCategory";
     public const string GET_PRODUCTS_BY_CATEGORY_ID = "/api/services/app/product/GetApiProductsByCategoryId";
     public const string CREATE_ENQUIRY = "/api/services/app/Enquiry/CreateOrUpdateEnquiry";
+    public const string GET_COMPANY_LOGO = "/api/services/app/company/GetCompanyImageByLocationId";
 }
  
 public static class AppConfigKeys
