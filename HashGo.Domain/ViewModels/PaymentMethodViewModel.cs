@@ -8,6 +8,7 @@ using HashGo.Core.Models;
 using HashGo.Core.Models.BestTech;
 using HashGo.Domain.Helper;
 using HashGo.Domain.Models.Base;
+using HashGo.Infrastructure;
 using HashGo.Infrastructure.DataContext;
 using HashGo.Infrastructure.Events;
 using Prism.Events;
@@ -210,7 +211,7 @@ namespace HashGo.Domain.ViewModels
                 postalCode = Convert.ToString(ApplicationStateContext.CustomerDetailsObj?.PostalCode),
                 unitName = ApplicationStateContext.CustomerDetailsObj?.UnitNo,
                 floorNumber = ApplicationStateContext.CustomerDetailsObj?.FloorNo,
-                locationId = 138,
+                locationId = Convert.ToInt32(HashGoAppSettings.LocationId),
                 netTotal = total,
                 //saleOrderDetails = lstSaleOrderDetails 
             };
