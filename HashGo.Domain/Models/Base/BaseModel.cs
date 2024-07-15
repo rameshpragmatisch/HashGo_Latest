@@ -178,7 +178,7 @@ namespace HashGo.Domain.Models.Base
         public void AddAddOns(IReadOnlyCollection<ServiceUnit> result)
         {
             List<SelectedUnitInstallationType> tmpPlst = new List<SelectedUnitInstallationType>();
-            tmpPlst.Add(new SelectedUnitInstallationType(-1, "No Add-Ons", CommonConstants.NOADDONIAMGE, UnitId,150));
+            tmpPlst.Add(new SelectedUnitInstallationType(-1, "No Add-Ons", CommonConstants.NOADDONIAMGE, UnitId,0));
 
             if (result != null && result.Count > 0)
             {
