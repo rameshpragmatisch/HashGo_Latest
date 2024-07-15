@@ -74,7 +74,10 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
             set
             {
                 enquiries = value;
-                IsEnabled = !string.IsNullOrEmpty(enquiries) && !string.IsNullOrEmpty(phoneNumber) && !string.IsNullOrEmpty(name);
+                IsEnabled = !string.IsNullOrEmpty(enquiries) &&
+                            !string.IsNullOrEmpty(phoneNumber) &&
+                            phoneNumber.Length == 8 &&
+                            !string.IsNullOrEmpty(name);
                 OnPropertyChanged();
             }
         }
@@ -86,7 +89,10 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
             set
             {
                 phoneNumber = value;
-                IsEnabled = !string.IsNullOrEmpty(enquiries) && !string.IsNullOrEmpty(phoneNumber) && !string.IsNullOrEmpty(name);
+                IsEnabled = !string.IsNullOrEmpty(enquiries) &&
+                            !string.IsNullOrEmpty(phoneNumber) &&
+                            phoneNumber.Length == 8 &&
+                            !string.IsNullOrEmpty(name);
                 OnPropertyChanged();
             }
         }
@@ -99,7 +105,10 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
             set
             {
                 name = value;
-                IsEnabled = !string.IsNullOrEmpty(enquiries) && !string.IsNullOrEmpty(phoneNumber) && !string.IsNullOrEmpty(name);
+                IsEnabled = !string.IsNullOrEmpty(enquiries) &&
+                            !string.IsNullOrEmpty(phoneNumber) &&
+                            phoneNumber.Length == 8 &&
+                            !string.IsNullOrEmpty(name);
                 OnPropertyChanged();
             }
         }
