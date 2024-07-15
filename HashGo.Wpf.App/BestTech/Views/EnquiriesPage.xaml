@@ -49,6 +49,7 @@
             <RowDefinition Height="0.4*"/>
             <RowDefinition Height="0.6*"/>
             <RowDefinition Height="0.23*"/>
+            <RowDefinition Height="0.23*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition />
         </Grid.RowDefinitions>
@@ -81,7 +82,22 @@
         </Grid>
 
         <Grid HorizontalAlignment="Stretch"
-      Grid.Row="2" Grid.Column="1" Margin="0,25,0,0">
+Grid.Row="2" Grid.Column="1" Margin="0,25,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition  Height="Auto"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock  Text="Name" FontWeight="SemiBold"/>
+
+            <TextBox  Grid.Row="1" Style="{StaticResource RoundedTextBoxWithShadowStyle}" 
+                      KeyDown="TextBox_KeyDown_1"
+ Text="{Binding Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+            </TextBox>
+        </Grid>
+
+
+        <Grid HorizontalAlignment="Stretch"
+      Grid.Row="3" Grid.Column="1" Margin="0,25,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition  Height="Auto"/>
                 <RowDefinition />
@@ -99,10 +115,10 @@
         </Grid>
 
        
-        <ToggleButton Grid.Row="3" Grid.Column="1" Width="257" 
+        <ToggleButton Grid.Row="4" Grid.Column="1" Width="257" 
                Background="Gray" Margin="20,10,10,10"
                Content="Submit" IsEnabled="{Binding IsEnabled,Mode=TwoWay}"
-               Command="{Binding NextScreenCommand}"
+               Command="{Binding SubmitEnquiryCommand}"
                HorizontalAlignment="Center"
                VerticalAlignment="Center" Foreground="White"/>
     </Grid>

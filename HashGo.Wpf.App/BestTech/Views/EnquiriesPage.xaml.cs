@@ -102,6 +102,19 @@ namespace HashGo.Wpf.App.BestTech.Views
             e.Handled = !IsTextValid(newText);
         }
 
+        void MoveFocusToNextTextBox(UIElement currentUIElement)
+        {
+            TraversalRequest traversalRequest = new TraversalRequest(FocusNavigationDirection.Next);
+            UIElement nextElement = currentUIElement;
+
+            do
+            {
+                nextElement.MoveFocus(traversalRequest);
+                nextElement = Keyboard.FocusedElement as UIElement;
+            }
+            while (nextElement is TextBlock);
+        }
+
         #region touch keyboard
 
         [ComImport, Guid("4ce576fa-83dc-4F88-951c-9d0782b4e376")]
@@ -120,5 +133,13 @@ namespace HashGo.Wpf.App.BestTech.Views
         static extern IntPtr GetDesktopWindow();
 
         #endregion
+
+        private void TextBox_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                MoveFocusToNextTextBox((UIElement)sender);
+            }
+        }
     }
 }

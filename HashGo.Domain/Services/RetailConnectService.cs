@@ -3,6 +3,7 @@ using HashGo.Core.Contracts.StoreService;
 using HashGo.Core.Models;
 using HashGo.Core.Models.BestTech;
 using HashGo.Domain.DataContext;
+using HashGo.Domain.Models.Base;
 using HashGo.Infrastructure;
 using HashGo.Infrastructure.Common;
 using HashGo.Infrastructure.DataContext;
@@ -10,6 +11,7 @@ using HashGo.Infrastructure.HttpHelper;
 using Newtonsoft.Json;
 using System.IO;
 using System.Linq;
+using Category = HashGo.Core.Models.BestTech.Category;
 
 namespace HashGo.Domain.Services
 {
@@ -251,6 +253,33 @@ namespace HashGo.Domain.Services
             }
 
             return new List<ServiceUnit>();
+        }
+
+        public async Task<bool> CreateEnquiryRequest(EnquiriesRequestObject enquiriesRequest)
+        {
+            try
+            {
+                var client = HttpHelper.GetInstance();
+
+                if (client == null) throw new Exception("Unable to create HttpClient.");
+
+                string? responeString = client.Post(
+                       JsonConvert.SerializeObject(new
+                       {
+                           enquiriesRequest.enquiry
+                       }),
+                       ApplicationStateContext.ConnectItem.Url + RetailConnectApiRouterNames.CREATE_ENQUIRY);
+
+                EnquiriesResponseObject result = JsonConvert.DeserializeObject<EnquiriesResponseObject>(responeString);
+
+                if (result != null && result.success && result.result != null)
+                {
+                    return true;
+                }
+            }
+            catch(Exception ex) { logger.TraceException(ex);}
+
+            return  false;
         }
     }
 }

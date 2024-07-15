@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using HashGo.Core.Contracts.Services;
 using HashGo.Core.Contracts.Views;
 using HashGo.Core.Enum;
 using HashGo.Domain.DataContext;
+using HashGo.Domain.Services;
 using HashGo.Domain.ViewModels.Base;
 using System;
 using System.Collections.Generic;
@@ -15,29 +17,43 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
     public class EnquiriesPageViewModel : BaseViewModel
     {
         INavigationService navigationService;
+        IRetailConnectService retailConnectService;
 
-        public EnquiriesPageViewModel(INavigationService navigationService)
+        public EnquiriesPageViewModel(INavigationService navigationService,IRetailConnectService retailConnectService)
         {
             this.navigationService = navigationService;
+            this.retailConnectService = retailConnectService;
 
             PreviousScreenCommand = new RelayCommand(OnPreviousScreenClicked);
-            NextScreenCommand = new RelayCommand(OnMoveToNextScreen);
+            SubmitEnquiryCommand = new RelayCommand(OnSubmitEnquiry);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        void OnMoveToNextScreen()
+         async void OnSubmitEnquiry()
         {
             //TODO: Service method to raise a enquiry
+             var result =await retailConnectService.CreateEnquiryRequest(new Core.Models.EnquiriesRequestObject()
+            {
+                  enquiry = new Core.Models.EnquiryRequest()
+                  {
+                       name = this.Name,
+                        message = this.Enquiries,
+                         phoneNo = this.PhoneNumber,
+                  }
+            });
 
-            var parameters = new Dictionary<string, object>
+            if (result)
+            {
+                var parameters = new Dictionary<string, object>
             {
                 { "IsEnquiry", true },
             };
 
-            //Navigate to EnquiriesConfirmed screen 
-            navigationService.NavigateToAsync(Pages.PurchaseSucceded.ToString(), parameters);
+                //Navigate to EnquiriesConfirmed screen 
+                navigationService.NavigateToAsync(Pages.PurchaseSucceded.ToString(), parameters);
+            }
         }
 
         /// <summary>
@@ -58,7 +74,7 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
             set
             {
                 enquiries = value;
-                IsEnabled = !string.IsNullOrEmpty(enquiries) && !string.IsNullOrEmpty(phoneNumber);
+                IsEnabled = !string.IsNullOrEmpty(enquiries) && !string.IsNullOrEmpty(phoneNumber) && !string.IsNullOrEmpty(name);
                 OnPropertyChanged();
             }
         }
@@ -70,10 +86,24 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
             set
             {
                 phoneNumber = value;
-                IsEnabled = !string.IsNullOrEmpty(enquiries) && !string.IsNullOrEmpty(phoneNumber);
+                IsEnabled = !string.IsNullOrEmpty(enquiries) && !string.IsNullOrEmpty(phoneNumber) && !string.IsNullOrEmpty(name);
                 OnPropertyChanged();
             }
-        }   
+        }
+
+        string name;
+
+        public string Name 
+        {
+            get => name;
+            set
+            {
+                name = value;
+                IsEnabled = !string.IsNullOrEmpty(enquiries) && !string.IsNullOrEmpty(phoneNumber) && !string.IsNullOrEmpty(name);
+                OnPropertyChanged();
+            }
+        }
+
 
         bool isEnabled = false;
         public bool IsEnabled
@@ -91,13 +121,15 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
         #region Commands
 
         public ICommand PreviousScreenCommand { get; private set; }
-        public ICommand NextScreenCommand { get; private set; }
+        public ICommand SubmitEnquiryCommand { get; private set; }
+        
 
         #endregion
         public override void ViewLoaded()
         {
             this.Enquiries = null;
             this.PhoneNumber = null;
+            this.Name = null;
         }
     }
 }

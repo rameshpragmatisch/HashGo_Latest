@@ -15,5 +15,7 @@ namespace HashGo.Core.Contracts.Services
         Task<TransactionDetails> CreateSalesOrderWithPayment(SalesOrderRequest saleOrder);
 
         Task<IReadOnlyCollection<ServiceUnit>> GetProductsByCategoryAndSubcategoryId(int categoryId, int subCtgryId);
+
+        Task<bool> CreateEnquiryRequest(EnquiriesRequestObject enquiriesRequest);
     }
 }
