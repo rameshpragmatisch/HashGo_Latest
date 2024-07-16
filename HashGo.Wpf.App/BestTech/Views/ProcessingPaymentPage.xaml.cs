@@ -92,7 +92,7 @@ namespace HashGo.Wpf.App.BestTech.Views
 
             this.Unloaded += (sender, e) =>
             {
-                timer.Stop();
+                timer?.Stop();
                 timer = null;
             };
         }

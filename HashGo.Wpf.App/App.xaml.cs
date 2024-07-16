@@ -217,7 +217,7 @@ public partial class App : Application
         services.AddSingleton<QRPaymentPage>();
         services.AddSingleton<QRPaymentPageViewModel>();
         services.AddSingleton<ProcessingPaymentPage>();
-        services.AddSingleton<PurchaseConfirmedPage>();
+        services.AddTransient<PurchaseConfirmedPage>();
         services.AddSingleton<PurchaseFailedPage>();
         services.AddSingleton<ItemAddedPage>();
         services.AddTransient<VirtualKeyboard>();

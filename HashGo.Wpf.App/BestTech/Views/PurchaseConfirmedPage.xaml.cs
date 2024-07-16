@@ -1,5 +1,6 @@
 ﻿using HashGo.Core.Contracts.Views;
 using HashGo.Core.Enum;
+using HashGo.Infrastructure.DataContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,6 +55,8 @@ namespace HashGo.Wpf.App.BestTech.Views
         }
 
         public bool IsEnquiry { get; set; } = false;
+
+        public string TransactionNo { get { return ApplicationStateContext.TransactionNo; } }
        
     }
 }
