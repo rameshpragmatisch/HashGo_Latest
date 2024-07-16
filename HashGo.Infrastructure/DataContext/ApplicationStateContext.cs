@@ -1,4 +1,5 @@
 ﻿using HashGo.Core.Db;
+using HashGo.Core.Models;
 using HashGo.Infrastructure;
 using HashGo.Infrastructure.Models;
 using Newtonsoft.Json.Linq;
@@ -16,7 +17,10 @@ namespace HashGo.Infrastructure.DataContext
         public static bool IsMorningTime = false;
         public static bool IsEveningTime = false;
         public static TenantConnect ConnectItem = null;
-        public static readonly int IdleTimeOutInSecs = 30; 
+        public static readonly int IdleTimeOutInSecs = 30;
+        public static SalesOrderRequest SalesOrderRequestObject { get; set; }
+        public static PaymentMethod PaymentMethodObject { get; set; }
+        public static string TransactionNo { get; set; }
 
         static ApplicationStateContext()
         {
@@ -30,6 +34,9 @@ namespace HashGo.Infrastructure.DataContext
             CustomerDetailsObj = null;
             IsMorningTime = false;
             IsEveningTime = false;
+            SalesOrderRequestObject = null;
+            PaymentMethodObject = null;
+            TransactionNo = null;
         }
 
         public static void LoadSettings()
