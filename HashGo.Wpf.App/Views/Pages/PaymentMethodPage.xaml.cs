@@ -5,6 +5,7 @@ using HashGo.Wpf.App.BestTech.Views;
 using HashGo.Wpf.App.Services;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,19 @@ namespace HashGo.Wpf.App.Views.Pages
         {
             InitializeComponent();
             this.DataContext = viewModel;
+
+            this.Loaded += (sender, e) =>
+            {
+                Process[] oskProcesses = Process.GetProcessesByName("TabTip");
+
+                if (oskProcesses?.Length > 0)
+                {
+                    foreach (Process process in oskProcesses)
+                    {
+                        process.Kill();
+                    }
+                }
+            };
         }
     }
 }

@@ -75,7 +75,16 @@ namespace HashGo.Wpf.App.BestTech.Views
                 }
 
                 ApplicationStateContext.TransactionNo = transactionNo;
-                navigationService.NavigateToAsync(Pages.PurchaseSucceded.ToString());
+
+                if(!string.IsNullOrEmpty(transactionNo))
+                {
+                    navigationService.NavigateToAsync(Pages.PurchaseSucceded.ToString());
+                }
+                else
+                {
+                    navigationService.NavigateToAsync(Pages.PurchaseFailed.ToString());
+                }
+                
 
                 //timer = new DispatcherTimer()
                 //{
