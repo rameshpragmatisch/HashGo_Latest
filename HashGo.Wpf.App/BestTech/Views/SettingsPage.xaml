@@ -315,9 +315,16 @@ CornerRadius="9" Grid.Column="0" Grid.ColumnSpan="2">
                     <Border Grid.Column="1" Grid.Row="0"  CornerRadius="12"
                     HorizontalAlignment="Stretch"  Margin="2,15,10,10"
                     VerticalAlignment="Stretch" >
-                        <TextBox  Foreground="Black" Background="White"
+                        <TextBox  Foreground="Black" Background="White"  
                  VerticalContentAlignment="Center" Text="{Binding BackgroundImage,UpdateSourceTrigger=PropertyChanged}"
-                 BorderThickness="0" />
+                 BorderThickness="0" >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
+                                    <i:InvokeCommandAction Command="{Binding SelectBackgroundImageCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                           
+                        </TextBox>
                     </Border>
 
                     <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left"

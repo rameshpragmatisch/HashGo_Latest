@@ -19,6 +19,12 @@ namespace HashGo.Infrastructure
         public static string SortOrder { get; set; }
         public static string PaymentScreenVisibleDelay { get; set; } = "10";
         public static string NETSPort { get; set; }
+        public static string BackgroundImage { get; set; }
+        public static string CurrencySymbol { get; set; }
+        public static string MenuBackgroundTransparency { get; set; }
+        public static bool ShowLanguageSelection { get; set; }
+        public static bool ShowMemberButton { get; set; }
+        public static string PrinterName { get; set; }
 
         private static AppSettingsSection appSettingSection;
         private static Configuration configFile;
@@ -53,6 +59,12 @@ namespace HashGo.Infrastructure
             PaymentScreenVisibleDelay = appSettingSection.Settings[nameof(PaymentScreenVisibleDelay)]?.Value;
             NETSPort = appSettingSection.Settings[nameof(NETSPort)]?.Value;
 
+            BackgroundImage = appSettingSection.Settings[nameof(BackgroundImage)]?.Value;
+            CurrencySymbol = appSettingSection.Settings[nameof(CurrencySymbol)]?.Value;
+            MenuBackgroundTransparency = appSettingSection.Settings[nameof(MenuBackgroundTransparency)]?.Value;
+            ShowLanguageSelection = Convert.ToBoolean(appSettingSection.Settings[nameof(ShowLanguageSelection)]?.Value);
+            ShowMemberButton = Convert.ToBoolean(appSettingSection.Settings[nameof(ShowMemberButton)]?.Value);
+            PrinterName = appSettingSection.Settings[nameof(PrinterName)]?.Value;
         }
 
         public static void SaveSettings()
@@ -67,6 +79,13 @@ namespace HashGo.Infrastructure
             AddOrUpdateAppSettings(nameof(SortOrder), SortOrder);
             AddOrUpdateAppSettings(nameof(PaymentScreenVisibleDelay), PaymentScreenVisibleDelay);
             AddOrUpdateAppSettings(nameof(NETSPort), NETSPort);
+
+            AddOrUpdateAppSettings(nameof(BackgroundImage), BackgroundImage);
+            AddOrUpdateAppSettings(nameof(CurrencySymbol), CurrencySymbol);
+            AddOrUpdateAppSettings(nameof(MenuBackgroundTransparency), MenuBackgroundTransparency);
+            AddOrUpdateAppSettings(nameof(ShowLanguageSelection), ShowLanguageSelection.ToString());
+            AddOrUpdateAppSettings(nameof(ShowMemberButton), ShowMemberButton.ToString());
+            AddOrUpdateAppSettings(nameof(PrinterName), PrinterName);
 
             LoadSettings();
         }
