@@ -13,6 +13,8 @@ using HashGo.Infrastructure.DataContext;
 using HashGo.Infrastructure.HttpHelper;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -123,6 +125,92 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
             }
         }
 
+        private ObservableCollection<string> _printerNameList;
+
+        public ObservableCollection<string> PrinterNameList
+        {
+            get
+            {
+                if (_printerNameList == null)
+                {
+                    _printerNameList = new ObservableCollection<string>();
+
+                    foreach (string printer in PrinterSettings.InstalledPrinters) _printerNameList.Add(printer);
+                }
+
+                return _printerNameList;
+            }
+        }
+
+        string printerName;
+        public string PrinterName
+        {
+            get => printerName;
+            set
+            {
+                printerName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        string backgroundImage;
+
+        public string BackgroundImage 
+        {
+            get => backgroundImage;
+            set
+            {
+                backgroundImage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        bool showLanguageSelection;
+        public bool ShowLanguageSelection
+        {
+            get => showLanguageSelection;
+            set
+            {
+                showLanguageSelection = value;
+                OnPropertyChanged();
+            }
+        }
+
+        bool showMemberButton;
+
+        public bool ShowMemberButton
+        {
+            get => showMemberButton;
+            set
+            {
+                showMemberButton = value;
+                OnPropertyChanged();
+            }
+        }
+
+        string currencySymbol;
+
+        public string CurrencySymbol
+        {
+            get => currencySymbol;
+            set
+            {
+                currencySymbol = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double menuBackgroundTransparency = 0;
+        public double MenuBackgroundTransparency
+        {
+            get => menuBackgroundTransparency;
+            set
+            {
+                menuBackgroundTransparency = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region Commands
@@ -130,8 +218,6 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
         public ICommand PreviousScreenCommand { get; private set; }
         public ICommand AddOrUpdateTenantCommand { get; private set; }
         public ICommand CancelCommand { get; private set; }
-        
-
         #endregion
     }
 }

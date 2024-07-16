@@ -295,13 +295,13 @@ namespace HashGo.Domain.Services
                        {
                            locationId
                        }),
-                       ApplicationStateContext.ConnectItem.Url + RetailConnectApiRouterNames.CREATE_ENQUIRY);
+                       ApplicationStateContext.ConnectItem.Url + RetailConnectApiRouterNames.GET_COMPANY_LOGO);
 
-                EnquiriesResponseObject result = JsonConvert.DeserializeObject<EnquiriesResponseObject>(responeString);
+                CompanyLogoResponseObject result = JsonConvert.DeserializeObject<CompanyLogoResponseObject>(responeString);
 
-                if (result != null && result.success && result.result != null)
+                if (result != null && result.success && !string.IsNullOrEmpty(result.result))
                 {
-                    return Convert.ToString(result.result);
+                    return result.result;
                 }
             }
             catch (Exception ex) { logger.TraceException(ex); }
