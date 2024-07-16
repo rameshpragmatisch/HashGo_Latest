@@ -48,6 +48,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="0.06*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="0.1*" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Margin="10,20,0,0" 
@@ -282,116 +283,122 @@ CornerRadius="9" Grid.Column="0" Grid.ColumnSpan="2">
                         </Border>
 
                     </Grid>
-
-                    <Grid Grid.Row="1" >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-
-                        <Border Background="#00B5CB" Focusable="True" Margin="5"
-Cursor="Hand"  Height="60"
-Grid.Column="0" 
-HorizontalAlignment="Stretch" VerticalAlignment="Center" 
-CornerRadius="8">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
-                                    <i:InvokeCommandAction Command="{Binding CancelCommand}" />
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                            <TextBlock Text="Cancel" HorizontalAlignment="Center"
-       VerticalAlignment="Center" Foreground="White" />
-                        </Border>
-
-                        <Border Background="#00B5CB" Focusable="True"
-Cursor="Hand"  Margin="5"
-Grid.Column="1" 
-HorizontalAlignment="Stretch" VerticalAlignment="Center" 
- Height="60"
-CornerRadius="8">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
-                                    <i:InvokeCommandAction Command="{Binding AddOrUpdateTenantCommand}" />
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                            <TextBlock Text="Save" HorizontalAlignment="Center"
-       VerticalAlignment="Center" Foreground="White" />
-                        </Border>
-                    </Grid>
                 </Grid>
     </TabItem>
+            <TabItem Header="Printer Settings" Width="120" Height="40">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
 
-    <TabItem Header="Printer Settings" Width="120" Height="40">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Set Background Image" FontWeight="Bold" VerticalAlignment="Center" />
-                    <TextBox Text="{Binding BackgroundImage}" Margin="10" >
-                        <!--<i:Interaction.Triggers>
-                            <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
-                                <i:InvokeCommandAction Command="{Binding DataContext.RemoveUnitCommand,RelativeSource={RelativeSource AncestorType=baseControls:BasePage}}"
-                          CommandParameter="{Binding}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>-->
-                        
-                        <!--<i:Interaction.Behaviors>
-                           
-                            <ia:EventTriggerBehavior EventName="PointerReleased" SourceObject="{Binding #self}">
-                                <ia:InvokeCommandAction Command="{Binding SetBackgroundImageCommand}"/>
-                            </ia:EventTriggerBehavior>
-                        </i:Interaction.Behaviors>-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
-                        <!--<TextBox.Style>
-                            <Style TargetType="TextBox">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="TextBox">
-                                            <Grid>
-                                                <ScrollViewer x:Name="PART_ContentHost"/>
-                                                <TextBlock x:Name="Watermark"
-                                               Text="Set Background Image"
-                                               Foreground="LightGray"
-                                               VerticalAlignment="Center"
-                                               Margin="5,0,0,0"
-                                               IsHitTestVisible="False"/>
-                                            </Grid>
-                                            <ControlTemplate.Triggers>
-                                                <Trigger Property="Text" Value="">
-                                                    <Setter TargetName="Watermark" Property="Visibility" Value="Visible"/>
-                                                </Trigger>
-                                                <Trigger Property="Text" Value="{x:Null}">
-                                                    <Setter TargetName="Watermark" Property="Visibility" Value="Visible"/>
-                                                </Trigger>
-                                                <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
-                                                    <Setter TargetName="Watermark" Property="Visibility" Value="Visible"/>
-                                                </Trigger>
-                                                <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
-                                                    <Setter TargetName="Watermark" Property="Visibility" Value="Collapsed"/>
-                                                </Trigger>
-                                            </ControlTemplate.Triggers>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </TextBox.Style>-->
-                    </TextBox>
-                    <StackPanel Orientation="Horizontal" Margin="10" VerticalAlignment="Center">
-                        <TextBlock Text="Currency Symbol" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
-                        <TextBox Text="{Binding CurrencySymbol}" Margin="10" Width="120"></TextBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="10" VerticalAlignment="Center">
-                        <TextBlock Text="Menu Background Transparency" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
-                        <Slider x:Name="PART_Slider" Value="{Binding MenuBackgroundTransparency,Mode=TwoWay}" Width="200" Minimum="0" Maximum="1" VerticalAlignment="Center" Margin="20 0 0 0" Cursor="Hand" ></Slider>
-                        <TextBlock Margin="10 0 0 0" Text="{Binding Value, ElementName=PART_Slider,StringFormat=\{0:0.00\}}" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
-                    </StackPanel>
+                    <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left"
+      VerticalAlignment="Center" Foreground="White" Margin="25,0,0,0"
+              Panel.ZIndex="1000"
+      FontWeight="Bold" Text="Set Background Image"/>
+                    <Border BorderBrush="#8C97C4" BorderThickness="1"
+           Background="#8C97C4" Grid.Row="0" Margin="0,5,0,0"
+CornerRadius="9" Grid.Column="0" Grid.ColumnSpan="2">
+                    </Border>
+                    <Border Grid.Column="1" Grid.Row="0"  CornerRadius="12"
+                    HorizontalAlignment="Stretch"  Margin="2,15,10,10"
+                    VerticalAlignment="Stretch" >
+                        <TextBox  Foreground="Black" Background="White"
+                 VerticalContentAlignment="Center" Text="{Binding BackgroundImage,UpdateSourceTrigger=PropertyChanged}"
+                 BorderThickness="0" />
+                    </Border>
 
-                    <CheckBox Content="Show Language Selection" Margin="10" FontWeight="Bold" IsChecked="{Binding ShowLanguageSelection}"></CheckBox>
-                    <CheckBox Content="Show Membership button" Margin="10" FontWeight="Bold" IsChecked="{Binding ShowMemberButton}"></CheckBox>
+                    <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left"
+      VerticalAlignment="Center" Foreground="White" Margin="25,0,0,0"
+              Panel.ZIndex="1000"
+      FontWeight="Bold" Text="Currency Symbol"/>
+                    <Border BorderBrush="#8C97C4" BorderThickness="1"
+           Background="#8C97C4" Grid.Row="1" Margin="0,5,0,0"
+CornerRadius="9" Grid.Column="0" Grid.ColumnSpan="2">
+                    </Border>
+                    <Border Grid.Column="1" Grid.Row="1"  CornerRadius="12"
+                    HorizontalAlignment="Stretch"  Margin="2,15,10,10"
+                    VerticalAlignment="Stretch" >
+                        <TextBox  Foreground="Black" Background="White" 
+                 VerticalContentAlignment="Center" Text="{Binding CurrencySymbol,UpdateSourceTrigger=PropertyChanged}"
+                 BorderThickness="0" />
+                    </Border>
 
-                     <StackPanel Orientation="Vertical">
-                        <ComboBox Margin="10"  HorizontalAlignment="Stretch" IsEditable="True"
-                                  Text="Select Printer"
-                          ItemsSource="{Binding PrinterNameList}" SelectedItem="{Binding PrinterName}"></ComboBox>
-                    </StackPanel>
-                </StackPanel>
+                    <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left"
+      VerticalAlignment="Center" Foreground="White" Margin="25,0,0,0"
+              Panel.ZIndex="1000"
+      FontWeight="Bold" Text="Menu Background Transparency"/>
+                    <Border BorderBrush="#8C97C4" BorderThickness="1"
+           Background="#8C97C4" Grid.Row="2" Margin="0,5,0,0"
+CornerRadius="9" Grid.Column="0" Grid.ColumnSpan="2">
+                    </Border>
+                    <Border Grid.Column="1" Grid.Row="2"  CornerRadius="12"
+                    HorizontalAlignment="Stretch"  Margin="2,15,10,10"
+                    VerticalAlignment="Stretch" >
+                        <StackPanel Orientation="Horizontal" Margin="10" VerticalAlignment="Center">
+                            <Slider x:Name="PART_Slider" Value="{Binding MenuBackgroundTransparency,Mode=TwoWay}" Width="200" Minimum="0" 
+                                    Maximum="1" VerticalAlignment="Center"  Cursor="Hand" ></Slider>
+                            <TextBlock Margin="10 0 0 0" 
+                                       Text="{Binding Value, ElementName=PART_Slider,StringFormat=\{0:0.00\}}" 
+                                       FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </Border>
+
+                    <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left"
+      VerticalAlignment="Center" Foreground="White" Margin="25,0,0,0"
+              Panel.ZIndex="1000"
+      FontWeight="Bold" Text="Show Language Selection"/>
+                    <Border BorderBrush="#8C97C4" BorderThickness="1"
+           Background="#8C97C4" Grid.Row="3" Margin="0,5,0,0"
+CornerRadius="9" Grid.Column="0" Grid.ColumnSpan="2">
+                    </Border>
+                    <Border Grid.Column="1" Grid.Row="3"  CornerRadius="12"
+                    HorizontalAlignment="Stretch"  Margin="2,15,10,10"
+                    VerticalAlignment="Stretch" >
+                        <CheckBox  FontWeight="Bold" IsChecked="{Binding ShowLanguageSelection}" VerticalAlignment="Center"></CheckBox>
+                    </Border>
+
+                    <TextBlock Grid.Column="0" Grid.Row="4" HorizontalAlignment="Left"
+      VerticalAlignment="Center" Foreground="White" Margin="25,0,0,0"
+              Panel.ZIndex="1000"
+      FontWeight="Bold" Text="Show Membership button"/>
+                    <Border BorderBrush="#8C97C4" BorderThickness="1"
+           Background="#8C97C4" Grid.Row="4" Margin="0,5,0,0"
+CornerRadius="9" Grid.Column="0" Grid.ColumnSpan="2">
+                    </Border>
+                    <Border Grid.Column="1" Grid.Row="4"  CornerRadius="12"
+                    HorizontalAlignment="Stretch"  Margin="2,15,10,10"
+                    VerticalAlignment="Stretch" >
+                        <CheckBox  FontWeight="Bold" IsChecked="{Binding ShowMemberButton}" VerticalAlignment="Center"></CheckBox>
+                    </Border>
+
+                    <TextBlock Grid.Column="0" Grid.Row="5" HorizontalAlignment="Left"
+      VerticalAlignment="Center" Foreground="White" Margin="25,0,0,0"
+              Panel.ZIndex="1000"
+      FontWeight="Bold" Text="Select Printer"/>
+                    <Border BorderBrush="#8C97C4" BorderThickness="1"
+           Background="#8C97C4" Grid.Row="5" Margin="0,5,0,0"
+CornerRadius="9" Grid.Column="0" Grid.ColumnSpan="2">
+                    </Border>
+                    <Border Grid.Column="1" Grid.Row="5"  CornerRadius="12"
+                    HorizontalAlignment="Stretch"  Margin="2,15,10,10"
+                    VerticalAlignment="Stretch" >
+                        <ComboBox   HorizontalAlignment="Stretch" 
+                            ItemsSource="{Binding PrinterNameList}" SelectedItem="{Binding PrinterName}"></ComboBox>
+                    </Border>
+                </Grid>
             </TabItem>
 
             <TabItem Header="Nets" Width="120" Height="40">
@@ -440,50 +447,48 @@ CornerRadius="9" Grid.Column="0" Grid.ColumnSpan="2">
                         </Border>
                     </Grid>
 
-                    <Grid Grid.Row="1" >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-
-                        <Border Background="#00B5CB" Focusable="True" Margin="5"
-Cursor="Hand"  Height="60"
-Grid.Column="0" 
-HorizontalAlignment="Stretch" VerticalAlignment="Center" 
-CornerRadius="8">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
-                                    <i:InvokeCommandAction Command="{Binding CancelCommand}" />
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                            <TextBlock Text="Cancel" HorizontalAlignment="Center"
-       VerticalAlignment="Center" Foreground="White" />
-                        </Border>
-
-                        <Border Background="#00B5CB" Focusable="True"
-Cursor="Hand"  Margin="5"
-Grid.Column="1" 
-HorizontalAlignment="Stretch" VerticalAlignment="Center" 
- Height="60"
-CornerRadius="8">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
-                                    <i:InvokeCommandAction Command="{Binding AddOrUpdateTenantCommand}" />
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                            <TextBlock Text="Save" HorizontalAlignment="Center"
-       VerticalAlignment="Center" Foreground="White" />
-                        </Border>
-                    </Grid>
-
 
                 </Grid>
                 
             </TabItem>
         </TabControl>
 
+        <Grid Grid.Row="2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
 
-       
+            <Border Background="#00B5CB" Focusable="True" Margin="5"
+Cursor="Hand"  Height="60"
+Grid.Column="0" 
+HorizontalAlignment="Stretch" VerticalAlignment="Center" 
+CornerRadius="8">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
+                        <i:InvokeCommandAction Command="{Binding CancelCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <TextBlock Text="Cancel" HorizontalAlignment="Center"
+       VerticalAlignment="Center" Foreground="White" />
+            </Border>
+
+            <Border Background="#00B5CB" Focusable="True"
+Cursor="Hand"  Margin="5"
+Grid.Column="1" 
+HorizontalAlignment="Stretch" VerticalAlignment="Center" 
+ Height="60"
+CornerRadius="8">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
+                        <i:InvokeCommandAction Command="{Binding AddOrUpdateTenantCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <TextBlock Text="Save" HorizontalAlignment="Center"
+       VerticalAlignment="Center" Foreground="White" />
+            </Border>
+        </Grid>
+
     </Grid>
     
     
