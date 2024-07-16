@@ -54,6 +54,7 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
             HashGoAppSettings.TenantId = ConnectItem.TenantId;
             HashGoAppSettings.SortOrder = ConnectItem.SortOrder.ToString();
             HashGoAppSettings.PaymentScreenVisibleDelay = ConnectItem.PaymentScreenVisibleDelay;
+            HashGoAppSettings.NETSPort = ConnectItem.NETSPort;
 
             HashGoAppSettings.SaveSettings();
             ConnectItem = new TenantConnect();
@@ -80,6 +81,7 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
         {
             HashGoAppSettings.LoadSettings();
             ApplicationStateContext.LoadSettings();
+            SelectedTabIndex = 0;
 
             this.ConnectItem = new TenantConnect()
             {
@@ -91,7 +93,8 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
                 LocationId = ApplicationStateContext.ConnectItem?.LocationId,
                 TenantId = ApplicationStateContext.ConnectItem?.TenantId,
                 SortOrder = (ApplicationStateContext.ConnectItem?.SortOrder == 0)?0: Convert.ToInt32(ApplicationStateContext.ConnectItem?.SortOrder),
-                PaymentScreenVisibleDelay = ApplicationStateContext.ConnectItem?.PaymentScreenVisibleDelay
+                PaymentScreenVisibleDelay = ApplicationStateContext.ConnectItem?.PaymentScreenVisibleDelay,
+                 NETSPort = HashGoAppSettings.NETSPort
             };
         }
 
@@ -109,15 +112,16 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
             }
         }
 
-        //public TenantConnect ConnectItem 
-        //{
-        //    get => connectItem;
-        //    set
-        //    {
-        //        connectItem = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
+        int selectedTabIndex = 0;
+        public int SelectedTabIndex
+        {
+            get => selectedTabIndex;
+            set
+            {
+                selectedTabIndex = value;
+                OnPropertyChanged();
+            }
+        }
 
         #endregion
 
@@ -126,6 +130,7 @@ namespace HashGo.Wpf.App.BestTech.ViewModels
         public ICommand PreviousScreenCommand { get; private set; }
         public ICommand AddOrUpdateTenantCommand { get; private set; }
         public ICommand CancelCommand { get; private set; }
+        
 
         #endregion
     }

@@ -18,6 +18,7 @@ namespace HashGo.Infrastructure
         public static string LocationId { get; set; }
         public static string SortOrder { get; set; }
         public static string PaymentScreenVisibleDelay { get; set; } = "10";
+        public static string NETSPort { get; set; }
 
         private static AppSettingsSection appSettingSection;
         private static Configuration configFile;
@@ -50,6 +51,7 @@ namespace HashGo.Infrastructure
             SortOrder = appSettingSection.Settings[nameof(SortOrder)]?.Value;
 
             PaymentScreenVisibleDelay = appSettingSection.Settings[nameof(PaymentScreenVisibleDelay)]?.Value;
+            NETSPort = appSettingSection.Settings[nameof(NETSPort)]?.Value;
 
         }
 
@@ -64,6 +66,7 @@ namespace HashGo.Infrastructure
             AddOrUpdateAppSettings(nameof(LocationId), LocationId);
             AddOrUpdateAppSettings(nameof(SortOrder), SortOrder);
             AddOrUpdateAppSettings(nameof(PaymentScreenVisibleDelay), PaymentScreenVisibleDelay);
+            AddOrUpdateAppSettings(nameof(NETSPort), NETSPort);
 
             LoadSettings();
         }

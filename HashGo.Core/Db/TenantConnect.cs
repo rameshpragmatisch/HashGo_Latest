@@ -36,4 +36,5 @@ public class TenantConnect : BaseEntity
     }
 
     public string PaymentScreenVisibleDelay { get; set; }
+    public string NETSPort { get; set; }
 }
