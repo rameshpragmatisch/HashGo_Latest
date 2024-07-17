@@ -76,27 +76,27 @@ namespace HashGo.Wpf.App.BestTech.Views
 
                 ApplicationStateContext.TransactionNo = transactionNo;
 
-                if(!string.IsNullOrEmpty(transactionNo))
+               
+
+
+                timer = new DispatcherTimer()
                 {
-                    navigationService.NavigateToAsync(Pages.PurchaseSucceded.ToString());
-                }
-                else
+                    Interval = TimeSpan.FromSeconds(4),
+                };
+
+                timer.Tick += (sender, e) =>
                 {
-                    navigationService.NavigateToAsync(Pages.PurchaseFailed.ToString());
-                }
-                
+                    if (!string.IsNullOrEmpty(transactionNo))
+                    {
+                        navigationService.NavigateToAsync(Pages.PurchaseSucceded.ToString());
+                    }
+                    else
+                    {
+                        navigationService.NavigateToAsync(Pages.PurchaseFailed.ToString());
+                    }
+                };
 
-                //timer = new DispatcherTimer()
-                //{
-                //    Interval = TimeSpan.FromSeconds(5),
-                //};
-
-                //timer.Tick += (sender, e) =>
-                //{
-                //    navigationService.NavigateToAsync(Pages.PurchaseSucceded.ToString());
-                //};
-
-                //timer.Start();
+                timer.Start();
             };
 
             this.Unloaded += (sender, e) =>
