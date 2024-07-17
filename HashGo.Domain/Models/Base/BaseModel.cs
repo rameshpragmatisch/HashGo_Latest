@@ -80,7 +80,10 @@ namespace HashGo.Domain.Models.Base
                     }
                     else
                     {
-                        addOnText += ".   " + addOn.InstallationType + "\t" + addOn.InstallationTypeCount + "X" + "\t" +"+" + string.Format("{0:C}", addOn.AddOnPrice) + "\n";
+                        addOnText += ".   " + addOn.InstallationType + "\t" + 
+                                              addOn.InstallationTypeCount + 
+                                              "X" + "\t" +"+" + 
+                                              string.Format("{0:C}", addOn.InstallationTypeCount * addOn.AddOnPrice) + "\n";
                     }
                     
                 }
@@ -102,7 +105,9 @@ namespace HashGo.Domain.Models.Base
                     }
                     else
                     {
-                        addOnText += ".   " + addOn.InstallationTypeCount + "X" + "\t" + addOn.InstallationType + "\t" + "+$" + addOn.AddOnPrice + "\n";
+                        addOnText += ".   " + addOn.InstallationTypeCount + 
+                                              "X" + "\t" + addOn.InstallationType + "\t" +
+                                              "+$" + (addOn.InstallationTypeCount * addOn.AddOnPrice) + "\n";
                     }
                 }
                 return addOnText;
