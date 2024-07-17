@@ -597,10 +597,11 @@ namespace HashGo.Wpf.App.BestTech.Views
         private async Task CreateTransaction(SalesOrderRequest salesOrderRequest)
         {
             TransactionDetails transactionDetails = await retailConnectService.CreateSalesOrderWithPayment(salesOrderRequest);
-
+          
             if (transactionDetails != null)
             {
                 transactionNo = transactionDetails.transactionNo;
+                ApplicationStateContext.TransactionId = transactionDetails.id;
             }
         }
 

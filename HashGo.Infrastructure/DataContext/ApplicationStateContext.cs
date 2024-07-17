@@ -21,6 +21,7 @@ namespace HashGo.Infrastructure.DataContext
         public static SalesOrderRequest SalesOrderRequestObject { get; set; }
         public static PaymentMethod PaymentMethodObject { get; set; }
         public static string TransactionNo { get; set; }
+        public static int TransactionId { get; set; }
 
         static ApplicationStateContext()
         {
@@ -37,6 +38,7 @@ namespace HashGo.Infrastructure.DataContext
             SalesOrderRequestObject = null;
             PaymentMethodObject = null;
             TransactionNo = null;
+            TransactionId = 0;
         }
 
         public static void LoadSettings()
