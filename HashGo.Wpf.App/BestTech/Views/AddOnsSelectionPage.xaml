@@ -263,13 +263,23 @@ CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ListBox},
                            VerticalAlignment="Center" Foreground="Black" />
             </Border>
 
-            <Border Background="#00B5CB" Grid.Column="1"
-              BorderBrush="#00B5CB" Height="73" Margin="15,0"
+            <Border  Grid.Column="1"
+                    IsEnabled="{Binding CanEnableAddToCart}"
+            Height="73" Margin="15,0"
           BorderThickness="1.5"
           Cursor="Hand"
            HorizontalAlignment="Stretch" 
-          
           CornerRadius="5">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="#00B5CB"/>
+                        <Style.Triggers>
+                            <DataTrigger  Binding="{Binding CanEnableAddToCart}" Value="false">
+                                <Setter Property="Background" Value="Gray"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
                         <i:InvokeCommandAction Command="{Binding AddProductCommand}" />

@@ -87,7 +87,7 @@ namespace HashGo.Wpf.App.BestTech.Views
         public static readonly DependencyProperty RemoveProductParamterProperty =
             DependencyProperty.Register("RemoveProductParamter", typeof(object), typeof(ProductCountControl), new PropertyMetadata(null));
 
-        public bool CanMakeItemsCountZero { get; set; } = false;
+        public bool CanMakeItemsCountZero { get; set; } = true;
 
 
         private void MinusControl_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
