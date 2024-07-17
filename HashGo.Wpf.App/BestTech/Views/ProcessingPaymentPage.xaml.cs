@@ -76,9 +76,6 @@ namespace HashGo.Wpf.App.BestTech.Views
 
                 ApplicationStateContext.TransactionNo = transactionNo;
 
-               
-
-
                 timer = new DispatcherTimer()
                 {
                     Interval = TimeSpan.FromSeconds(4),
